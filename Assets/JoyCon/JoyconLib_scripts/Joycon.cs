@@ -243,7 +243,7 @@ public class Joycon
 			Quaternion a = Quaternion.LookRotation(v1, v2);
 
 
-			return new Quaternion(a.x , a.y , a.z , a.w);
+			return new Quaternion(a.z , a.y , a.x , a.w);
 
 		} else{
             return Quaternion.identity;

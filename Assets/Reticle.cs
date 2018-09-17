@@ -14,6 +14,10 @@ public class Reticle : MonoBehaviour {
 	private Vector2 rimitRot;
 	[SerializeField]
 	private Transform canvas;
+	[SerializeField]
+	private float GyroSpeed;
+	[SerializeField]
+	private float AccelSpeed;
 
 	private Vector2 rimitRotOrig;
 	private Quaternion retPos;  // joyconの傾き基準
@@ -45,7 +49,7 @@ public class Reticle : MonoBehaviour {
 		// 差分計算
 		Vector2 reticlePos;
 		//reticlePos = calcPosReticle(retPos.eulerAngles.normalized, nowRot.eulerAngles.normalized);
-		reticlePos = calcPosReticle2();
+		reticlePos = calcPosReticle3();
 		////////////////////////////////////////
 
 		//Debug.Log("基準 : " + retPos.ToString("f2") + "現在" + nowRot.ToString("f2"));
@@ -64,15 +68,9 @@ public class Reticle : MonoBehaviour {
 	//{
 
 	//	// y xz平面
-	//	// それぞれのベクトルの角度を計算
-	//	Vector2 vec1 = new Vector2(standVec.x, standVec.z);
-	//	Vector2 vec2 = new Vector2(nowVec.x, nowVec.z);
-
-	//	float dot = Vector2.Dot(vec1, vec2);
-	//	float vecLen1 = vec1.magnitude;
-	//	float vecLen2 = vec2.magnitude;
-
-	//	float rot = Mathf.Acos(dot / (vecLen1 * vecLen2));
+	//	float rot;
+	//	rot = Vector3.Angle(new Vector3(standVec.x, 0, standVec.z), new Vector3(nowVec.x, 0, nowVec.z));
+	//	rot = rot * Mathf.PI / 180.0f;
 
 	//	if (nowVec.x - standVec.x < 0)
 	//	{
@@ -98,12 +96,83 @@ public class Reticle : MonoBehaviour {
 		float x = joycons.GetGyroR().z;
 		float y = joycons.GetGyroR().y;
 
-		x *= 10.0f;
-		y *= 10.0f;
+		if (x >= 0.1f || x <= -0.1f)
+		{
+			x *= 10.0f;
+		}
+		else
+		{
+			x = 0;
+		}
+
+		if (y >= 0.1f || y <= -0.1f)
+		{
+			y *= 10.0f;
+		}
+		else
+		{
+			y = 0;
+		}
+
 		// canvas分足す
 		x += reticle.position.x;
 		y += reticle.position.y;
 
 		return new Vector2(x, y);
 	}
+
+	// ジャイロ + 加速度
+	private Vector2 calcPosReticle3()
+	{
+
+		float x = joycons.GetGyroR().z;
+		float y = joycons.GetGyroR().y;
+
+		if (x >= 0.1f || x <= -0.1f)
+		{
+			x *= GyroSpeed;
+		}
+		else
+		{
+			x = 0;
+		}
+
+		if (y >= 0.1f || y <= -0.1f)
+		{
+			y *= GyroSpeed;
+		}
+		else
+		{
+			y = 0;
+		}
+
+		// 加速度
+		float xx = joycons.GetAccelR().x;
+		float yy = joycons.GetAccelR().y;
+
+		if (xx >= 0.2f || xx <= -0.2f)
+		{
+			xx *= AccelSpeed;
+		}
+		else
+		{
+			xx = 0;
+		}
+
+		if (yy >= 0.2f || yy <= -0.2f)
+		{
+			yy *= AccelSpeed;
+		}
+		else
+		{
+			yy = 0;
+		}
+
+		// canvas分足す
+		x += reticle.position.x + xx;
+		y += reticle.position.y + yy;
+
+		return new Vector2(x, y);
+	}
+
 }

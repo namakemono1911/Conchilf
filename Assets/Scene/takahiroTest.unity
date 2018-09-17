@@ -372,6 +372,8 @@ MonoBehaviour:
   screenSize: {x: 0, y: 0}
   rimitRot: {x: 45, y: 45}
   canvas: {fileID: 19687178}
+  GyroSpeed: 300
+  AccelSpeed: 100
 --- !u!1 &1460836620
 GameObject:
   m_ObjectHideFlags: 0
