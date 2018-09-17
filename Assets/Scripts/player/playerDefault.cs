@@ -25,18 +25,22 @@ public class playerDefault : playerState {
         if (Input.GetKeyDown(player.Control.shotButton))
         {
             shootGun();
+
+            //弾切れ
+            if (player.Gun.remBullet <= 0)
+                player.changeState(new playerNoAmmo(player));
         }
 
         //ガード
         if (Input.GetKeyDown(player.Control.guardButton))
         {
-
+            player.changeState(new playerGuard(player));
         }
 
         //リロード
         if (Input.GetKeyDown(player.Control.reloadButton))
         {
-
+            player.changeState(new playerReload(player));
         }
     }
 
@@ -49,7 +53,7 @@ public class playerDefault : playerState {
         //透視投影変換
         var screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, player.Control.reticle.transform.position);
         var pos = Vector3.zero;
-        var canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        var canvasRect = player.transform.parent.GetComponent<RectTransform>();
 
         var ray = RectTransformUtility.ScreenPointToRay(Camera.main, screenPos);
 

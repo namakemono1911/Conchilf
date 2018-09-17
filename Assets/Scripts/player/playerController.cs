@@ -47,7 +47,7 @@ public class playerController : MonoBehaviour {
         get { return control; }
     }
 
-    public GunSetting Gun
+    public GunSetting Gun               //銃の情報取得
     {
         get { return gun; }
     }
