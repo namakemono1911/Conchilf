@@ -6,23 +6,20 @@ using System.Linq;
 
 public class JoyConController : MonoBehaviour {
 
+
+	[SerializeField]
+	private MyJoycon joycons;
+
 	private static readonly Joycon.Button[] m_buttons =
 		Enum.GetValues(typeof(Joycon.Button)) as Joycon.Button[];
 
-	private List<Joycon> m_joycons;
-	private Joycon m_joyconL;
-	private Joycon m_joyconR;
 	private Joycon.Button? m_pressedButtonL;
 	private Joycon.Button? m_pressedButtonR;
 
 	private void Start()
 	{
-		m_joycons = JoyconManager.Instance.j;
-
-		if (m_joycons == null || m_joycons.Count <= 0) return;
-
-		m_joyconL = m_joycons.Find(c => c.isLeft);
-		m_joyconR = m_joycons.Find(c => !c.isLeft);
+		if (!joycons.GetStateJoyConLR())
+			return;
 	}
 
 	private void Update()
@@ -30,15 +27,13 @@ public class JoyConController : MonoBehaviour {
 		m_pressedButtonL = null;
 		m_pressedButtonR = null;
 
-		if (m_joycons == null || m_joycons.Count <= 0) return;
-
 		foreach (var button in m_buttons)
 		{
-			if (m_joyconL.GetButton(button))
+			if (joycons.GetButtonL(button))
 			{
 				m_pressedButtonL = button;
 			}
-			if (m_joyconR.GetButton(button))
+			if (joycons.GetButtonR(button))
 			{
 				m_pressedButtonR = button;
 			}
@@ -46,11 +41,11 @@ public class JoyConController : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
-			m_joyconL.SetRumble(160, 320, 0.6f, 200);
+			joycons.SetRumbleL(160, 320, 0.6f, 200);
 		}
 		if (Input.GetKeyDown(KeyCode.X))
 		{
-			m_joyconR.SetRumble(160, 320, 0.6f, 200);
+			joycons.SetRumbleR(160, 320, 0.6f, 200);
 		}
 	}
 
@@ -59,19 +54,19 @@ public class JoyConController : MonoBehaviour {
 		var style = GUI.skin.GetStyle("label");
 		style.fontSize = 24;
 
-		if (m_joycons == null || m_joycons.Count <= 0)
+		if (!joycons.GetStateJoyConLR())
 		{
 			GUILayout.Label("Joy-Con が接続されていません");
 			return;
 		}
 
-		if (!m_joycons.Any(c => c.isLeft))
+		if (!joycons.GetStateJoyConL())
 		{
 			GUILayout.Label("Joy-Con (L) が接続されていません");
 			return;
 		}
 
-		if (!m_joycons.Any(c => !c.isLeft))
+		if (!joycons.GetStateJoyConR())
 		{
 			GUILayout.Label("Joy-Con (R) が接続されていません");
 			return;
@@ -79,27 +74,42 @@ public class JoyConController : MonoBehaviour {
 
 		GUILayout.BeginHorizontal(GUILayout.Width(960));
 
-		foreach (var joycon in m_joycons)
-		{
-			var isLeft = joycon.isLeft;
-			var name = isLeft ? "Joy-Con (L)" : "Joy-Con (R)";
-			var key = isLeft ? "Z キー" : "X キー";
-			var button = isLeft ? m_pressedButtonL : m_pressedButtonR;
-			var stick = joycon.GetStick();
-			var gyro = joycon.GetGyro();
-			var accel = joycon.GetAccel();
-			var orientation = joycon.GetVector();
 
-			GUILayout.BeginVertical(GUILayout.Width(480));
-			GUILayout.Label(name);
-			GUILayout.Label(key + "：振動");
-			GUILayout.Label("押されているボタン：" + button);
-			GUILayout.Label(string.Format("スティック：({0}, {1})", stick[0], stick[1]));
-			GUILayout.Label("ジャイロ：" + gyro);
-			GUILayout.Label("加速度：" + accel);
-			GUILayout.Label("傾き：" + orientation);
-			GUILayout.EndVertical();
-		}
+		var name = "Joy-Con (L)";
+		var key = "Z キー";
+		Joycon.Button button;
+		float[] stick;
+		Vector3 gyro;
+		Vector3 accel;
+		Quaternion orientation;
+
+		stick = new float[2];
+		gyro = new Vector3(0, 0, 0);
+		accel = new Vector3(0, 0, 0);
+		orientation = new Quaternion(0, 0, 0 , 0);
+
+		GUILayout.BeginVertical(GUILayout.Width(480));
+		GUILayout.Label(name);
+		GUILayout.Label(key + "：振動");
+		GUILayout.Label("押されているボタン：" + m_pressedButtonL);
+		GUILayout.Label(string.Format("スティック：({0}, {1})", joycons.GetStickL(stick)[0] , joycons.GetStickL(stick)[1]));
+		GUILayout.Label("ジャイロ：" + joycons.GetGyroL());
+		GUILayout.Label("加速度：" + joycons.GetAccelL());
+		GUILayout.Label("傾き：" + joycons.GetOrientationL());
+		GUILayout.EndVertical();
+
+		name = "Joy-Con (R)";
+		key = "X キー";
+
+		GUILayout.BeginVertical(GUILayout.Width(480));
+		GUILayout.Label(name);
+		GUILayout.Label(key + "：振動");
+		GUILayout.Label("押されているボタン：" + m_pressedButtonR);
+		GUILayout.Label(string.Format("スティック：({0}, {1})", joycons.GetStickR()[0], joycons.GetStickR()[1]));
+		GUILayout.Label("ジャイロ：" + joycons.GetGyroR());
+		GUILayout.Label("加速度：" + joycons.GetAccelR());
+		GUILayout.Label("傾き：" + joycons.GetOrientationR());
+		GUILayout.EndVertical();
 
 		GUILayout.EndHorizontal();
 	}
