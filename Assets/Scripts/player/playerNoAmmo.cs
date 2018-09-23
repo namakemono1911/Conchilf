@@ -11,13 +11,13 @@ public class playerNoAmmo : playerState {
     public override void updateState()
     {
         //ガード
-        if (Input.GetKeyDown(player.Control.guardButton))
+        if (Input.GetKeyDown(player.Control.guardButtonD))
         {
             player.changeState(new playerGuard(player));
         }
 
         //リロード
-        if (Input.GetKeyDown(player.Control.reloadButton))
+        if (Input.GetKeyDown(player.Control.reloadButtonD))
         {
             player.changeState(new playerReload(player));
         }

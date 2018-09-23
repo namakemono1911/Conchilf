@@ -156,17 +156,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control:
-    shotButton: 323
-    reloadButton: 114
-    guardButton: 324
-    mouseSensitivity: 0.1
+    shotButtonD: 323
+    reloadButtonD: 114
+    guardButtonD: 324
+    mouseSensitivity: 100
     axisNameX: Mouse X
     axisNameY: Mouse Y
-    reticle: {fileID: 1072566231}
+    shotButton: 1
+    reticle: {fileID: 1072566232}
   gun:
     numBullet: 12
     remBullet: 12
     reloadTime: 0.5
+  wiiInput:
+    playerNum: 0
 --- !u!1 &401553641
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,7 +577,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using WiimoteApi;
 
 public class playerDefault : playerState {
 
@@ -22,7 +23,7 @@ public class playerDefault : playerState {
     public override void updateState()
     {
         //射撃
-        if (Input.GetKeyDown(player.Control.shotButton))
+        if (Input.GetKeyDown(player.Control.shotButtonD) || player.Wii.getTrigger(player.Control.shotButton))
         {
             shootGun();
 
@@ -32,13 +33,13 @@ public class playerDefault : playerState {
         }
 
         //ガード
-        if (Input.GetKeyDown(player.Control.guardButton))
+        if (Input.GetKeyDown(player.Control.guardButtonD))
         {
             player.changeState(new playerGuard(player));
         }
 
         //リロード
-        if (Input.GetKeyDown(player.Control.reloadButton))
+        if (Input.GetKeyDown(player.Control.reloadButtonD))
         {
             player.changeState(new playerReload(player));
         }

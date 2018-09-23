@@ -13,7 +13,7 @@ public class playerGuard : playerState {
 
     public override void updateState()
     {
-        if (Input.GetKeyUp(player.Control.guardButton))
+        if (Input.GetKeyUp(player.Control.guardButtonD))
         {
             if (player.Gun.remBullet > 0)
                 player.changeState(new playerDefault(player));
