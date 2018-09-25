@@ -67,8 +67,8 @@ public class playerDefault : playerState {
         }
 
         //デバッグ表示
-        var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
-        line.SetPosition(0, ray.origin);
-        line.SetPosition(1, ray.direction * 100 + Camera.main.transform.position);
+        //var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
+        //line.SetPosition(0, ray.origin);
+        //line.SetPosition(1, ray.direction * 100 + Camera.main.transform.position);
     }
 }
