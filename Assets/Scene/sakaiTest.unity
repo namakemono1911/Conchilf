@@ -387,6 +387,10 @@ Prefab:
       propertyPath: m_Name
       value: ToonSoldier_WW2_demo_model
       objectReference: {fileID: 0}
+    - target: {fileID: 1833836936534480, guid: eb991309ef16cb943bcb0fe4d7de264b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb991309ef16cb943bcb0fe4d7de264b, type: 2}
   m_IsPrefabParent: 0
