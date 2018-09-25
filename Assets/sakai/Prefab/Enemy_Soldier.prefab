@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 4231531838894360}
   - component: {fileID: 95242458971651314}
   - component: {fileID: 114648052644905760}
+  - component: {fileID: 136805759714481268}
   m_Layer: 0
   m_Name: Enemy_Soldier
   m_TagString: Untagged
@@ -481,7 +482,7 @@ Transform:
   m_GameObject: {fileID: 1833836936534480}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4458416298564398}
   - {fileID: 4079042089655382}
@@ -829,6 +830,19 @@ MonoBehaviour:
     Soldier_Anim: {fileID: 0}
     text: {fileID: 0}
     My_transform: {fileID: 0}
+--- !u!136 &136805759714481268
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1833836936534480}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!137 &137567245964924922
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
