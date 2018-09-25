@@ -96,6 +96,13 @@ public class JoyConController : MonoBehaviour {
 		GUILayout.Label("ジャイロ：" + joycons.GetGyroL());
 		GUILayout.Label("加速度：" + joycons.GetAccelL());
 		GUILayout.Label("傾き：" + joycons.GetOrientationL());
+		GUILayout.Label("傾きの前方：" + joycons.GetOrientationL().eulerAngles.normalized);
+
+		Vector3 a = joycons.GetOrientationL().eulerAngles.normalized;
+		Vector3 c = new Vector3(0, -1, 0);
+		Quaternion b = Quaternion.Euler(c);
+		GUILayout.Label("x -1：" + calcPosReticle(new Vector3(-1, 0, 0), a));
+
 		GUILayout.EndVertical();
 
 		name = "Joy-Con (R)";
@@ -113,4 +120,17 @@ public class JoyConController : MonoBehaviour {
 
 		GUILayout.EndHorizontal();
 	}
+
+	// 傾きで計算
+	private float calcPosReticle(Vector3 standVec, Vector3 nowVec)
+	{
+
+		// y xz平面
+		float rot;
+		rot = Vector3.Angle(new Vector3(standVec.x, standVec.y, standVec.z), new Vector3(nowVec.x, nowVec.y, nowVec.z));
+	//	rot = rot * Mathf.PI / 180.0f;
+
+		return rot;
+	}
+
 }

@@ -7,10 +7,12 @@ using System.Linq;
 public class MyJoycon : MonoBehaviour {
 
 
-	// 誤差
+	// 回転する物体
 	[SerializeField]
-	private float OrientationErr;
-
+	private GameObject guardObj;
+	// ガード物体
+	[SerializeField]
+	private JoyconGuard guardJoycon;
 
 	private Quaternion OrientationR;
 	private Quaternion OrientationL;
@@ -42,6 +44,10 @@ public class MyJoycon : MonoBehaviour {
 	void Update () {
 
 		if (m_joycons == null || m_joycons.Count <= 0) return;
+
+		Quaternion a = GetOrientationL();
+		guardObj.transform.rotation = new Quaternion(a.x,a.y,a.z,a.w);
+
 
 	}
 
@@ -95,17 +101,7 @@ public class MyJoycon : MonoBehaviour {
 
 		if (m_joycons == null || m_joycons.Count <= 0) return new Quaternion(0, 0, 0, 1);
 
-		if (OrientationR.x + OrientationErr < m_joyconR.GetVector().x || OrientationR.x - OrientationErr > m_joyconR.GetVector().x ||
-			OrientationR.y + OrientationErr < m_joyconR.GetVector().y || OrientationR.y - OrientationErr > m_joyconR.GetVector().y ||
-			OrientationR.z + OrientationErr < m_joyconR.GetVector().z || OrientationR.z - OrientationErr > m_joyconR.GetVector().z ||
-			OrientationR.w + OrientationErr < m_joyconR.GetVector().w || OrientationR.w - OrientationErr > m_joyconR.GetVector().w
-			)
-		{
-			OrientationR = m_joyconR.GetVector();
-			return OrientationR;
-		}
-
-		return OrientationR;
+		return m_joyconR.GetVector();
 	}
 
 	// 傾きL
@@ -191,4 +187,9 @@ public class MyJoycon : MonoBehaviour {
 		return true;
 	}
 
+	// ガードの確認
+	public bool GetGuard()
+	{
+		return guardJoycon.GetGuard();
+	}
 }
