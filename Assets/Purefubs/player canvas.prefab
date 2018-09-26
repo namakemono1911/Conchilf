@@ -187,8 +187,10 @@ MonoBehaviour:
     numBullet: 12
     remBullet: 12
     reloadTime: 0.5
+    sensitivity: 2
   wiiInput:
-    playerNum: 0
+  - playerNum: 0
+  - playerNum: 1
 --- !u!114 &114928782997630022
 MonoBehaviour:
   m_ObjectHideFlags: 1

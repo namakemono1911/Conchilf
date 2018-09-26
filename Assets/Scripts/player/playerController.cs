@@ -17,7 +17,8 @@ public class ControlSetting
     //wiiリモコンボタン
     public WiiButtonCode shotButton;    //発射ボタン
 
-    public RectTransform reticle;         //レティクル情報
+    public RectTransform reticle;       //レティクル情報
+    public RectTransform[] led = new RectTransform[2];
 }
 
 [System.Serializable]
@@ -26,6 +27,7 @@ public class GunSetting
     public int numBullet;           //装弾数
     public int remBullet;           //残弾数
     public float reloadTime;        //リロード時間
+    public float sensitivity;       //感度
 
     public void shoot()
     {
@@ -46,6 +48,7 @@ public class WiiInput
     private Wiimote wiimote;
     private bool[] isPress = new bool[11];
     private bool[] isPressBefore = new bool[11];
+    private bool[] led = { false, false, false, false };
 
     public IRData Ir
     {
@@ -61,7 +64,13 @@ public class WiiInput
             isPressBefore[i] = false;
         }
 
+        led[playerNum] = true;
+
         WiimoteManager.FindWiimotes();
+        wiimote = WiimoteManager.Wiimotes[playerNum];
+
+        wiimote.SendPlayerLED(led[0], led[1], led[2], led[3]);
+        wiimote.SendDataReportMode(InputDataType.REPORT_EXT21);
     }
 
     //更新
@@ -75,7 +84,6 @@ public class WiiInput
                 return;
             }
 
-        wiimote = WiimoteManager.Wiimotes[playerNum];
         int ret;
         do
         {
@@ -88,6 +96,7 @@ public class WiiInput
             isPress[i] = wiimote.Button.Data[i];
         }
 
+        //ir更新
         wiimote.SetupIRCamera(IRDataType.BASIC);
     }
 
@@ -118,6 +127,12 @@ public class WiiInput
     }
 }
 
+public enum ControllerArm
+{
+    right = 0,
+    left
+}
+
 public class playerController : MonoBehaviour {
 
     [SerializeField]
@@ -127,9 +142,9 @@ public class playerController : MonoBehaviour {
     private GunSetting gun;             //銃の設定
 
     [SerializeField]
-    private WiiInput wiiInput;          //Wiiリモコンの情報
+    private WiiInput[] wiiInput;        //Wiiリモコンの情報
 
-    private playerState state;          //プレイヤーのステートパターン
+    private playerState state = null;   //プレイヤーのステートパターン
 
     public ControlSetting Control       //コントロール取得
     {
@@ -141,11 +156,10 @@ public class playerController : MonoBehaviour {
         get { return gun; }
     }
 
-    public WiiInput Wii
+    public WiiInput[] Wii
     {
         get { return wiiInput; }
     }
-
 
 	// Use this for initialization
 	void Start () {
@@ -155,13 +169,15 @@ public class playerController : MonoBehaviour {
         //Cursor.lockState = CursorLockMode.Locked;
 
         //Wiiリモコン初期化
-        wiiInput.start();
+        for (int i = 0; i < wiiInput.Length; i++)
+            wiiInput[i].start();
     }
 	
 	// Update is called once per frame
 	void Update () {
         //Wiiリモコン更新
-        wiiInput.update();
+        for (int i = 0; i < wiiInput.Length; i++)
+            wiiInput[i].update();
 
         //ステート更新
         state.updateState();
@@ -172,13 +188,18 @@ public class playerController : MonoBehaviour {
         //reticlePos.y = Input.GetAxis(control.axisNameY) * control.mouseSensitivity;
         //control.reticle.anchoredPosition += reticlePos;
 
-        float[] ir = wiiInput.Ir.GetPointingPosition();
+        float[] ir = wiiInput[(int)ControllerArm.right].Ir.GetPointingPosition();
         var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
-        control.reticle.anchoredPosition3D = new Vector2((ir[0] * Screen.width + originPos.x) * 2, (ir[1] * Screen.height + originPos.y) * 2);
+        control.reticle.anchoredPosition3D
+            = new Vector2((ir[0] * Screen.width + originPos.x) * gun.sensitivity,
+            (ir[1] * Screen.height + originPos.y) * gun.sensitivity);
     }
 
     public void changeState(playerState newState)
     {
+        if (state != null)
+            Destroy(state);
+
         state = newState;
         state.initState();
     }
