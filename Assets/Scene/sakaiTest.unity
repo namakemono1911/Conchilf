@@ -113,6 +113,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &448202458 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114491340217746802, guid: eb991309ef16cb943bcb0fe4d7de264b,
+    type: 2}
+  m_PrefabInternal: {fileID: 2076297588}
+  m_Script: {fileID: 11500000, guid: 4e10ac181ea884445bf0c47088a1e827, type: 3}
 --- !u!1 &1310782616
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +205,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1344782240 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95242458971651314, guid: eb991309ef16cb943bcb0fe4d7de264b,
+    type: 2}
+  m_PrefabInternal: {fileID: 2076297588}
+--- !u!4 &1344782241 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4231531838894360, guid: eb991309ef16cb943bcb0fe4d7de264b,
+    type: 2}
+  m_PrefabInternal: {fileID: 2076297588}
 --- !u!1 &1773119033
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +360,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2010962373
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4485032728475266, guid: fe26a96cc59c24545a169a87946768fb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485032728475266, guid: fe26a96cc59c24545a169a87946768fb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485032728475266, guid: fe26a96cc59c24545a169a87946768fb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485032728475266, guid: fe26a96cc59c24545a169a87946768fb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485032728475266, guid: fe26a96cc59c24545a169a87946768fb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485032728475266, guid: fe26a96cc59c24545a169a87946768fb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485032728475266, guid: fe26a96cc59c24545a169a87946768fb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485032728475266, guid: fe26a96cc59c24545a169a87946768fb, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fe26a96cc59c24545a169a87946768fb, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &2076297588
 Prefab:
   m_ObjectHideFlags: 0
@@ -387,10 +445,42 @@ Prefab:
       propertyPath: m_Name
       value: ToonSoldier_WW2_demo_model
       objectReference: {fileID: 0}
-    - target: {fileID: 1833836936534480, guid: eb991309ef16cb943bcb0fe4d7de264b, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 1869305149862528, guid: eb991309ef16cb943bcb0fe4d7de264b, type: 2}
+      propertyPath: m_Name
+      value: Enemy_Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 114491340217746802, guid: eb991309ef16cb943bcb0fe4d7de264b,
+        type: 2}
+      propertyPath: value.bullet
+      value: 
+      objectReference: {fileID: 1584491329846210, guid: 2b71ce189da3224459a4a61de105579f,
+        type: 2}
+    - target: {fileID: 114648052644905760, guid: eb991309ef16cb943bcb0fe4d7de264b,
+        type: 2}
+      propertyPath: OptionInfo.My_transform
+      value: 
+      objectReference: {fileID: 1344782241}
+    - target: {fileID: 114648052644905760, guid: eb991309ef16cb943bcb0fe4d7de264b,
+        type: 2}
+      propertyPath: OptionInfo.Soldier_Anim
+      value: 
+      objectReference: {fileID: 1344782240}
+    - target: {fileID: 114648052644905760, guid: eb991309ef16cb943bcb0fe4d7de264b,
+        type: 2}
+      propertyPath: OptionInfo.GunScript
+      value: 
+      objectReference: {fileID: 448202458}
+    - target: {fileID: 114648052644905760, guid: eb991309ef16cb943bcb0fe4d7de264b,
+        type: 2}
+      propertyPath: OptionInfo.Shot_Time
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114648052644905760, guid: eb991309ef16cb943bcb0fe4d7de264b,
+        type: 2}
+      propertyPath: OptionInfo.Target
+      value: 
+      objectReference: {fileID: 1620858399117856, guid: fe26a96cc59c24545a169a87946768fb,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb991309ef16cb943bcb0fe4d7de264b, type: 2}
   m_IsPrefabParent: 0

@@ -2,7 +2,7 @@
 //
 //  Title   :   エネミー　モーション処理
 //  Auther  :   Shun Sakai
-//  Date    :   2018/09/14   
+//  Date    :   2018/09/26   
 //  Update  :   
 //  Memo    : Animatorの再生や管理は Runtime Animator Controller を経由して管理されています
 //
@@ -18,19 +18,22 @@ public class Soldier_Motion : MonoBehaviour {
 
     // シリアライズ
     [System.Serializable]
-    class option
+    class Option
     {
+        public Enemy_gun    GunScript;      // 銃のスクリプト
         public Animator     Soldier_Anim;   // アニメータ
-        public Text         text;           // テキスト
+        public GameObject   Target;         // ターゲット
         public Transform    My_transform;   // 自身のトランスフォーム情報
+        public float        Shot_Time;      // 着弾までの時間
     }
 
     [SerializeField]
-    private option OptionInfo;              // シリアライズ系統の情報
+    private Option OptionInfo;              // シリアライズ系統の情報
 
     // メンバ
     private AnimatorStateInfo   AnimInfo;           // アニメータの状態
     private Transform           Target_Transform;   // ターゲットトランスフォーム
+    private bool                Shot_Enable;
     
     // アニメータ識別子
     private static readonly int hashIdle    = Animator.StringToHash("Idle");
@@ -56,32 +59,61 @@ public class Soldier_Motion : MonoBehaviour {
     {
         // アニメータ内のベースレイヤー情報取得
         AnimInfo = OptionInfo.Soldier_Anim.GetCurrentAnimatorStateInfo(0);
+
+        // 初期化
+        Shot_Enable = false;
     }
 	
 	// 更新処理
 	void Update () {
 
+        // ターゲットのトランスフォーム取得
+        Target_Transform = OptionInfo.Target.transform;
+
         // ショットモーションの終了検知
         End_ShotMotion();
 
-        // アイドル状態の時
-        if( AnimInfo.IsName("Idle"))
-        {
-            // ターゲットに向かって回転したり
-            // SlerpToTarget();
+        // 目標座標に向けて回転処理
+        SlerpToTarget();
 
-            
-            // スペース押下時
-            if (Input.GetKeyDown("space"))
+        // ショット状態ではない
+        if (Shot_Enable == false)
+        {
+            // アイドル状態の時
+            if (AnimInfo.IsName("Idle"))
             {
-                // ショットモーションに移行
-                OptionInfo.Soldier_Anim.SetBool("is_shot", true);
-            }   
+                // shotフラグをオンに
+                if (Input.GetKeyDown("space"))
+                {
+                    // ショット状態に移行
+                    Shot_Enable = true;
+
+                    // ショットモーションに移行
+                    OptionInfo.Soldier_Anim.SetBool("is_shot", true);
+
+
+                    // なんかいい感じの時に打ちたい
+                    OptionInfo.GunScript.SetBullet(OptionInfo.Target.transform.position, OptionInfo.Shot_Time);
+
+                }
+            }
         }
+        // ショット状態
+        else if(Shot_Enable == true)
+        {
+
+            // ショットモーションの終了検知
+            if (End_ShotMotion())
+            {
+                Shot_Enable = false;
+            }
+        }
+        
+
     }
 
     // 発砲モーション終了検知
-    private void End_ShotMotion()
+    private bool End_ShotMotion()
     {
         AnimInfo = OptionInfo.Soldier_Anim.GetCurrentAnimatorStateInfo(0);
 
@@ -89,15 +121,18 @@ public class Soldier_Motion : MonoBehaviour {
         if(AnimInfo.IsName("shot") && AnimInfo.normalizedTime >= 0.9f)
         {
             OptionInfo.Soldier_Anim.SetBool("is_shot", false);
+            return true;
         }
-    }
 
+        return false;
+    }
+    
     // 目標への回転角度を算出
     private void SlerpToTarget()
     {
         // ターゲット情報からクォータニオンを算出
         Vector3 Target = Target_Transform.position;
-
+        
         // Y軸を統一
         if (transform.position.y != Target.y)
         {

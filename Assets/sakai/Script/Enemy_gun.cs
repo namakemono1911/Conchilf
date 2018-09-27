@@ -12,36 +12,24 @@ using UnityEngine;
 
 public class Enemy_gun : MonoBehaviour {
 
-    // inspectar上に表示
-    [SerializeField] private AudioSource    shotSE;     //　銃の発砲音
-    [SerializeField] private Light          shotLight;  //　銃の光
-    [SerializeField] private GameObject     shotEffect; //　弾が当たった時のパーティクル
-
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    
-    public AudioSource GetShotSE()
+    // inspector上に表示
+    [System.Serializable]
+    public class OptionValue
     {
-        return shotSE;
+       public GameObject bullet;
     }
 
-    public Light GetShotLight()
-    {
-        return shotLight;
-    }
+    [SerializeField]
+    private OptionValue value;
 
-    public GameObject GetShotEffect()
+    public void SetBullet(Vector3 TargetPos, float Sec)
     {
-        return shotEffect;
-    }
+        // 玉のインスタンス作成
+        GameObject newBullet = Instantiate(value.bullet, this.gameObject.transform.position, Quaternion.identity);
 
+        // 玉の初期ステータス設定
+        Bullet script = newBullet.GetComponent<Bullet>();
+        script.SetBulletStatus(TargetPos, Sec);
+
+    }
 }
