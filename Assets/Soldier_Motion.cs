@@ -98,8 +98,10 @@ public class Soldier_Motion : MonoBehaviour {
                 Shot_Enable = false;
             }
         }
-        
 
+        //デバッグ用
+        if (Input.GetKeyDown(KeyCode.Space))
+            ShotStart(0);
     }
 
     // ショットスタート

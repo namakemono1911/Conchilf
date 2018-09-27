@@ -14,4 +14,19 @@ abstract public class playerState : MonoBehaviour {
 
     //更新
     abstract public void updateState();
+
+    //ヒット処理
+    abstract public void hitBullet();
+
+    //通常ヒット
+    protected void normalHit()
+    {
+        player.changeState(new playerDown(player));
+    }
+
+    //防御時ヒット
+    protected void guardHit()
+    {
+        //ガードエフェクトとか
+    }
 }

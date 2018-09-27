@@ -20,13 +20,4 @@ public class Bullet : MonoBehaviour
     {
         this.transform.DOMove(TargetPos, sec);
     }
-
-    // 当たり判定
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Target")
-        {
-            Destroy(this.gameObject);
-        }
-    }
 }

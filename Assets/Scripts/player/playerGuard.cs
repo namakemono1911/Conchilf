@@ -39,4 +39,10 @@ public class playerGuard : playerState {
         }
         Debug.Log("state Gurd");
     }
+
+    //ヒット時処理
+    public override void hitBullet()
+    {
+        guardHit();
+    }
 }

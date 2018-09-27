@@ -22,4 +22,9 @@ public class playerReload : playerState {
             player.changeState(new playerDefault(player));
         }
     }
+
+    public override void hitBullet()
+    {
+        normalHit();
+    }
 }

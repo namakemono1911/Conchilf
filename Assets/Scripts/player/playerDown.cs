@@ -13,6 +13,11 @@ public class playerDown : playerState {
 
     public override void updateState()
     {
+        Debug.Log("state Down");
+    }
+
+    public override void hitBullet()
+    {
 
     }
 }

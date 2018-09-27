@@ -90,4 +90,10 @@ public class playerDefault : playerState {
         //line.SetPosition(0, ray.origin);
         //line.SetPosition(1, ray.direction * 100 + Camera.main.transform.position);
     }
+
+    //ヒット時処理
+    public override void hitBullet()
+    {
+        normalHit();
+    }
 }

@@ -22,4 +22,9 @@ public class playerNoAmmo : playerState {
             player.changeState(new playerReload(player));
         }
     }
+
+    public override void hitBullet()
+    {
+        normalHit();
+    }
 }

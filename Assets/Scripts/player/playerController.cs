@@ -203,4 +203,14 @@ public class playerController : MonoBehaviour {
         state = newState;
         state.initState();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+            Destroy(collision.gameObject);
+
+        if (collision.gameObject.tag == "enemyBullet")
+        {
+            state.hitBullet();
+        }
+    }
 }
