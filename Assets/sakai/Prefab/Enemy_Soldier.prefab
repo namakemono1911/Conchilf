@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 65340354539988098}
   - component: {fileID: 114491340217746802}
   m_Layer: 0
-  m_Name: Shot_Start
+  m_Name: Enemy_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,6 +869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e10ac181ea884445bf0c47088a1e827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    bullet: {fileID: 1584491329846210, guid: 2b71ce189da3224459a4a61de105579f, type: 2}
 --- !u!114 &114648052644905760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -881,9 +883,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OptionInfo:
-    Soldier_Anim: {fileID: 0}
-    text: {fileID: 0}
-    My_transform: {fileID: 0}
+    GunScript: {fileID: 114491340217746802}
+    Soldier_Anim: {fileID: 95242458971651314}
+    Target: {fileID: 1620858399117856, guid: fe26a96cc59c24545a169a87946768fb, type: 2}
+    Player: {fileID: 0}
+    Player2: {fileID: 0}
+    My_transform: {fileID: 4231531838894360}
+    Shot_Time: 2
 --- !u!136 &136805759714481268
 CapsuleCollider:
   m_ObjectHideFlags: 1

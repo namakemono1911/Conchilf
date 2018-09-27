@@ -23,6 +23,8 @@ public class Soldier_Motion : MonoBehaviour {
         public Enemy_gun    GunScript;      // 銃のスクリプト
         public Animator     Soldier_Anim;   // アニメータ
         public GameObject   Target;         // ターゲット
+        public GameObject   Player;        // プレイヤー1
+        public GameObject   Player2;        // プレイヤー2
         public Transform    My_transform;   // 自身のトランスフォーム情報
         public float        Shot_Time;      // 着弾までの時間
     }
@@ -82,20 +84,8 @@ public class Soldier_Motion : MonoBehaviour {
             // アイドル状態の時
             if (AnimInfo.IsName("Idle"))
             {
-                // shotフラグをオンに
-                if (Input.GetKeyDown("space"))
-                {
-                    // ショット状態に移行
-                    Shot_Enable = true;
-
-                    // ショットモーションに移行
-                    OptionInfo.Soldier_Anim.SetBool("is_shot", true);
-
-
-                    // なんかいい感じの時に打ちたい
-                    OptionInfo.GunScript.SetBullet(OptionInfo.Target.transform.position, OptionInfo.Shot_Time);
-
-                }
+                // ショット状態に移行
+                Shot_Enable = true;
             }
         }
         // ショット状態
@@ -111,6 +101,29 @@ public class Soldier_Motion : MonoBehaviour {
         
 
     }
+
+    // ショットスタート
+    private void ShotStart(int targetindex)
+    {
+        // ショット可能状態か
+        if (Shot_Enable == true)
+        {
+            // ショットモーションに移行
+            OptionInfo.Soldier_Anim.SetBool("is_shot", true);
+
+            if (targetindex == 0)
+            {
+                // なんかいい感じの時に打ちたい
+                OptionInfo.GunScript.SetBullet(OptionInfo.Player.transform.position, OptionInfo.Shot_Time);
+            }
+            else if (targetindex == 1)
+            {
+                // なんかいい感じの時に打ちたい
+                OptionInfo.GunScript.SetBullet(OptionInfo.Player2.transform.position, OptionInfo.Shot_Time);
+            }
+        }
+    }
+
 
     // 発砲モーション終了検知
     private bool End_ShotMotion()
