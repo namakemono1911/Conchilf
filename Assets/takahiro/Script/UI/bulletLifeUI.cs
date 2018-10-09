@@ -1,31 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class playerLifeUI : MonoBehaviour {
-
+public class bulletLifeUI : MonoBehaviour {
 	[SerializeField]
-	private int lifeMax;			// 最大値 0で無限
+	private int lifeMax;            // 最大値 0で無限
 	[SerializeField]
-	private int lifeFirst;			// 初期値
+	private int lifeFirst;          // 初期値
 	[SerializeField]
-	private GameObject lifeImage;		// ライフイメージ
+	private GameObject lifeImage;       // ライフイメージ
 	[SerializeField]
-	private float gapPos;			// ずれ
+	private float gapPos;           // ずれ
 	[SerializeField]
-	private bool is1Player;			// 1pか2pか
+	private bool is1Player;         // 1pか2pか
 	[SerializeField]
-	private float gapSize;			// 1つめと2つめ以降のサイズ比率
+	private int wrapNumber;			// 表示が折り返す数
 
 	private int lifeNow;        // 現在のライフ
-	private Vector2 lifeSizeDelta;	// 2ライフ目以降のサイズ
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		lifeNow = lifeFirst;
-		lifeSizeDelta = lifeImage.GetComponent<RectTransform>().sizeDelta;
-		lifeSizeDelta *= gapSize;
 		SetUI(lifeNow);
 	}
 
@@ -42,7 +38,7 @@ public class playerLifeUI : MonoBehaviour {
 		}
 
 		// ライフ確認
-		if (isDeth())
+		if (isNeedReload())
 		{
 			return;
 		}
@@ -53,7 +49,7 @@ public class playerLifeUI : MonoBehaviour {
 		// 2つ目以降
 		GameObject childObj;
 		Vector3 childPos = this.transform.position;
-		for (int i = 1; i < getPlayerLife(); ++i)
+		for (int i = 1; i < getBulletLife(); ++i)
 		{
 			if (is1Player)
 			{
@@ -65,25 +61,31 @@ public class playerLifeUI : MonoBehaviour {
 			}
 			childPos.z -= 0.1f;
 
+			// 折り返し判定
+			if(i % wrapNumber == 0)
+			{
+				childPos.y -= gapPos;
+				childPos.x = this.transform.position.x;
+			}
+
 			childObj = GameObject.Instantiate(lifeImage, childPos, Quaternion.identity, this.transform);
-			childObj.GetComponent<RectTransform>().sizeDelta = new Vector2(lifeSizeDelta.x, lifeSizeDelta.y);
 		}
 	}
 
-	// ダメージor回復
-	public void addPlayerLife(int n)
+	// 消費or回復
+	public void addBulletLife(int n)
 	{
 		lifeNow += n;
 
-		if(lifeMax > 0)
+		if (lifeMax > 0)
 		{
-			if(lifeNow >= lifeMax)
+			if (lifeNow >= lifeMax)
 			{
 				lifeNow = lifeMax;
 			}
 		}
 
-		if(lifeNow <= 0)
+		if (lifeNow <= 0)
 		{
 			lifeNow = 0;
 		}
@@ -92,10 +94,10 @@ public class playerLifeUI : MonoBehaviour {
 
 	}
 
-	// 死亡確認
-	public bool isDeth()
+	// 弾薬確認
+	public bool isNeedReload()
 	{
-		if(lifeNow <= 0)
+		if (lifeNow <= 0)
 		{
 			return true;
 		}
@@ -103,9 +105,38 @@ public class playerLifeUI : MonoBehaviour {
 		return false;
 	}
 
-	// 残基確認
-	public int getPlayerLife()
+	// 残弾確認
+	public int getBulletLife()
 	{
 		return lifeNow;
+	}
+
+	// リロード
+	public void bulletReload()
+	{
+		lifeNow = lifeMax;
+		SetUI(lifeNow);
+	}
+
+	// 最大値アップ
+	public void addBulletLifeMax(int n)
+	{
+		lifeMax += n;
+
+		if(lifeMax <= 0)
+		{
+			lifeMax = 0;
+		}
+	}
+
+	// 最大値セット
+	public void setBulletLifeMax(int n)
+	{
+		lifeMax = n;
+
+		if (lifeMax <= 0)
+		{
+			lifeMax = 0;
+		}
 	}
 }

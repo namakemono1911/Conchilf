@@ -15,11 +15,11 @@ public class testplayerLife : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			plife.AddPlayerLife(1);
+			plife.addPlayerLife(1);
 		}
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			plife.AddPlayerLife(-1);
+			plife.addPlayerLife(-1);
 		}
 	}
 }
