@@ -35,7 +35,6 @@ namespace Common
 
     }
 
-
     // ゲームシーン関連のパラメータ
     public static class GameStatus
     {        
@@ -43,5 +42,12 @@ namespace Common
         public const int    TOUCHCOUNT_FALSE    = (0);          // タッチカウントの無効値
 
         public const float  STAGE_INTERVAL       = (1.5f);      // ステージ間インターバル  
+    }
+
+    // エディット関連のパラメータ
+    public static class Edit
+    {
+        // プレハブパス
+        public const string ENEMY_00 = ("Prefub/Enemy_Soldier");
     }
 }
