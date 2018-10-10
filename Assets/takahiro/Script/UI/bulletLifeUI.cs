@@ -21,8 +21,6 @@ public class bulletLifeUI : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-		lifeNow = lifeFirst;
-		SetUI(lifeNow);
 	}
 
 	private void SetUI(int life)
@@ -139,4 +137,27 @@ public class bulletLifeUI : MonoBehaviour {
 			lifeMax = 0;
 		}
 	}
+
+    // 初期弾数セット
+    public void setBulletLifeFirst(int n)
+    {
+        lifeMax = n;
+        lifeNow = n;
+
+        if (lifeMax > 0)
+        {
+            if (lifeNow >= lifeMax)
+            {
+                lifeNow = lifeMax;
+            }
+        }
+
+        if (lifeNow <= 0)
+        {
+            lifeNow = 0;
+        }
+
+        SetUI(lifeNow);
+
+    }
 }

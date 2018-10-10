@@ -20,17 +20,13 @@ public class playerBulletMarkUI : MonoBehaviour {
 
 	private void Start()
 	{
-		effectPosNum = 0;
 		timeCounter = 0;
 		fadeSpeed = 1.0f / (float)fadeTime;
 		fadeColor = playerBulletMarkImage.color;
-		SetBulletMark(0);
 	}
 
 	private void Update()
 	{
-		this.transform.position = new Vector3(effectTransform.position.x, effectTransform.position.y, effectTransform.position.z);
-
 		// 弾痕のフェード処理
 		if (timeCounter >= fadeTime)
 		{

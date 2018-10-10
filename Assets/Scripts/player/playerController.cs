@@ -55,6 +55,12 @@ public class WiiInput
         get { return wiimote.Ir; }
     }
 
+    public Vector2 getPointerPos()
+    {
+        float[] pos = wiimote.Ir.GetPointingPosition();
+        return new Vector2(pos[0], pos[1]);
+    }
+
     //初期化
     public void start()
     {
@@ -127,6 +133,13 @@ public class WiiInput
     }
 }
 
+[System.Serializable]
+public class PlayerUI
+{
+    public bulletLifeUI bulletUI;      //弾のUI
+    public GameObject bulletMark;      //弾のエフェクト
+}
+
 public enum ControllerArm
 {
     right = 0,
@@ -143,6 +156,9 @@ public class playerController : MonoBehaviour {
 
     [SerializeField]
     private WiiInput[] wiiInput;        //Wiiリモコンの情報
+
+    [SerializeField]
+    private PlayerUI ui;
 
     private playerState state = null;   //プレイヤーのステートパターン
 
@@ -161,12 +177,19 @@ public class playerController : MonoBehaviour {
         get { return wiiInput; }
     }
 
+    public PlayerUI UI
+    {
+        get { return ui; }
+    }
+
 	// Use this for initialization
 	void Start () {
         changeState(new playerDefault(this));
 
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
+        
+        ui.bulletUI.setBulletLifeFirst(gun.numBullet);
 
         //Wiiリモコン初期化
         for (int i = 0; i < wiiInput.Length; i++)

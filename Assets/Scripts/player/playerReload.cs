@@ -18,6 +18,7 @@ public class playerReload : playerState {
         //リロードが終わったかどうか
         if (Time.time - startTime >= player.Gun.reloadTime)
         {
+            player.UI.bulletUI.bulletReload();
             player.Gun.reload();
             player.changeState(new playerDefault(player));
         }

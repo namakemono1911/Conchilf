@@ -69,6 +69,8 @@ public class playerDefault : playerState {
     {
         //射撃処理
         player.Gun.shoot();
+        player.UI.bulletUI.addBulletLife(-1);
+        Instantiate(player.UI.bulletMark, player.Control.reticle);
 
         //透視投影変換
         var screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, player.Control.reticle.transform.position);
