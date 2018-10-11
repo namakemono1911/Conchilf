@@ -93,7 +93,7 @@ public class CsvManager : MonoBehaviour {
     public void CsvOutput()
     {
         // 出力先のファイルパスを作成
-        string CSVFilePath = Application.dataPath +"/CSV/" +  OptionInfo.OutputCsvName;
+        string CSVFilePath = Application.dataPath +"/Resources/" +  OptionInfo.OutputCsvName;
 
         //　ストリームで書き込み
         using (StreamWriter streamWriter = new StreamWriter(CSVFilePath))
@@ -140,8 +140,6 @@ public class CsvManager : MonoBehaviour {
             // wave数情報を保存
             stringlist.Add((OptionInfo.WaveNumber).ToString());
 
-
-
             // 座標情報を追加
             stringlist.Add((pos.x).ToString());
             stringlist.Add((pos.y).ToString());
@@ -153,31 +151,24 @@ public class CsvManager : MonoBehaviour {
     public void CsvLoad()
     {
         // 読み込むCSVファイル名
-        string CSVFilePath = Application.dataPath + OptionInfo.OutputCsvName;
+        //string CSVFilePath = Application.dataPath + OptionInfo.OutputCsvName;
 
         // Csvデータのクリア
         CsvDate.Clear();
 
-        //　ストリームで読み込み
-        using (StreamReader streamReader = new StreamReader(CSVFilePath))
+        
+        TextAsset csvfile;
+        csvfile = Resources.Load(OptionInfo.OutputCsvName) as TextAsset;
+        StringReader reader = new StringReader(csvfile.text);
+
+        // 全取得用リスト
+        List<string> stringlist = new List<string>();
+        stringlist.Clear();
+
+        while(reader.Peek() > -1)
         {
-            // 全取得用リスト
-            List<string> stringlist = new List<string>();
-            stringlist.Clear();
-
-            // ファイル末尾まで読み込み
-            while (!streamReader.EndOfStream)
-            {
-
-                stringlist.AddRange(streamReader.ReadLine().Split(','));
-
-                // １行読み込み
-                string LineDate = streamReader.ReadLine();
-                // カンマ区切り
-                var buf = LineDate.Split(',');
-                // リストに追加
-                CsvDate.Add(buf);
-            }
+            string line = reader.ReadLine();
+            CsvDate.Add(line.Split(','));
         }
          
     }

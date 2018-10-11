@@ -29,8 +29,8 @@ public class EnemyManager : MonoBehaviour {
     [SerializeField]
     private Option OptionInfo;              // オプション情報
 
-    private List<string[]>      CsvDate;         // csvデータ
-    private List<GameObject>    WaveDate;      // ウェーブ毎のデータ
+    private List<string[]>      CsvDate;    // csvデータ
+    private List<GameObject>    WaveDate;   // ウェーブ毎のデータ
 
 
     // インスペクター入力忘れ防止
@@ -71,11 +71,11 @@ public class EnemyManager : MonoBehaviour {
 	}
 
     // ウェーブデータ作成
-    private void WaveDateMake(int WaveNum)
+    public void WaveDateMake(int WaveNum)
     {
         // ゲームオブジェクト用
-        GameObject buf;
-        Vector3 pos;
+        GameObject  buf;
+        Vector3     pos;
 
         // ゲームオブジェクトの全削除
         // WaveDate. 
@@ -102,7 +102,7 @@ public class EnemyManager : MonoBehaviour {
             // ウェーブ数確認
             if (int.Parse(wave) == WaveNum)
             {
-                // エネミー種別ごとに選択
+                // エネミー生成
                 buf = Instantiate(OptionInfo.Enemy00);
 
                 // エネミーの座標データを追加
@@ -117,5 +117,7 @@ public class EnemyManager : MonoBehaviour {
             }
 
         }
+
+        // 全オブジェクトをnonactiveに
     }
 }

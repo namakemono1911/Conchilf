@@ -20,13 +20,18 @@ public class Soldier_Motion : MonoBehaviour {
     [System.Serializable]
     class Option
     {
-        public Enemy_gun    GunScript;      // 銃のスクリプト
-        public Animator     Soldier_Anim;   // アニメータ
-        public GameObject   Target;         // ターゲット
-        public GameObject   Player;        // プレイヤー1
-        public GameObject   Player2;        // プレイヤー2
-        public Transform    My_transform;   // 自身のトランスフォーム情報
-        public float        Shot_Time;      // 着弾までの時間
+        public Enemy_gun    GunScript;          // 銃のスクリプト
+        public Animator     Soldier_Anim;       // アニメータ
+        public GameObject   Target;             // ターゲット
+        public GameObject   Player;             // プレイヤー1
+        public GameObject   Player2;            // プレイヤー2
+        public Transform    My_transform;       // 自身のトランスフォーム情報
+        public float        Shot_Time;          // 着弾までの時間
+
+        // 移動情報
+        public float        Move_StartTime;     // 移動開始時間
+        public float        Move_TravelTime;    // 移動にかかる時間
+        public Vector3      Move_Position;      // 移動先座標
     }
 
     [SerializeField]
@@ -35,8 +40,12 @@ public class Soldier_Motion : MonoBehaviour {
     // メンバ
     private AnimatorStateInfo   AnimInfo;           // アニメータの状態
     private Transform           Target_Transform;   // ターゲットトランスフォーム
-    private bool                Shot_Enable;
-    
+
+    // フラグ
+    private bool                Shot_Enable;        // 発砲可能状態
+    private bool                Move_Complete;      // 移動完了状態
+
+
     // アニメータ識別子
     private static readonly int hashIdle    = Animator.StringToHash("Idle");
     private static readonly int hashAttack  = Animator.StringToHash("shot");
@@ -63,7 +72,10 @@ public class Soldier_Motion : MonoBehaviour {
         AnimInfo = OptionInfo.Soldier_Anim.GetCurrentAnimatorStateInfo(0);
 
         // 初期化
-        Shot_Enable = false;
+        Shot_Enable     = false;
+        Move_Complete   = false;
+
+        
     }
 	
 	// 更新処理
