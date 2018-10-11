@@ -55,28 +55,26 @@ public class WiiInput
         get { return wiimote.Ir; }
     }
 
-    public Vector2 getPointerPos()
-    {
-        float[] pos = wiimote.Ir.GetPointingPosition();
-        return new Vector2(pos[0], pos[1]);
-    }
-
     //初期化
     public void start()
     {
+        //フラグ初期化
         for (int i = 0; i < 11; i++)
         {
             isPress[i] = false;
             isPressBefore[i] = false;
         }
-
         led[playerNum] = true;
 
+        //Wiiリモコン検索
         WiimoteManager.FindWiimotes();
         wiimote = WiimoteManager.Wiimotes[playerNum];
 
+        //LED点灯
         wiimote.SendPlayerLED(led[0], led[1], led[2], led[3]);
-        wiimote.SendDataReportMode(InputDataType.REPORT_EXT21);
+
+        //加速度設定
+        wiimote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL);
     }
 
     //更新
@@ -130,6 +128,21 @@ public class WiiInput
                 return true;
 
         return false;
+    }
+
+    //センサー座標取得
+    public Vector2 getPointerPos()
+    {
+        float[] pos = wiimote.Ir.GetPointingPosition();
+        return new Vector2(pos[0], pos[1]);
+    }
+
+    //加速度取得
+    public Vector3 getAccel()
+    {
+        float[] accel = wiimote.Accel.GetCalibratedAccelData();
+
+        return new Vector3(accel[0], accel[1], accel[2]);
     }
 }
 

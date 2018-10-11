@@ -32,6 +32,14 @@ public class playerDefault : playerState {
                 player.changeState(new playerNoAmmo(player));
         }
 
+        
+
+        //リロード
+        if (Input.GetKeyDown(player.Control.reloadButtonD))
+        {
+            player.changeState(new playerReload(player));
+        }
+        
         //ガード
         float[,] ir = player.Wii[(int)ControllerArm.left].Ir.GetProbableSensorBarIR();
         bool isVisible = true;
@@ -53,12 +61,6 @@ public class playerDefault : playerState {
         if (Input.GetKeyDown(player.Control.guardButtonD) || isVisible)
         {
             player.changeState(new playerGuard(player));
-        }
-
-        //リロード
-        if (Input.GetKeyDown(player.Control.reloadButtonD))
-        {
-            player.changeState(new playerReload(player));
         }
 
         Debug.Log("state Default");
