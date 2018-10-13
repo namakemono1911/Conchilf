@@ -7,27 +7,31 @@ public class enemy : MonoBehaviour {
 
 
 	[SerializeField]
-	private EnemyInfo enemycsvInfo;    // csv必要な情報
+	private EnemyInfo enemycsvInfo;                     // csv必要な情報
 	[SerializeField]
-	private enemyTypeManager enemyTypeManager;
+	private enemyTypeManager enemyTypeManager;          // タイプ情報管理
 
+	private int damege;                                 // 総合ダメージ
+	private enemyTypeManager.EnemyTypeInfo typeInfo;    // タイプ情報
+	private enemyState enemyState;                      // 状態
+	private enemyAnimation enemyAnimation;              // アニメーション管理
+
+	// getter
 	// タイプ情報
-	private enemyTypeManager.EnemyTypeInfo typeInfo;
-
 	public enemyTypeManager.EnemyTypeInfo enemyTypeInfo
 	{
 		get { return typeInfo; }
 	}
-
+	// 個体情報
 	public EnemyInfo enemyCSVInfo
 	{
 		get { return enemycsvInfo; }
 	}
-
-	private int damege;	// 総合ダメージ
-
-	// 状態
-	private enemyState enemyState;
+	// アニメーション管理
+	public enemyAnimation myAnimation
+	{
+		get { return enemyAnimation; }
+	}
 
 	// Use this for initialization
 	void Start () {
