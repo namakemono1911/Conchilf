@@ -80,20 +80,37 @@ public class playerDefault : playerState {
         var ray = RectTransformUtility.ScreenPointToRay(Camera.main, screenPos);
 
         //当たり判定
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-			if (hit.collider.tag == "enemy")
-				hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, false);
+        //var hitObjects = Physics.RaycastAll(ray, 100.0f, LayerMask.NameToLayer("Player"));
+        //RaycastHit fuck = hitObjects[0];
+        //var distance = 1000.0f;
+        //foreach (var hit in hitObjects)
+        //{
+        //    if (hit.distance < distance)
+        //    {
+        //        distance = hit.distance;
+        //        fuck = hit;
+        //    }
+        //}
+        //if (fuck.collider.tag == "enemy")
+        //    fuck.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, false);
 
-			if (hit.collider.tag == "enemyCritical")
-				hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, true);
+        //if (fuck.collider.tag == "enemyCritical")
+        //    fuck.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, true);
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
+        {
+            if (hit.collider.tag == "enemy")
+                hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, false);
+
+            if (hit.collider.tag == "enemyCritical")
+                hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, true);
         }
 
-		//デバッグ表示
-		var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
+        //デバッグ表示
+        var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
 		line.SetPosition(0, ray.origin);
-		line.SetPosition(1, ray.direction * 100 + Camera.main.transform.position);
+		line.SetPosition(1, hit.point);
 	}
 
     //ヒット時処理
