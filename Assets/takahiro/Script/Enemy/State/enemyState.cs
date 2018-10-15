@@ -19,7 +19,7 @@ abstract public class enemyState : MonoBehaviour {
 	abstract public void hitBullet(int damege , bool critical);
 
 	// 被弾
-	protected void hitEnemy(int damege , bool critical)
+	protected void hitEnemy(int damege , bool critical , enemyAnimationManager.ENEMY_ANIMATION_TYPE type)
 	{
 		// クリティカル判定
 		if(critical)
@@ -34,13 +34,13 @@ abstract public class enemyState : MonoBehaviour {
 		if(enemy.isDeth())
 		{
 			// 死んでたら
-			enemy.changeState(new enemyStateDown(enemy , critical));
+			enemy.changeState(new enemyStateDown(enemy , critical) , type);
 			
 		}
 		else
 		{
 			// 生きてたら
-			enemy.changeState(new enemyStateHit(enemy, critical));
+			enemy.changeState(new enemyStateHit(enemy, critical) , type);
 		}
 	}
 }

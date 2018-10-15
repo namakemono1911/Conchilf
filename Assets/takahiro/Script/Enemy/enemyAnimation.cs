@@ -7,6 +7,7 @@ public class enemyAnimation : MonoBehaviour {
 	private enemyAnimationManager animationManager;
 	private Dictionary<int, string> animationNames;
 	private Animator myAnimator;
+
 	// Use this for initialization
 	void Start () {
 		// 辞書データの取得
@@ -26,6 +27,8 @@ public class enemyAnimation : MonoBehaviour {
 	// 指定アニメーションの再生
 	public void playAnimation(enemyAnimationManager.ENEMY_ANIMATION_TYPE type)
 	{
+		Debug.Log("モーション変更 : " + type);
+
 		myAnimator.Play(animationNames[(int)type]);
 	}
 
@@ -34,9 +37,9 @@ public class enemyAnimation : MonoBehaviour {
 	{
 		if(myAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f)
 		{
-			return false;
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 }

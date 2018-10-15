@@ -10,23 +10,30 @@ public class enemyStateShot : enemyState
 	{
 		// 弾を撃つ
 		shot();
+
+		// ショットモーション開始
+		enemy.myAnimation.playAnimation(enemyAnimationManager.ENEMY_ANIMATION_TYPE.ANIMATION_SHOT);
 	}
 
 	public override void updateState()
 	{
-		// 待機時間
-
 		// モーションが終わり次第、待ちに遷移
+		if(enemy.myAnimation.isPlayingAnimation())
+		{
+			enemy.changeState(new enemyStateShotInterval(enemy), enemyAnimationManager.ENEMY_ANIMATION_TYPE.ANIMATION_SHOT);
+		}
 	}
 
 	public override void hitBullet(int damege, bool critical)
 	{
-		hitEnemy(damege , critical);
+		hitEnemy(damege , critical, enemyAnimationManager.ENEMY_ANIMATION_TYPE.ANIMATION_SHOT);
 	}
 
 	private void shot()
 	{
 		int hitProbability = (int)Random.Range(1, 100);
+
+		enemy.bullet.shotBullet();
 
 		// 当たる確率
 		if(hitProbability <= enemy.enemyTypeInfo.hitProbability)

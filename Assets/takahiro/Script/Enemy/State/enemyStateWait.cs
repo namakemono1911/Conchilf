@@ -4,28 +4,30 @@ using UnityEngine;
 
 public class enemyStateWait : enemyState
 {
-	private int waitTimer;	// 待機時間
 
 	public enemyStateWait(enemy p) : base(p) { }
 
 	public override void initState()
 	{
-		waitTimer = 0;
+		enemy.timerStart();
+
+		// 待機モーション開始
+		enemy.myAnimation.playAnimation(enemyAnimationManager.ENEMY_ANIMATION_TYPE.ANIMATION_WAIT);
 	}
 
 	public override void updateState()
 	{
 		// 待機時間
-		++waitTimer;
-		if(waitTimer >= enemy.enemyTypeInfo.shotInterval)
+		if(enemy.timer >= enemy.enemyTypeInfo.shotInterval)
 		{
-			// 撃つに遷移
-			enemy.changeState(new enemyStateShot(enemy));
+			// 撃つ準備に遷移
+			enemy.timerReset();
+			enemy.changeState(new enemyStateWaitToShot(enemy, false), enemyAnimationManager.ENEMY_ANIMATION_TYPE.ANIMATION_WAIT);
 		}
 	}
 
 	public override void hitBullet(int damege, bool critical)
 	{
-		hitEnemy(damege , critical);
+		hitEnemy(damege , critical, enemyAnimationManager.ENEMY_ANIMATION_TYPE.ANIMATION_WAIT);
 	}
 }
