@@ -53,6 +53,11 @@ public class enemy : MonoBehaviour {
 	{
 		get { return enemyBullet; }
 	}
+	//ステートのゲッター
+	public enemyState State
+	{
+		get { return enemyState; }
+	}
 
 	// Use this for initialization
 	void Start () {

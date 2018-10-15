@@ -33,24 +33,24 @@ public class playerDefault : playerState {
         }
 
         //ガード
-        float[,] ir = player.Wii[(int)ControllerArm.left].Ir.GetProbableSensorBarIR();
-        bool isVisible = true;
-        var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
+        //float[,] ir = player.Wii[(int)ControllerArm.left].Ir.GetProbableSensorBarIR();
+        //bool isVisible = true;
+        //var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
 
-        for (int i = 0; i < 2; i++)
-        {
-            Vector2 pos = new Vector2(ir[i, 0] / 1023f, ir[i, 1] / 767f);
-            player.Control.led[i].anchoredPosition = new Vector2((pos.x * Screen.width + originPos.x),
-            (pos.y * Screen.height + originPos.y));
+        //for (int i = 0; i < 2; i++)
+        //{
+        //    Vector2 pos = new Vector2(ir[i, 0] / 1023f, ir[i, 1] / 767f);
+        //    player.Control.led[i].anchoredPosition = new Vector2((pos.x * Screen.width + originPos.x),
+        //    (pos.y * Screen.height + originPos.y));
 
-            if (pos.x <= 0.0f || pos.y <= 0.0f)
-            {
-                isVisible = false;
-                break;
-            }
-        }
+        //    if (pos.x <= 0.0f || pos.y <= 0.0f)
+        //    {
+        //        isVisible = false;
+        //        break;
+        //    }
+        //}
 
-        if (Input.GetKeyDown(player.Control.guardButtonD) || isVisible)
+        if (Input.GetKeyDown(player.Control.guardButtonD))
         {
             player.changeState(new playerGuard(player));
         }
@@ -83,15 +83,18 @@ public class playerDefault : playerState {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.tag == "enemy")
-                Destroy(hit.transform.gameObject);
+			if (hit.collider.tag == "enemy")
+				hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, false);
+
+			if (hit.collider.tag == "enemyCritical")
+				hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, true);
         }
 
-        //デバッグ表示
-        //var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
-        //line.SetPosition(0, ray.origin);
-        //line.SetPosition(1, ray.direction * 100 + Camera.main.transform.position);
-    }
+		//デバッグ表示
+		var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
+		line.SetPosition(0, ray.origin);
+		line.SetPosition(1, ray.direction * 100 + Camera.main.transform.position);
+	}
 
     //ヒット時処理
     public override void hitBullet()
