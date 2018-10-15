@@ -26,7 +26,7 @@ public class enemyStateDown : enemyState
 		// モーションが終わったらデストロイ
 		if(enemy.myAnimation.isPlayingAnimation())
 		{
-			Destroy(this.gameObject);
+			Destroy(enemy.gameObject);
 		}
 	}
 
