@@ -104,7 +104,7 @@ public class playerDefault : playerState {
                 hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, false);
 
             if (hit.collider.tag == "enemyCritical")
-                hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, true);
+                hit.transform.gameObject.GetComponent<rightGun>().Enemy.State.hitBullet(1, true);
         }
 
         //デバッグ表示
