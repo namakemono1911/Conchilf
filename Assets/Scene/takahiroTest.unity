@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -189,6 +189,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2347878}
+--- !u!1 &173234059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 173234060}
+  - component: {fileID: 173234061}
+  m_Layer: 0
+  m_Name: shotRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &173234060
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 173234059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.518, z: 0.077}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1223349816}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &173234061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 173234059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e10ac181ea884445bf0c47088a1e827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    bullet: {fileID: 1584491329846210, guid: 2b71ce189da3224459a4a61de105579f, type: 2}
 --- !u!4 &185801348 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012542455646, guid: 1af2e2b2563036d4a97e8087b9a132ec,
@@ -998,19 +1040,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4410b12aacb4f4245856c69de664a1b2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09101134
+      value: 0.091011345
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4410b12aacb4f4245856c69de664a1b2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.08413002
+      value: 0.08413003
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4410b12aacb4f4245856c69de664a1b2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.67356706
+      value: -0.6735671
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4410b12aacb4f4245856c69de664a1b2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7286607
+      value: 0.72866076
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4410b12aacb4f4245856c69de664a1b2, type: 3}
       propertyPath: m_RootOrder
@@ -1320,6 +1362,7 @@ MonoBehaviour:
     ENEMY_MOVE_POS: {x: 0, y: 0, z: 5}
   enemyTypeManager: {fileID: 835004941}
   playersPos: []
+  gun: {fileID: 173234061}
 --- !u!114 &762423201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1880,6 +1923,10 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 4410b12aacb4f4245856c69de664a1b2, type: 3}
   m_PrefabInternal: {fileID: 662446645}
+--- !u!4 &1223349816 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 4410b12aacb4f4245856c69de664a1b2, type: 3}
+  m_PrefabInternal: {fileID: 662446645}
 --- !u!114 &1223349817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2224,16 +2271,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114424944597254020, guid: 87684e93367e43f49b1112ddf5a983b2,
-        type: 2}
-      propertyPath: ui.bulletUI
-      value: 
-      objectReference: {fileID: 2101839089}
     - target: {fileID: 223334890603267752, guid: 87684e93367e43f49b1112ddf5a983b2,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 541693120}
+    - target: {fileID: 114424944597254020, guid: 87684e93367e43f49b1112ddf5a983b2,
+        type: 2}
+      propertyPath: ui.bulletUI
+      value: 
+      objectReference: {fileID: 2101839089}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87684e93367e43f49b1112ddf5a983b2, type: 2}
   m_IsPrefabParent: 0

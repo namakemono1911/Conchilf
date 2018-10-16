@@ -33,24 +33,40 @@ public class enemyStateShot : enemyState
 	{
 		int hitProbability = (int)Random.Range(1, 100);
 
-		enemy.bullet.shotBullet();
+		Vector3 pos = new Vector3(0,0,0);
+		enemy.bullet.shotBullet();	// 弾減らす
 
 		// 当たる確率
 		if(hitProbability <= enemy.enemyTypeInfo.hitProbability)
 		{
 			// 1p or 2p
 			// ランダム
-			int hitPlayer = (int)Random.Range(0, 1);
-
+			// 1pしかいない場合のも書いて
+			//int hitPlayer = (int)Random.Range(0.1f, 1.9f);
+			int hitPlayer = (int)Random.Range(0, 0.9f);
+			playerController[] p = enemy.players;
 			if(hitPlayer == 0)
 			{
 				// 1p
+				pos = p[0].getHitPos();
 			}
 			else
 			{
 				// 2p
+				pos = p[1].getHitPos();
 			}
 		}
+		else
+		{
+			// プレイヤーに当たらないけど撃つとき
+			Vector3 camera = Camera.main.transform.position;
+			Vector3 enemyPos = enemy.transform.position;
+			pos = new Vector3(camera.x, camera.y + 10.0f, camera.z);
+
+		}
+
+		// 発射!!!!!!!!!!!!!
+		enemy.bulletInstance.SetBullet(pos , 1.0f);
 	}
 
 }

@@ -11,7 +11,9 @@ public class enemy : MonoBehaviour {
 	[SerializeField]
 	private enemyTypeManager enemyTypeManager;          // タイプ情報管理
 	[SerializeField]
-	private Transform[] playersPos;						// プレイヤーの位置
+	private Transform[] playersPos;                     // プレイヤーの位置
+	[SerializeField]
+	private Enemy_gun gun;								// 敵の弾
 
 	private int damege;                                 // 総合ダメージ
 	private enemyTypeManager.EnemyTypeInfo typeInfo;    // タイプ情報
@@ -20,7 +22,8 @@ public class enemy : MonoBehaviour {
 	private float enemyTimer;                           // タイマー
 	private enemyAnimationManager.ENEMY_ANIMATION_TYPE beforAnimation;	// 以前のアニメーション種類
 	private bool isCount;                                                   // カウントしているか否か
-	private enemyBullet enemyBullet;										// 敵の弾処理
+	private enemyBullet enemyBullet;                                        // 敵の弾処理
+	private playerController[] playerControllers;										// プレイヤーの情報
 
 	// getter
 	// タイプ情報
@@ -57,6 +60,20 @@ public class enemy : MonoBehaviour {
 	public enemyState State
 	{
 		get { return enemyState; }
+	}
+	// プレイヤー
+	public playerController[] players
+	{
+		get { return playerControllers; }
+	}
+	// 弾
+	public Enemy_gun bulletInstance
+	{
+		get { return gun; }
+	}
+	private void Awake()
+	{
+		playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
 	}
 
 	// Use this for initialization

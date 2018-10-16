@@ -160,6 +160,9 @@ public class playerController : MonoBehaviour {
     [SerializeField]
     private PlayerUI ui;
 
+	[SerializeField]
+	private Transform[] hitPos;			//弾が飛んでく所
+
     private playerState state = null;   //プレイヤーのステートパターン
 
     public ControlSetting Control       //コントロール取得
@@ -237,4 +240,10 @@ public class playerController : MonoBehaviour {
             state.hitBullet();
         }
     }
+
+	public Vector3 getHitPos()
+	{
+		var random = Random.Range(0, hitPos.Length);
+		return hitPos[random].position;
+	}
 }
