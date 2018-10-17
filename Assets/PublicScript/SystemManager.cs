@@ -57,10 +57,12 @@ public class SystemManager : SingletonMonoBehaviour<SystemManager>
         ++FrameCount;
         float time = Time.realtimeSinceStartup - PrevTime;
 
-        if(time >= 0.5f)
-        {     
+        if (time >= 0.5f)
+        {
+            Debug.Log("<color=red>■フレームレート  :   </color>" + FrameCount / time);
+
             // カウンタリセット
-            FrameCount  = Initialize.INIT_INT;
+            FrameCount = Initialize.INIT_INT;
             PrevTime    = Time.realtimeSinceStartup;
         }
 	}

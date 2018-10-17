@@ -135,7 +135,8 @@ public class CsvManager : MonoBehaviour {
         foreach (GameObject obj in childlist)
         {
             // 座標取得しますよ
-            Vector3 pos = obj.transform.position;
+            Vector3     pos = obj.transform.position;
+            Quaternion  qua = obj.transform.rotation;
 
             // wave数情報を保存
             stringlist.Add((OptionInfo.WaveNumber).ToString());
@@ -144,6 +145,13 @@ public class CsvManager : MonoBehaviour {
             stringlist.Add((pos.x).ToString());
             stringlist.Add((pos.y).ToString());
             stringlist.Add((pos.z).ToString());
+
+            // 角度情報を追加
+            stringlist.Add((qua.x).ToString());
+            stringlist.Add((qua.y).ToString());
+            stringlist.Add((qua.z).ToString());
+            stringlist.Add((qua.w).ToString());
+
         }
     }
 

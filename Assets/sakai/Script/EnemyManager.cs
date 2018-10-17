@@ -76,6 +76,7 @@ public class EnemyManager : MonoBehaviour {
         // ゲームオブジェクト用
         GameObject  buf;
         Vector3     pos;
+        Quaternion  qua;
 
         // ゲームオブジェクトの全削除
         // WaveDate. 
@@ -105,13 +106,21 @@ public class EnemyManager : MonoBehaviour {
                 // エネミー生成
                 buf = Instantiate(OptionInfo.Enemy00);
 
-                // エネミーの座標データを追加
-                pos.x = int.Parse( CsvDate[index][1]);
-                pos.y = int.Parse( CsvDate[index][2]);
-                pos.z = int.Parse( CsvDate[index][3]);
+                // エネミーの座標データを生成
+                pos.x = float.Parse( CsvDate[index][1]);
+                pos.y = float.Parse( CsvDate[index][2]);
+                pos.z = float.Parse( CsvDate[index][3]);
 
+                // エネミーの角度データを生成
+                qua.x = float.Parse( CsvDate[index][4]);
+                qua.y = float.Parse( CsvDate[index][5]);
+                qua.z = float.Parse( CsvDate[index][6]);
+                qua.w = float.Parse( CsvDate[index][7]);
+
+                // エネミーのデータを追加
                 buf.transform.position = pos;
-                
+                buf.transform.rotation = qua;
+
                 // エネミーの追加
                 WaveDate.Add(buf);
             }
