@@ -33,24 +33,24 @@ public class playerDefault : playerState {
         }
 
         //ガード
-        float[,] ir = player.Wii[(int)ControllerArm.left].Ir.GetProbableSensorBarIR();
-        bool isVisible = true;
-        var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
+        //float[,] ir = player.Wii[(int)ControllerArm.left].Ir.GetProbableSensorBarIR();
+        //bool isVisible = true;
+        //var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
 
-        for (int i = 0; i < 2; i++)
-        {
-            Vector2 pos = new Vector2(ir[i, 0] / 1023f, ir[i, 1] / 767f);
-            player.Control.led[i].anchoredPosition = new Vector2((pos.x * Screen.width + originPos.x),
-            (pos.y * Screen.height + originPos.y));
+        //for (int i = 0; i < 2; i++)
+        //{
+        //    Vector2 pos = new Vector2(ir[i, 0] / 1023f, ir[i, 1] / 767f);
+        //    player.Control.led[i].anchoredPosition = new Vector2((pos.x * Screen.width + originPos.x),
+        //    (pos.y * Screen.height + originPos.y));
 
-            if (pos.x <= 0.0f || pos.y <= 0.0f)
-            {
-                isVisible = false;
-                break;
-            }
-        }
+        //    if (pos.x <= 0.0f || pos.y <= 0.0f)
+        //    {
+        //        isVisible = false;
+        //        break;
+        //    }
+        //}
 
-        if (Input.GetKeyDown(player.Control.guardButtonD) || isVisible)
+        if (Input.GetKeyDown(player.Control.guardButtonD))
         {
             player.changeState(new playerGuard(player));
         }
@@ -80,18 +80,38 @@ public class playerDefault : playerState {
         var ray = RectTransformUtility.ScreenPointToRay(Camera.main, screenPos);
 
         //当たり判定
+        //var hitObjects = Physics.RaycastAll(ray, 100.0f, LayerMask.NameToLayer("Player"));
+        //RaycastHit fuck = hitObjects[0];
+        //var distance = 1000.0f;
+        //foreach (var hit in hitObjects)
+        //{
+        //    if (hit.distance < distance)
+        //    {
+        //        distance = hit.distance;
+        //        fuck = hit;
+        //    }
+        //}
+        //if (fuck.collider.tag == "enemy")
+        //    fuck.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, false);
+
+        //if (fuck.collider.tag == "enemyCritical")
+        //    fuck.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, true);
+
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
         {
-            if (hit.transform.tag == "enemy")
-                Destroy(hit.transform.gameObject);
+            if (hit.collider.tag == "enemy")
+                hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, false);
+
+            if (hit.collider.tag == "enemyCritical")
+                hit.transform.gameObject.GetComponent<rightGun>().Enemy.State.hitBullet(1, true);
         }
 
         //デバッグ表示
-        //var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
-        //line.SetPosition(0, ray.origin);
-        //line.SetPosition(1, ray.direction * 100 + Camera.main.transform.position);
-    }
+        var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
+		line.SetPosition(0, ray.origin);
+		line.SetPosition(1, hit.point);
+	}
 
     //ヒット時処理
     public override void hitBullet()
