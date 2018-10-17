@@ -52,31 +52,53 @@ public class CsvManager : MonoBehaviour {
     [System.Serializable]
     class Option
     {
-        public string   InputCsvName;           // 入力CSVファイルネーム
-        public string   OutputCsvName;          // 出力CSVファイルネーム
-        public int      WaveNumber;             // Wave数   
+        public string       InputCsvName;           // 入力CSVファイルネーム
+        public string       OutputCsvName;          // 出力CSVファイルネーム
+        public int          WaveNumber;             // Wave数   
+        public GameObject   enemyCreater;           // エネミークリエイター
     }
 
     [SerializeField]
-    private Option OptionInfo;          // オプション情報
+    private Option OptionInfo;                      // オプション情報
 
-    private List<string[]> CsvDate;     // csvデータ
+    private List<string[]>          CsvDate;        // csvデータ
 
     // インスペクター入力忘れ防止
     private void Awake()
     {
         // CSVファイルネーム未入力防止
-        if( OptionInfo.InputCsvName == null)
+        if (OptionInfo.InputCsvName == null)
         {
-            OptionInfo.InputCsvName = "EnemyData.csv";
+            OptionInfo.InputCsvName = "EnemyData";
         }
         if (OptionInfo.OutputCsvName == null)
         {
             OptionInfo.OutputCsvName = "EnemyData.csv";
         }
-        
+
         // CSVデータの初期化作成
         CsvDate = new List<string[]>();
+    }
+
+    public void Start()
+    {
+        // 子のオブジェクトを取得
+        List<GameObject> childlist = new List<GameObject>();
+
+        childlist = GetAllChildren.GetAll(gameObject);
+
+        enemyTypeManager E_Type = OptionInfo.enemyCreater.GetComponent<EnemyCreater>().GetEnemyTypeManager();
+        enemyAnimationManager E_Anim = OptionInfo.enemyCreater.GetComponent<EnemyCreater>().GetEnemyAnimationManager();
+
+        // このオブジェクトにマネージャをアタッチメント
+        foreach (GameObject obj in childlist)
+        {
+            // エネミータイプマネージャー
+            obj.GetComponent<enemy>().setEnemyTypeManager(E_Type);
+            // アニメマネージャをセット
+            obj.GetComponent<enemyAnimation>().setEnemyAnimManager(E_Anim);
+        }
+
     }
 
     // ログの書き込み

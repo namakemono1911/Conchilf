@@ -21,9 +21,9 @@ public class EnemyManager : MonoBehaviour {
     [System.Serializable]
     class Option
     {
-        public int                  Parametor_AllNum;   // 1オブジェクト当たりのデータ総数
-        public GameObject           Enemy00;            // エネミーオブジェクト
-        public CsvManager           Csvmanager;         // csvマネージャ
+        public GameObject          Enemy00;            // エネミーオブジェクト
+        public CsvManager          Csvmanager;         // csvマネージャ
+        public GameObject          enemyCreater;       // エネミークリエイター
     }
 
     [SerializeField]
@@ -31,20 +31,9 @@ public class EnemyManager : MonoBehaviour {
 
     private List<string[]>          CsvDate;            // csvデータ
     private List<GameObject>        WaveDate;           // ウェーブ毎のデータ
-
-    private enemyTypeManager        E_TypeManager;      // エネミータイプマネージャー
-    private enemyAnimationManager   E_AnimManager;      // エネミーアニメーションマネージャー
-
-
-
     // インスペクター入力忘れ防止
     private void Awake()
     {
-        if (OptionInfo.Parametor_AllNum < 0)
-        {
-            OptionInfo.Parametor_AllNum = 0;
-        }
-
         if(OptionInfo.Enemy00 == null)
         {
             OptionInfo.Enemy00 = (GameObject)Resources.Load(Edit.ENEMY_00);
@@ -57,11 +46,6 @@ public class EnemyManager : MonoBehaviour {
         // リスト作成
         CsvDate  = new List<string[]>();
         WaveDate = new List<GameObject>();
-
-        // コンポーネント取得
-        E_TypeManager = gameObject.GetComponent<enemyTypeManager>();
-        E_AnimManager = gameObject.GetComponent<enemyAnimationManager>();
-
     }
 
     // Use this for initialization
@@ -93,6 +77,10 @@ public class EnemyManager : MonoBehaviour {
         CsvDate.Clear();
         // csvデータの取得
         CsvDate = OptionInfo.Csvmanager.CsvDataGet();
+        
+        enemyTypeManager        E_Type = OptionInfo.enemyCreater.GetComponent<EnemyCreater>().GetEnemyTypeManager();
+        enemyAnimationManager   E_Anim = OptionInfo.enemyCreater.GetComponent<EnemyCreater>().GetEnemyAnimationManager();
+
 
         // 解析（Csvデータの末尾まで）
         for (int index = 0; index < CsvDate.Count; index++)
@@ -131,9 +119,9 @@ public class EnemyManager : MonoBehaviour {
                 obj.GetComponent<enemy>().setEnemyInfo(buf);
 
                 // エネミータイプマネージャー
-                obj.GetComponent<enemy>().setEnemyTypeManager(E_TypeManager);
+                obj.GetComponent<enemy>().setEnemyTypeManager(E_Type);
                 // アニメマネージャをセット
-                obj.GetComponent<enemyAnimation>().setEnemyAnimManager(E_AnimManager);
+                obj.GetComponent<enemyAnimation>().setEnemyAnimManager(E_Anim);
 
                 // エネミーの追加
                 WaveDate.Add(obj);
