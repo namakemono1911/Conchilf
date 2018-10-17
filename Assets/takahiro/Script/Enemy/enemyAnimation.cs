@@ -11,13 +11,7 @@ public class enemyAnimation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		// 辞書データの取得
-		animationManager = GameObject.Find("enemyAnimationManager").GetComponent<enemyAnimationManager>();
-		if(animationManager == null)
-		{
-			Debug.Log(this.gameObject.name + " : アニメーションの取得に失敗");
-		}
-
-		animationNames = animationManager.getEnemyAnimationDictonary();
+		//animationManager = GameObject.Find("enemyAnimationManager").GetComponent<enemyAnimationManager>();
 
 		// アニメーションデータの取得
 		myAnimator = this.GetComponent<Animator>();
@@ -42,4 +36,18 @@ public class enemyAnimation : MonoBehaviour {
 
 		return false;
 	}
+
+    // アニメマネージャをセット(マネージャーから)
+    public void setEnemyAnimManager(enemyAnimationManager manager)
+    {
+        animationManager = manager;
+        if (animationManager == null)
+        {
+            Debug.Log(this.gameObject.name + " : アニメーションの取得に失敗");
+        }
+
+        animationNames = animationManager.getEnemyAnimationDictonary();
+
+    }
+
 }

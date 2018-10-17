@@ -13,6 +13,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System;
+using Common;
 
 ///////////////////////////////////////////////
 // 子要素の全取得用クラス
@@ -53,7 +54,6 @@ public class CsvManager : MonoBehaviour {
     {
         public string   InputCsvName;           // 入力CSVファイルネーム
         public string   OutputCsvName;          // 出力CSVファイルネーム
-        public int      Parametor_AllNum;       // 1オブジェクト当たりのデータ総数
         public int      WaveNumber;             // Wave数   
     }
 
@@ -74,18 +74,8 @@ public class CsvManager : MonoBehaviour {
         {
             OptionInfo.OutputCsvName = "EnemyData.csv";
         }
-
-        // 規定値外対応
-        if (OptionInfo.Parametor_AllNum < 0)
-        {
-            OptionInfo.Parametor_AllNum = 0;
-        }
-        if (OptionInfo.WaveNumber < 0)
-        {
-            OptionInfo.WaveNumber = 0;
-        }
-
-        // CSVデータの削除
+        
+        // CSVデータの初期化作成
         CsvDate = new List<string[]>();
     }
 
@@ -102,7 +92,7 @@ public class CsvManager : MonoBehaviour {
             int count = 0;
 
             // リスト作成
-            List<string>    stringlist = new List<string>();
+            List<string> stringlist = new List<string>();
            
             // ここらで情報取得&文字列変換
             GetEnemyInfomation(ref stringlist);
@@ -115,7 +105,7 @@ public class CsvManager : MonoBehaviour {
                 count++;
 
                 // データの総数を書き込んだら改行
-                if (count % OptionInfo.Parametor_AllNum == 0)
+                if (count % (int)EnemyAnalyze.Enemy_Param_Max == 0)
                 {
                     streamWriter.WriteLine();
                 }
@@ -131,42 +121,50 @@ public class CsvManager : MonoBehaviour {
 
         childlist = GetAllChildren.GetAll(gameObject);
 
+        EnemyInfo   buf;
+        enemy       E_Script;
+
         // コンポーネントなど諸々の情報を取得
         foreach (GameObject obj in childlist)
         {
-            // 座標取得しますよ
-            Vector3     pos = obj.transform.position;
-            Quaternion  qua = obj.transform.rotation;
+            // スクリプト取得
+            E_Script= obj.GetComponent<enemy>();
 
-            // wave数情報を保存
-            stringlist.Add((OptionInfo.WaveNumber).ToString());
+            // エネミー情報構造体を取得
+            buf = E_Script.enemyCSVInfo;
 
+            // モデル識別番号追加
+            stringlist.Add(( (int)buf.MODEL_NUMBER ).ToString());
+
+            // ウェーブ番号追加
+            stringlist.Add((buf.WAVE_NUMBER).ToString());
+
+            // 移動間秒数追加
+            stringlist.Add((buf.MOVE_SECOND).ToString());
+            
             // 座標情報を追加
+            Vector3 pos = buf.ENEMY_POS;
             stringlist.Add((pos.x).ToString());
             stringlist.Add((pos.y).ToString());
             stringlist.Add((pos.z).ToString());
 
-            // 角度情報を追加
-            stringlist.Add((qua.x).ToString());
-            stringlist.Add((qua.y).ToString());
-            stringlist.Add((qua.z).ToString());
-            stringlist.Add((qua.w).ToString());
-
+            // 移動先情報を追加
+            Vector3 mpos = buf.ENEMY_MOVE_POS;
+            stringlist.Add((mpos.x).ToString());
+            stringlist.Add((mpos.y).ToString());
+            stringlist.Add((mpos.z).ToString());
         }
     }
 
     // ログの読み込み
     public void CsvLoad()
-    {
-        // 読み込むCSVファイル名
-        //string CSVFilePath = Application.dataPath + OptionInfo.OutputCsvName;
-
+    { 
         // Csvデータのクリア
         CsvDate.Clear();
-
-        
+  
+        // CSVファイルの読み込み
         TextAsset csvfile;
-        csvfile = Resources.Load(OptionInfo.OutputCsvName) as TextAsset;
+        csvfile = Resources.Load(OptionInfo.InputCsvName) as TextAsset;
         StringReader reader = new StringReader(csvfile.text);
 
         // 全取得用リスト

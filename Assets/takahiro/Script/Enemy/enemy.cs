@@ -73,7 +73,7 @@ public class enemy : MonoBehaviour {
 	}
 	private void Awake()
 	{
-		playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
+		//playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
 	}
 
 	// Use this for initialization
@@ -148,8 +148,14 @@ public class enemy : MonoBehaviour {
 		// 情報による操作
 	}
 
-	// 生死判定
-	public bool isDeth()
+    // タイプマネージャをセット(マネージャーから)
+    public void setEnemyTypeManager(enemyTypeManager manager)
+    {
+        enemyTypeManager = manager;
+    }
+
+    // 生死判定
+    public bool isDeth()
 	{
 		if(typeInfo.hp <= damege)
 		{
