@@ -267,7 +267,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 26.5
+  m_Spacing: 25
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -281,8 +281,9 @@ GameObject:
   m_Component:
   - component: {fileID: 109343785}
   - component: {fileID: 109343786}
+  - component: {fileID: 109343787}
   m_Layer: 5
-  m_Name: name
+  m_Name: InputName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,6 +332,21 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &109343787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 109343784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a34da8a5346b674b862b55c4a3e498e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ&+- '
+  charNum: 3
+  playerName: {fileID: 2095260448}
+  inputTable: {fileID: 91793016}
 --- !u!1 &123481321
 GameObject:
   m_ObjectHideFlags: 0
@@ -3918,6 +3934,7 @@ GameObject:
   - component: {fileID: 2031938041}
   - component: {fileID: 2031938043}
   - component: {fileID: 2031938042}
+  - component: {fileID: 2031938044}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -3976,6 +3993,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2031938040}
+--- !u!61 &2031938044
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2031938040}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2095260446
 GameObject:
   m_ObjectHideFlags: 0
@@ -3987,7 +4029,7 @@ GameObject:
   - component: {fileID: 2095260449}
   - component: {fileID: 2095260448}
   m_Layer: 5
-  m_Name: Text
+  m_Name: playerName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4043,7 +4085,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: TINTIN
 --- !u!222 &2095260449
 CanvasRenderer:
   m_ObjectHideFlags: 0
