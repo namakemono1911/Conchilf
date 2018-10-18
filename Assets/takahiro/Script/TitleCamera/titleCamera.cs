@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class titleCamera : MonoBehaviour {
 
+	[SerializeField]
+	private Image fadeImage;
+	[SerializeField]
+	private float fadeStartTime;
 	[SerializeField]
 	private float moveTime;
 	[SerializeField]
@@ -13,6 +18,9 @@ public class titleCamera : MonoBehaviour {
 	private int cameraIdx;
 	private bool bMove;
 	private float countTime;
+	private float fadeSpeed;
+	private bool bFade;
+	private bool bFadeIn;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +33,9 @@ public class titleCamera : MonoBehaviour {
 
 		this.transform.DOMove(cameraPos[0].getEndTransform().position, moveTime);
 		countTime = 0;
+		fadeSpeed = 1.0f / (moveTime - fadeStartTime) / 60.0f;
+		bFade = true;
+		bFadeIn = false;
 	}
 	
 	// Update is called once per frame
@@ -38,6 +49,11 @@ public class titleCamera : MonoBehaviour {
 			if(countTime >= moveTime)
 			{
 				bMove = false;
+			}
+
+			if(countTime >= fadeStartTime && bFade != true)
+			{
+				bFade = true;
 			}
 		}
 		else
@@ -58,6 +74,37 @@ public class titleCamera : MonoBehaviour {
 			bMove = true;
 
 			this.transform.DOMove(cameraPos[cameraIdx].getEndTransform().position, moveTime);
+		}
+
+		if(bFade)
+		{
+			Color c = fadeImage.color;
+
+			if (bFadeIn)
+			{
+				// fadeIn
+				c.a -= fadeSpeed;
+
+				if (c.a <= 0.0f)
+				{
+					c.a = 0.0f;
+					bFade = false;
+					bFadeIn = false;
+				}
+			}
+			else
+			{
+				// fadeOut
+				c.a += fadeSpeed;
+
+				if(c.a >= 1.0f)
+				{
+					c.a = 1.0f;
+					bFadeIn = true;
+				}
+			}
+
+			fadeImage.color = new Color(c.r, c.g, c.b, c.a);
 		}
 	}
 }
