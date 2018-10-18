@@ -64,8 +64,8 @@ public class EnemyManager : MonoBehaviour {
     public void WaveDateMake(int WaveNum)
     {
         // ゲームオブジェクト用
-        GameObject  obj;
-        EnemyInfo   buf = new EnemyInfo();
+        
+        enemy.EnemyInfo   buf = new enemy.EnemyInfo();
         
         // ゲームオブジェクトの全削除
         foreach (Transform child in gameObject.transform)
@@ -91,6 +91,8 @@ public class EnemyManager : MonoBehaviour {
             // ウェーブ数確認
             if (int.Parse(wave) == WaveNum)
             {
+                GameObject obj = null;
+
                 // 識別番号取得
                 int id = int.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Type]);
                 buf.MODEL_NUMBER = (enemyTypeManager.ENEMY_TYPE)Enum.ToObject(typeof(enemyTypeManager.ENEMY_TYPE), id);

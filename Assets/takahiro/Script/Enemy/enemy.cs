@@ -3,7 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Common;
 
+
+
 public class enemy : MonoBehaviour {
+
+    // 敵の情報(csvに書き込んでほしい情報)
+    [System.Serializable]
+    public struct EnemyInfo
+    {
+        public enemyTypeManager.ENEMY_TYPE MODEL_NUMBER;    // モデル(強さ)の識別番号
+        public int WAVE_NUMBER;                             // 自身のウェーブ番号
+        public int MOVE_SECOND;                             // スポーン位置~移動位置を何秒で移動するか
+        public Vector3 ENEMY_POS;        // スポーン位置
+        public Vector3 ENEMY_MOVE_POS;   // 移動位置
+    }
 
 
 	[SerializeField]
@@ -81,9 +94,9 @@ public class enemy : MonoBehaviour {
 
 		damege = 0;
 		isCount = false;
-
-		// タイプ管理
-		typeInit();
+        
+        // タイプ管理
+        typeInit();
 	}
 
 	private void FixedUpdate()
@@ -155,7 +168,8 @@ public class enemy : MonoBehaviour {
 	{
 		enemycsvInfo = ei;
 
-		// 情報による操作
+        // 情報による操作
+        int i = 0;
 	}
 
     // タイプマネージャをセット(マネージャーから)
