@@ -54,7 +54,6 @@ public class CsvManager : MonoBehaviour {
     {
         public string       InputCsvName;           // 入力CSVファイルネーム
         public string       OutputCsvName;          // 出力CSVファイルネーム
-        public int          WaveNumber;             // Wave数   
         public GameObject   enemyCreater;           // エネミークリエイター
     }
 
@@ -82,23 +81,6 @@ public class CsvManager : MonoBehaviour {
 
     public void Start()
     {
-        // 子のオブジェクトを取得
-        List<GameObject> childlist = new List<GameObject>();
-
-        childlist = GetAllChildren.GetAll(gameObject);
-
-        enemyTypeManager E_Type = OptionInfo.enemyCreater.GetComponent<EnemyCreater>().GetEnemyTypeManager();
-        enemyAnimationManager E_Anim = OptionInfo.enemyCreater.GetComponent<EnemyCreater>().GetEnemyAnimationManager();
-
-        // このオブジェクトにマネージャをアタッチメント
-        foreach (GameObject obj in childlist)
-        {
-            // エネミータイプマネージャー
-            obj.GetComponent<enemy>().setEnemyTypeManager(E_Type);
-            // アニメマネージャをセット
-            obj.GetComponent<enemyAnimation>().setEnemyAnimManager(E_Anim);
-        }
-
     }
 
     // ログの書き込み

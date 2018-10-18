@@ -17,20 +17,15 @@ public class EnemyCreater : MonoBehaviour {
     // マネージャスクリプｔｐ
     private enemyTypeManager        E_TypeManager;  // エネミータイプマネージャー
     private enemyAnimationManager   E_AnimManager;  // エネミーアニメーションマネージャー
-
-   [RuntimeInitializeOnLoadMethod()]
-    void Init()
+    
+    // 初回処理
+    void Awake()
     {
         // マネージャー
         E_TypeManager = this.gameObject.GetComponent<enemyTypeManager>();
         E_AnimManager = this.gameObject.GetComponent<enemyAnimationManager>();
     }
 
-    // 初回処理
-    void Awake()
-    {
-    }
-    
     // スタート
     void Start ()
     {

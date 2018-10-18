@@ -8,14 +8,21 @@ public class enemyAnimation : MonoBehaviour {
 	private Dictionary<int, string> animationNames;
 	private Animator myAnimator;
 
-	// Use this for initialization
-	void Start () {
+
+    private void Awake()
+    {
+        // アニメーションデータの取得
+        myAnimator = this.GetComponent<Animator>();
+
+    }
+
+    // Use this for initialization
+    void Start () {
 		// 辞書データの取得
 		//animationManager = GameObject.Find("enemyAnimationManager").GetComponent<enemyAnimationManager>();
 
 		// アニメーションデータの取得
-		myAnimator = this.GetComponent<Animator>();
-
+		// myAnimator = this.GetComponent<Animator>();
 	}
 
 	// 指定アニメーションの再生
@@ -49,5 +56,4 @@ public class enemyAnimation : MonoBehaviour {
         animationNames = animationManager.getEnemyAnimationDictonary();
 
     }
-
 }

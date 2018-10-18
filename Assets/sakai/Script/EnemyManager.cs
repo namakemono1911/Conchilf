@@ -113,7 +113,7 @@ public class EnemyManager : MonoBehaviour {
                 buf.ENEMY_MOVE_POS = Mpos;
                 
                 // エネミー生成
-                obj = Instantiate(OptionInfo.Enemy00);
+                obj = Instantiate(OptionInfo.Enemy00, pos, Quaternion.identity);
 
                 // エネミー情報セット
                 obj.GetComponent<enemy>().setEnemyInfo(buf);
@@ -125,6 +125,9 @@ public class EnemyManager : MonoBehaviour {
 
                 // エネミーの追加
                 WaveDate.Add(obj);
+
+                // 子供として追加
+                obj.transform.parent = transform;
             }
 
         }
