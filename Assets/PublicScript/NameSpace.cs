@@ -61,4 +61,20 @@ namespace Common
 		public Vector3 ENEMY_POS = new Vector3(0, 0, 0);		// スポーン位置
 		public Vector3 ENEMY_MOVE_POS = new Vector3(0, 0, 0);	// 移動位置
 	}
+
+    // 敵の情報の識別数値
+    public enum EnemyAnalyze
+    {
+        Enemy_Type,
+        Enemy_Wave,
+        Enemy_MoveSec,
+        Enemy_Pos_x,
+        Enemy_Pos_y,
+        Enemy_Pos_z,
+        Enemy_Move_x,
+        Enemy_Move_y,
+        Enemy_Move_z,
+        Enemy_Param_Max,
+    }
+
 }

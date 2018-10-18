@@ -73,7 +73,7 @@ public class enemy : MonoBehaviour {
 	}
 	private void Awake()
 	{
-		playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
+		//playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
 	}
 
 	// Use this for initialization
@@ -91,7 +91,7 @@ public class enemy : MonoBehaviour {
 		// タイプ管理
 		typeUpdate();
 
-		// 向き修正
+		// 向き修
 		lookAt(Camera.main.transform.position);
 
 		// タイマー処理
@@ -105,13 +105,23 @@ public class enemy : MonoBehaviour {
 
 	private void typeInit()
 	{
-		// 情報の読み込み
-		typeInfo = enemyTypeManager.getEnemyTypeInfo(enemycsvInfo.MODEL_NUMBER);
-		enemyAnimation = GetComponent<enemyAnimation>();
+
+        // エネミータイプマネージャを取得
+        if (enemyTypeManager == null)
+        {
+            enemyTypeManager = GameObject.Find("EnemyCreater").GetComponent<EnemyCreater>().GetEnemyTypeManager();
+        }
+        // 情報の読み込み
+        typeInfo = enemyTypeManager.getEnemyTypeInfo(enemycsvInfo.MODEL_NUMBER);
+
+        // エネミーアニメーションマネージャを取得
+        enemyAnimation = GetComponent<enemyAnimation>();
+        enemyAnimation.setEnemyAnimManager(GameObject.Find("EnemyCreater").GetComponent<EnemyCreater>().GetEnemyAnimationManager());
+
 		enemyBullet = GetComponent<enemyBullet>();
 		enemyBullet.setMaxBullet(enemyTypeInfo.bulletNum);
 		enemyBullet.reloadBullet();
-
+        
 		changeState(new enemyStateMove(this) , enemyAnimationManager.ENEMY_ANIMATION_TYPE.ANIMATION_RUN);
 		enemyState.initState();
 	}
@@ -148,8 +158,14 @@ public class enemy : MonoBehaviour {
 		// 情報による操作
 	}
 
-	// 生死判定
-	public bool isDeth()
+    // タイプマネージャをセット(マネージャーから)
+    public void setEnemyTypeManager(enemyTypeManager manager)
+    {
+        enemyTypeManager = manager;
+    }
+
+    // 生死判定
+    public bool isDeth()
 	{
 		if(typeInfo.hp <= damege)
 		{
