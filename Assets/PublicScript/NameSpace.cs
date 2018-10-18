@@ -51,17 +51,7 @@ namespace Common
         public const string ENEMY_00 = ("Prefub/Enemy_Soldier");
     }
 
-	// 敵の情報(csvに書き込んでほしい情報)
-	[System.Serializable]
-	public class EnemyInfo
-	{
-		public enemyTypeManager.ENEMY_TYPE MODEL_NUMBER = 0;	// モデル(強さ)の識別番号
-		public int WAVE_NUMBER = 0;								// 自身のウェーブ番号
-		public int MOVE_SECOND= 0;								// スポーン位置~移動位置を何秒で移動するか
-		public Vector3 ENEMY_POS = new Vector3(0, 0, 0);		// スポーン位置
-		public Vector3 ENEMY_MOVE_POS = new Vector3(0, 0, 0);	// 移動位置
-	}
-
+	
     // 敵の情報の識別数値
     public enum EnemyAnalyze
     {

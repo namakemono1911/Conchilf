@@ -125,8 +125,8 @@ public class CsvManager : MonoBehaviour {
 
         childlist = GetAllChildren.GetAll(gameObject);
 
-        EnemyInfo   buf;
-        enemy       E_Script;
+        enemy.EnemyInfo     buf;
+        enemy               E_Script;
 
         // コンポーネントなど諸々の情報を取得
         foreach (GameObject obj in childlist)
