@@ -21,26 +21,19 @@ public class EnemyManager : MonoBehaviour {
     [System.Serializable]
     class Option
     {
-        public int Parametor_AllNum;        // 1オブジェクト当たりのデータ総数
-        public GameObject   Enemy00;        // エネミーオブジェクト
-        public CsvManager Csvmanager;       // csvマネージャ
+        public GameObject          Enemy00;            // エネミーオブジェクト
+        public CsvManager          Csvmanager;         // csvマネージャ
+        public GameObject          enemyCreater;       // エネミークリエイター
     }
 
     [SerializeField]
-    private Option OptionInfo;              // オプション情報
+    private Option                  OptionInfo;         // オプション情報
 
-    private List<string[]>      CsvDate;    // csvデータ
-    private List<GameObject>    WaveDate;   // ウェーブ毎のデータ
-
-
+    private List<string[]>          CsvDate;            // csvデータ
+    private List<GameObject>        WaveDate;           // ウェーブ毎のデータ
     // インスペクター入力忘れ防止
     private void Awake()
     {
-        if (OptionInfo.Parametor_AllNum < 0)
-        {
-            OptionInfo.Parametor_AllNum = 0;
-        }
-
         if(OptionInfo.Enemy00 == null)
         {
             OptionInfo.Enemy00 = (GameObject)Resources.Load(Edit.ENEMY_00);
@@ -59,10 +52,7 @@ public class EnemyManager : MonoBehaviour {
     void Start () {
 
         // csvデータリストの初期化
-        CsvDate.Clear();
-        // csvデータの取得
-        CsvDate = OptionInfo.Csvmanager.CsvDataGet();
-        
+        CsvDate.Clear();        
     }
 	
 	// Update is called once per frame
@@ -74,12 +64,10 @@ public class EnemyManager : MonoBehaviour {
     public void WaveDateMake(int WaveNum)
     {
         // ゲームオブジェクト用
-        GameObject  buf;
-        Vector3     pos;
-
-        // ゲームオブジェクトの全削除
-        // WaveDate. 
         
+        enemy.EnemyInfo   buf = new enemy.EnemyInfo();
+        
+        // ゲームオブジェクトの全削除
         foreach (Transform child in gameObject.transform)
         {
             Destroy(child.gameObject);
@@ -89,31 +77,59 @@ public class EnemyManager : MonoBehaviour {
         CsvDate.Clear();
         // csvデータの取得
         CsvDate = OptionInfo.Csvmanager.CsvDataGet();
+        
+        enemyTypeManager        E_Type = OptionInfo.enemyCreater.GetComponent<EnemyCreater>().GetEnemyTypeManager();
+        enemyAnimationManager   E_Anim = OptionInfo.enemyCreater.GetComponent<EnemyCreater>().GetEnemyAnimationManager();
 
-        // 解析
+
+        // 解析（Csvデータの末尾まで）
         for (int index = 0; index < CsvDate.Count; index++)
         {
-            // 初期化
-            buf = null;
-            pos = Vector3.zero;
-
-            string wave = CsvDate[index][0];
+            // ウェーブ番号識別
+            string wave = CsvDate[index][(int)EnemyAnalyze.Enemy_Wave];
 
             // ウェーブ数確認
             if (int.Parse(wave) == WaveNum)
             {
-                // エネミー生成
-                buf = Instantiate(OptionInfo.Enemy00);
+                GameObject obj = null;
 
-                // エネミーの座標データを追加
-                pos.x = int.Parse( CsvDate[index][1]);
-                pos.y = int.Parse( CsvDate[index][2]);
-                pos.z = int.Parse( CsvDate[index][3]);
+                // 識別番号取得
+                int id = int.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Type]);
+                buf.MODEL_NUMBER = (enemyTypeManager.ENEMY_TYPE)Enum.ToObject(typeof(enemyTypeManager.ENEMY_TYPE), id);
 
-                buf.transform.position = pos;
+                // 移動間秒数取得
+                buf.MOVE_SECOND = int.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_MoveSec] );
+
+                // 生成座標を取得
+                Vector3 pos;
+                pos.x = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Pos_x]);
+                pos.y = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Pos_y]);
+                pos.z = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Pos_z]);
+                buf.ENEMY_POS = pos;
+
+                // 移動先情報を取得
+                Vector3 Mpos;
+                Mpos.x = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Move_x]);
+                Mpos.y = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Move_y]);
+                Mpos.z = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Move_z]);
+                buf.ENEMY_MOVE_POS = Mpos;
                 
+                // エネミー生成
+                obj = Instantiate(OptionInfo.Enemy00, pos, Quaternion.identity);
+
+                // エネミー情報セット
+                obj.GetComponent<enemy>().setEnemyInfo(buf);
+
+                // エネミータイプマネージャー
+                obj.GetComponent<enemy>().setEnemyTypeManager(E_Type);
+                // アニメマネージャをセット
+                obj.GetComponent<enemyAnimation>().setEnemyAnimManager(E_Anim);
+
                 // エネミーの追加
-                WaveDate.Add(buf);
+                WaveDate.Add(obj);
+
+                // 子供として追加
+                obj.transform.parent = transform;
             }
 
         }

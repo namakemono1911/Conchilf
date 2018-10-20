@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222733966351588710}
   - component: {fileID: 114245595764865946}
   - component: {fileID: 114148396408600210}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: remBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114759578794996568}
   - component: {fileID: 65100258755574010}
   - component: {fileID: 54188003530461194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: player
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 224041389825058716}
   - component: {fileID: 222742843951044794}
   - component: {fileID: 114336633989232378}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 224416739967674844}
   - component: {fileID: 222346353284876856}
   - component: {fileID: 114722559083531502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 224404913828782136}
   - component: {fileID: 222349262996653692}
   - component: {fileID: 114196400665939042}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0

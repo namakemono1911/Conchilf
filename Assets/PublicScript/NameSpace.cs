@@ -50,4 +50,21 @@ namespace Common
         // プレハブパス
         public const string ENEMY_00 = ("Prefub/Enemy_Soldier");
     }
+
+	
+    // 敵の情報の識別数値
+    public enum EnemyAnalyze
+    {
+        Enemy_Type,
+        Enemy_Wave,
+        Enemy_MoveSec,
+        Enemy_Pos_x,
+        Enemy_Pos_y,
+        Enemy_Pos_z,
+        Enemy_Move_x,
+        Enemy_Move_y,
+        Enemy_Move_z,
+        Enemy_Param_Max,
+    }
+
 }

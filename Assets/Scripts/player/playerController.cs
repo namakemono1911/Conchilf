@@ -136,8 +136,8 @@ public class WiiInput
 [System.Serializable]
 public class PlayerUI
 {
-    public bulletLifeUI bulletUI;      //弾のUI
-    public GameObject bulletMark;      //弾のエフェクト
+    public bulletLifeUI bulletUI = null;      //弾のUI
+    public GameObject bulletMark = null;      //弾のエフェクト
 }
 
 public enum ControllerArm
@@ -159,6 +159,9 @@ public class playerController : MonoBehaviour {
 
     [SerializeField]
     private PlayerUI ui;
+
+	[SerializeField]
+	private Transform[] hitPos;			//弾が飛んでく所
 
     private playerState state = null;   //プレイヤーのステートパターン
 
@@ -186,10 +189,11 @@ public class playerController : MonoBehaviour {
 	void Start () {
         changeState(new playerDefault(this));
 
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
-        
-        ui.bulletUI.setBulletLifeFirst(gun.numBullet);
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+
+		if (ui.bulletUI != null)
+			ui.bulletUI.setBulletLifeFirst(gun.numBullet);
 
         //Wiiリモコン初期化
         for (int i = 0; i < wiiInput.Length; i++)
@@ -205,17 +209,17 @@ public class playerController : MonoBehaviour {
         //ステート更新
         state.updateState();
 
-        //レティクル移動
-        //Vector2 reticlePos = Vector2.zero;
-        //reticlePos.x = Input.GetAxis(control.axisNameX) * control.mouseSensitivity;
-        //reticlePos.y = Input.GetAxis(control.axisNameY) * control.mouseSensitivity;
-        //control.reticle.anchoredPosition += reticlePos;
+		//レティクル移動
+		Vector2 reticlePos = Vector2.zero;
+		reticlePos.x = Input.GetAxis(control.axisNameX) * control.mouseSensitivity;
+		reticlePos.y = Input.GetAxis(control.axisNameY) * control.mouseSensitivity;
+		control.reticle.anchoredPosition += reticlePos;
 
-        float[] ir = wiiInput[(int)ControllerArm.right].Ir.GetPointingPosition();
-        var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
-        control.reticle.anchoredPosition3D
-            = new Vector2((ir[0] * Screen.width + originPos.x) * gun.sensitivity,
-            (ir[1] * Screen.height + originPos.y) * gun.sensitivity);
+		//float[] ir = wiiInput[(int)ControllerArm.right].Ir.GetPointingPosition();
+  //      var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
+  //      control.reticle.anchoredPosition3D
+  //          = new Vector2((ir[0] * Screen.width + originPos.x) * gun.sensitivity,
+  //          (ir[1] * Screen.height + originPos.y) * gun.sensitivity);
     }
 
     public void changeState(playerState newState)
@@ -236,4 +240,10 @@ public class playerController : MonoBehaviour {
             state.hitBullet();
         }
     }
+
+	public Vector3 getHitPos()
+	{
+		var random = Random.Range(0, hitPos.Length);
+		return hitPos[random].position;
+	}
 }
