@@ -16,6 +16,8 @@ public class boss : MonoBehaviour {
 	private bossState bossState;
 	// アニメーション管理
 	private bossAnimation bossAnimation;
+	// プレイヤー情報
+	private playerController[] playerControllers;
 	// 攻撃手段
 	// ボス情報
 	[SerializeField]
@@ -34,8 +36,16 @@ public class boss : MonoBehaviour {
 	{
 		get { return bossAnimation; }
 	}
+	public playerController[] players
+	{
+		get { return playerControllers; }
+	}
 
 
+	private void Awake()
+	{
+		playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
+	}
 
 	// Use this for initialization
 	void Start () {
