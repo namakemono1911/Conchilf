@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class resultManager : MonoBehaviour {
+public class uiAnimationController : MonoBehaviour
+{
+    public uiAnimation[] animation;
 
 	// Use this for initialization
 	void Start () {
