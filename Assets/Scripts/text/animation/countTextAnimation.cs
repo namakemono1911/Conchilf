@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class uiAnimationController : MonoBehaviour
-{
-    public uiAnimation[] animation;
+public class countTextAnimation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
