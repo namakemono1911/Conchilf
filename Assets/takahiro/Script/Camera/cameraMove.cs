@@ -27,6 +27,7 @@ public class cameraMove : MonoBehaviour {
 		}
 
 		transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(now, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
+		transform.LookAt(cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(now, Cinemachine.CinemachinePathBase.PositionUnits.Distance));
 		now += speed;
 
 		if (Input.GetKeyDown(KeyCode.Space))
