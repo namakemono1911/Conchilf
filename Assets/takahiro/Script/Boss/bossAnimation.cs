@@ -6,7 +6,14 @@ public class bossAnimation : MonoBehaviour {
 
 	public enum BOSS_ANIMATION_TYPE
 	{
-		ANIMATION_WAIT = 0,
+		ANIMATION_WAIT_0 = 0,
+		ANIMATION_WAIT_1,
+		ANIMATION_WAIK,
+		ANIMATION_SHOT_FORWARD,
+		ANIMATION_SHOT_UP,
+		ANIMATION_SHOT_ROTATE,
+		ANIMATION_RELOAD,
+		ANIMATION_DETH,
 		ANIMATION_MAX
 	}
 
@@ -22,7 +29,14 @@ public class bossAnimation : MonoBehaviour {
 		// アニメーションのdictionary設定
 		animationNames = new Dictionary<int, string>()
 			{
-				{(int)BOSS_ANIMATION_TYPE.ANIMATION_WAIT , "wait"},
+				{(int)BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0 , "wait1"},
+				{(int)BOSS_ANIMATION_TYPE.ANIMATION_WAIT_1 , "wait2"},
+				{(int)BOSS_ANIMATION_TYPE.ANIMATION_WAIK , "walk"},
+				{(int)BOSS_ANIMATION_TYPE.ANIMATION_SHOT_FORWARD , "shotForward"},
+				{(int)BOSS_ANIMATION_TYPE.ANIMATION_SHOT_UP , "shotUp"},
+				{(int)BOSS_ANIMATION_TYPE.ANIMATION_SHOT_ROTATE , "shotRotate"},
+				{(int)BOSS_ANIMATION_TYPE.ANIMATION_RELOAD , "reload"},
+				{(int)BOSS_ANIMATION_TYPE.ANIMATION_DETH , "deth"},
 
 			};
 
