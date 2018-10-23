@@ -6,14 +6,27 @@ public class virtualCameraSet : MonoBehaviour
 {
 
 	[SerializeField]
-	private Cinemachine.CinemachineSmoothPath cameraPsth;
+	private Cinemachine.CinemachinePath cameraPsth;
 	[SerializeField]
 	private Cinemachine.CinemachineSmoothPath lookAtPsth;
 	[SerializeField]
 	private float moveSpeed;
+	[SerializeField]
+	private float[] per;
+	[SerializeField]
+	private Transform[] obj;
 
+	private void Start()
+	{
+		// objを各pathにセット
+		for(int i = 0; i < obj.Length; ++i)
+		{
+			Vector3 pos = cameraPsth.m_Waypoints[i].position;
+			obj[i].position = new Vector3(pos.x, pos.y, pos.z);
+		}
+	}
 
-	public Cinemachine.CinemachineSmoothPath getcameraPath()
+	public Cinemachine.CinemachinePath getcameraPath()
 	{
 		return cameraPsth;
 	}
@@ -30,5 +43,10 @@ public class virtualCameraSet : MonoBehaviour
 	public int getNumWaypoints()
 	{
 		return cameraPsth.m_Waypoints.Length - 1;
+	}
+
+	public float getSpeedChange(int wayPoint)
+	{
+		return per[wayPoint];
 	}
 }

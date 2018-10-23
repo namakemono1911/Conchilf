@@ -11,11 +11,17 @@ public class cameraMove : MonoBehaviour {
 
 	private float speed;
 	private float now;
+	private float per;
+	private int oldPath;
+
 	// Use this for initialization
 	void Start () {
 		speed = 0.01f * cameraSet[setNum].getSpeed();
+		per = cameraSet[setNum].getSpeedChange(setNum);
 		Debug.Log((float)cameraSet[setNum].getNumWaypoints());
 		now = 0.0f;
+		per = 1.0f;
+		oldPath = 0;
 	}
 	
 	// Update is called once per frame
@@ -26,12 +32,11 @@ public class cameraMove : MonoBehaviour {
 			setNum = 0;
 		}
 
-		transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(now, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
-		now += speed;
+		transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(now, Cinemachine.CinemachinePathBase.PositionUnits.PathUnits);
+		now += speed * per;
 
 		if (Input.GetKeyDown(KeyCode.Space))
 			nextMove();
-
 	}
 
 	public void nextMove()
@@ -44,6 +49,9 @@ public class cameraMove : MonoBehaviour {
 		}
 
 		speed = 0.01f * cameraSet[setNum].getSpeed();
+		per = cameraSet[setNum].getSpeedChange(setNum);
 		now = 0.0f;
+
+
 	}
 }
