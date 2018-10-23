@@ -189,6 +189,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2347878}
+--- !u!1 &231043071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 231043072}
+  m_Layer: 0
+  m_Name: 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &231043072
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 231043071}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 612802996}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &295255361
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +310,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 397694868}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 612802996}
@@ -301,17 +329,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfea994e22e2474449169c1db6d20424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPsth: {fileID: 0}
+  cameraPsth: {fileID: 612802995}
   lookAtPsth: {fileID: 1548200783}
-  moveSpeed: 1
+  moveCameraSecond: 10
+  moveLookAtSecond: 5
+  changeDistance: 1
   per:
-  - 1
   - 0.1
-  - 2
+  - 10
+  - 1
   obj:
   - {fileID: 1243364108}
   - {fileID: 1429322127}
   - {fileID: 1600718352}
+  - {fileID: 231043072}
 --- !u!1 &429218953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1048,7 @@ GameObject:
   - component: {fileID: 612802996}
   - component: {fileID: 612802995}
   m_Layer: 0
-  m_Name: virtualLookAt0
+  m_Name: virtualCamera0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1038,10 +1069,19 @@ MonoBehaviour:
   m_Appearance:
     pathColor: {r: 0, g: 1, b: 0, a: 1}
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    width: 0
+    width: 1.12
   m_Looped: 0
   m_Waypoints:
   - position: {x: 0, y: 0, z: 1}
+    tangent: {x: 1, y: 0, z: 0}
+    roll: 0
+  - position: {x: -5.7640257, y: 0, z: 10.797625}
+    tangent: {x: 1, y: 0, z: 0}
+    roll: 0
+  - position: {x: 2.0536904, y: 3.4635272, z: 17.31937}
+    tangent: {x: 1, y: 0, z: 0}
+    roll: 0
+  - position: {x: 3.0536904, y: -4.809521, z: 0.58291626}
     tangent: {x: 1, y: 0, z: 0}
     roll: 0
 --- !u!4 &612802996
@@ -1057,6 +1097,7 @@ Transform:
   - {fileID: 1243364108}
   - {fileID: 1429322127}
   - {fileID: 1600718352}
+  - {fileID: 231043072}
   m_Father: {fileID: 397694869}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1671,8 +1712,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPsth: {fileID: 0}
-  lookAtPsth: {fileID: 1219029229}
-  moveSpeed: 5
+  lookAtPsth: {fileID: 0}
+  moveCameraSecond: 0
+  moveLookAtSecond: 0
+  changeDistance: 0
   per: []
   obj: []
 --- !u!1 &1030517965
@@ -2334,7 +2377,7 @@ GameObject:
   - component: {fileID: 1548200782}
   - component: {fileID: 1548200783}
   m_Layer: 0
-  m_Name: virtualCamera0
+  m_Name: virtualLookAt0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2361,21 +2404,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1548200781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d37e5385efd7064cb1d54c94960acae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Resolution: 12
+  m_Resolution: 20
   m_Appearance:
     pathColor: {r: 0, g: 1, b: 0, a: 1}
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    width: 3.27
+    width: 0.2
   m_Looped: 0
   m_Waypoints:
-  - position: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: -5.6350965}
+    tangent: {x: 1, y: 0, z: 0}
     roll: 0
-  - position: {x: 2.9146738, y: 0, z: 2.809246}
+  - position: {x: -3.0728846, y: 0, z: -5.6350965}
+    tangent: {x: 1, y: 0, z: 0}
     roll: 0
-  - position: {x: 53.870552, y: 0, z: -151.8931}
+  - position: {x: -3.4432313, y: 0, z: 2.1354027}
+    tangent: {x: 1, y: 0, z: 3.8438835}
     roll: 0
 --- !u!1001 &1555879639
 Prefab:
