@@ -83,6 +83,34 @@ public class CsvManager : MonoBehaviour {
     {
     }
 
+    public void Update()
+    {
+    	// デバッグ用
+    	if(Input.GetKey(KeyCode.C))
+    	{
+	    	// Save
+	    	if(Input.GetKeyDown("1"))
+	    	{
+	    		CsvOutput();
+				Debug.Log ("CSV -> Save!");
+	    	}
+	    	
+	    	// Load
+	    	if(Input.GetKeyDown("2"))
+	    	{
+	    		CsvLoad();
+				Debug.Log ("CSV -> Load!");
+	    	}
+	    	
+	    	// AllDelete
+			if(Input.GetKeyDown("3"))
+	    	{
+	    		Alldelete();
+				Debug.Log ("CSV -> AllDelete");
+	    	}
+    	}
+    }
+
     // ログの書き込み
     public void CsvOutput()
     {

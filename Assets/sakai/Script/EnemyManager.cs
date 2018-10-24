@@ -58,6 +58,31 @@ public class EnemyManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	    // デバッグ
+	    if(Input.GetKey(KeyCode.C))
+		{
+			if(Input.GetKeyDown("4"))
+	    	{
+	    		WaveDateMake(0);
+				Debug.Log ("CSV -> EnemyCreate");
+	    	}
+	    }
+
+		// ウェーブ指定
+		if(Input.GetKey(KeyCode.W))
+		{
+			if (Input.GetKeyDown ("0")) { WaveDateMake(0); }
+			if (Input.GetKeyDown ("1")) { WaveDateMake(1); }
+			if (Input.GetKeyDown ("2")) { WaveDateMake(2); }
+			if (Input.GetKeyDown ("3")) { WaveDateMake(3); }
+			if (Input.GetKeyDown ("4")) { WaveDateMake(4); }
+			if (Input.GetKeyDown ("5")) { WaveDateMake(5); }
+			if (Input.GetKeyDown ("6")) { WaveDateMake(6); }
+			if (Input.GetKeyDown ("7")) { WaveDateMake(7); }
+			if (Input.GetKeyDown ("8")) { WaveDateMake(8); }
+			if (Input.GetKeyDown ("9")) { WaveDateMake(9); }
+			Debug.Log ("CSV -> EnemyCreate -> Wave Select");
+		}
 	}
 
     // ウェーブデータ作成
