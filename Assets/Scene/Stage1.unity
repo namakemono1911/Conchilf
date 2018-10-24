@@ -130,7 +130,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -65
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -164,7 +164,7 @@ Prefab:
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
       propertyPath: enemycsvInfo.ENEMY_POS.z
-      value: -65
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
@@ -188,6 +188,16 @@ Prefab:
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
       propertyPath: enemycsvInfo.WAVE_NUMBER
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
+        type: 2}
+      propertyPath: enemycsvInfo.ENEMY_POS.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
+        type: 2}
+      propertyPath: enemycsvInfo.MOVE_SECOND
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -446,7 +456,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1844291253515298, guid: 87684e93367e43f49b1112ddf5a983b2, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87684e93367e43f49b1112ddf5a983b2, type: 2}
@@ -1063,7 +1073,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1162927644034320, guid: 4625e668347b44a4988ee8adaabaf0e3, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4625e668347b44a4988ee8adaabaf0e3, type: 2}
@@ -1493,7 +1503,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 55
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1501,7 +1511,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -65
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1530,12 +1540,12 @@ Prefab:
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
       propertyPath: enemycsvInfo.ENEMY_POS.x
-      value: 55
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
       propertyPath: enemycsvInfo.ENEMY_POS.z
-      value: -65
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
@@ -1554,6 +1564,11 @@ Prefab:
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
       propertyPath: enemycsvInfo.WAVE_NUMBER
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
+        type: 2}
+      propertyPath: enemycsvInfo.MOVE_SECOND
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2070,7 +2085,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 57
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2078,7 +2093,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -65
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2107,12 +2122,12 @@ Prefab:
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
       propertyPath: enemycsvInfo.ENEMY_POS.x
-      value: 57
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
       propertyPath: enemycsvInfo.ENEMY_POS.z
-      value: -65
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
@@ -2136,6 +2151,11 @@ Prefab:
     - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
         type: 2}
       propertyPath: enemycsvInfo.WAVE_NUMBER
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114095547427746860, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
+        type: 2}
+      propertyPath: enemycsvInfo.MOVE_SECOND
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2383,7 +2403,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1699025718999248, guid: 93c900af7c6382243abd5892f20e2e50, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93c900af7c6382243abd5892f20e2e50, type: 2}
