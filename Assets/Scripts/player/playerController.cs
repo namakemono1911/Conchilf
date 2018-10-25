@@ -148,6 +148,12 @@ public enum ControllerArm
 
 public class playerController : MonoBehaviour {
 
+	[SerializeField]
+	public int HP = 3;					//HP
+	
+	[SerializeField]
+	public bool Debug_HP = false;		//HPデバッグモード
+
     [SerializeField]
     private ControlSetting control;     //プレイヤーのコントロール
 
@@ -233,12 +239,24 @@ public class playerController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-            Destroy(collision.gameObject);
-
-        if (collision.gameObject.tag == "enemyBullet")
-        {
-            state.hitBullet();
-        }
+    	// デバッグ状態ではない時
+		if(Debug_HP == false)
+		{	
+			// HPが0以下
+			if(HP <= 0)
+			{
+				Destroy(collision.gameObject);
+	
+		        if (collision.gameObject.tag == "enemyBullet")
+		        {
+		            state.hitBullet();
+		        }
+		        Debug.Log("Player -> HP 0");
+			} else {
+				HP --;
+				Debug.Log("Player -> HP " + HP);
+			}
+		}
     }
 
 	public Vector3 getHitPos()

@@ -123,7 +123,7 @@ public class EnemyManager : MonoBehaviour {
                 buf.MODEL_NUMBER = (enemyTypeManager.ENEMY_TYPE)Enum.ToObject(typeof(enemyTypeManager.ENEMY_TYPE), id);
 
                 // 移動間秒数取得
-                buf.MOVE_SECOND = int.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_MoveSec] );
+                buf.MOVE_SECOND = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_MoveSec] );
 
                 // 生成座標を取得
                 Vector3 pos;

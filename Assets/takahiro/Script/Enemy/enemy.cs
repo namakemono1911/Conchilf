@@ -13,11 +13,10 @@ public class enemy : MonoBehaviour {
     {
         public enemyTypeManager.ENEMY_TYPE MODEL_NUMBER;    // モデル(強さ)の識別番号
         public int WAVE_NUMBER;                             // 自身のウェーブ番号
-        public int MOVE_SECOND;                             // スポーン位置~移動位置を何秒で移動するか
+        public float MOVE_SECOND;                           // スポーン位置~移動位置を何秒で移動するか
         public Vector3 ENEMY_POS;        // スポーン位置
         public Vector3 ENEMY_MOVE_POS;   // 移動位置
     }
-
 
 	[SerializeField]
 	private EnemyInfo enemycsvInfo;                     // csv必要な情報
@@ -28,6 +27,10 @@ public class enemy : MonoBehaviour {
 	[SerializeField]
 	private Enemy_gun gun;								// 敵の弾
 
+	[SerializeField]
+	private Transform unchi;                     // csv必要な情報
+
+	private Vector3 unko;
 	private int damege;                                 // 総合ダメージ
 	private enemyTypeManager.EnemyTypeInfo typeInfo;    // タイプ情報
 	private enemyState enemyState;                      // 状態
@@ -92,11 +95,15 @@ public class enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		// 位置情報保存
+		unko = this.transform.position;
+
 		damege = 0;
 		isCount = false;
         
         // タイプ管理
         typeInit();
+
 	}
 
 	private void FixedUpdate()
@@ -160,6 +167,8 @@ public class enemy : MonoBehaviour {
 	// 敵情報を取得
 	public EnemyInfo getEnemyInfo()
 	{
+		enemycsvInfo.ENEMY_POS = unko;
+		enemycsvInfo.ENEMY_MOVE_POS = unchi.position;
 		return enemycsvInfo;
 	}
 

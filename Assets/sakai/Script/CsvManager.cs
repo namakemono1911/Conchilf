@@ -163,7 +163,7 @@ public class CsvManager : MonoBehaviour {
             E_Script= obj.GetComponent<enemy>();
 
             // エネミー情報構造体を取得
-            buf = E_Script.enemyCSVInfo;
+			buf = E_Script.getEnemyInfo();
 
             // モデル識別番号追加
             stringlist.Add(( (int)buf.MODEL_NUMBER ).ToString());
