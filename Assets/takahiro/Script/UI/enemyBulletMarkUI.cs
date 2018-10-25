@@ -29,8 +29,6 @@ public class enemyBulletMarkUI : MonoBehaviour {
 
 	private void Update()
 	{
-		this.transform.position = new Vector3(effectTransform.position.x, effectTransform.position.y, effectTransform.position.z);
-
 		// 弾痕のフェード処理
 		if (timeCounter >= fadeTime)
 		{

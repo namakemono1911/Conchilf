@@ -34,8 +34,8 @@ public class enemyStateShot : enemyState
 		int hitProbability = (int)Random.Range(1, 100);
 
 		Vector3 pos = new Vector3(0,0,0);
-		enemy.bullet.shotBullet();	// 弾減らす
-
+		enemy.bullet.shotBullet();  // 弾減らす
+		int player = 0;
 		// 当たる確率
 		if(hitProbability <= enemy.enemyTypeInfo.hitProbability)
 		{
@@ -49,11 +49,13 @@ public class enemyStateShot : enemyState
 			{
 				// 1p
 				pos = p[0].getHitPos();
+				player = 1;
 			}
 			else
 			{
 				// 2p
 				pos = p[1].getHitPos();
+				player = 2;
 			}
 		}
 		else
@@ -62,11 +64,12 @@ public class enemyStateShot : enemyState
 			Vector3 camera = Camera.main.transform.position;
 			Vector3 enemyPos = enemy.transform.position;
 			pos = new Vector3(camera.x, camera.y + 10.0f, camera.z);
+			player = 0;
 
 		}
 
 		// 発射!!!!!!!!!!!!!
-		enemy.bulletInstance.SetBullet(pos , 1.0f);
+		enemy.bulletInstance.SetBullet(pos , 1.0f , player);
 	}
 
 }

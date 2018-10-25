@@ -128,12 +128,12 @@ public class Soldier_Motion : MonoBehaviour {
             if (targetindex == 0)
             {
                 // なんかいい感じの時に打ちたい
-                OptionInfo.GunScript.SetBullet(OptionInfo.Player.transform.position, OptionInfo.Shot_Time);
+                //OptionInfo.GunScript.SetBullet(OptionInfo.Player.transform.position, OptionInfo.Shot_Time);
             }
             else if (targetindex == 1)
             {
                 // なんかいい感じの時に打ちたい
-                OptionInfo.GunScript.SetBullet(OptionInfo.Player2.transform.position, OptionInfo.Shot_Time);
+                //OptionInfo.GunScript.SetBullet(OptionInfo.Player2.transform.position, OptionInfo.Shot_Time);
             }
         }
     }

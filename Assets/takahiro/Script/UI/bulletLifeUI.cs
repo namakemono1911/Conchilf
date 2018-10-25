@@ -42,7 +42,7 @@ public class bulletLifeUI : MonoBehaviour {
 		}
 
 		// 1つ目を配置
-		GameObject.Instantiate(lifeImage, this.transform.position, Quaternion.identity, this.transform);
+		GameObject.Instantiate(lifeImage, this.transform.position, transform.parent.transform.rotation, this.transform);
 
 		// 2つ目以降
 		GameObject childObj;

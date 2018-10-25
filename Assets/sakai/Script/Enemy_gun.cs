@@ -22,14 +22,14 @@ public class Enemy_gun : MonoBehaviour {
     [SerializeField]
     private OptionValue value;
 
-    public void SetBullet(Vector3 TargetPos, float Sec)
+    public void SetBullet(Vector3 TargetPos, float Sec , int player)
     {
         // 玉のインスタンス作成
         GameObject newBullet = Instantiate(value.bullet, this.gameObject.transform.position, Quaternion.identity);
 
         // 玉の初期ステータス設定
         Bullet script = newBullet.GetComponent<Bullet>();
-        script.SetBulletStatus(TargetPos, Sec);
+        script.SetBulletStatus(TargetPos, Sec , player);
 
     }
 }

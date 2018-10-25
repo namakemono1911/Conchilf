@@ -12,39 +12,55 @@ public class reloadHintUI : MonoBehaviour {
 
 	private int visibleCounter;	// タイマー
 	private bool visible;       // 表示フラグ
-	private Color imageColor;	// 色
-
+	private Color imageColor;   // 色
+	private bool setVisible;
 	// Use this for initialization
 	void Start () {
 		visibleCounter = visibleTime;
 		visible = false;
+		setVisible = false;
 		imageColor = reloadHintImage.color;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(visibleCounter >= visibleTime)
-		{
-			visibleCounter = 0;
-			visible = !visible;
 
-			if(visible)
+		if(setVisible)
+		{
+			if (visibleCounter >= visibleTime)
 			{
-				imageColor.a = 1.0f;
+				visibleCounter = 0;
+				visible = !visible;
+
+				if (visible)
+				{
+					imageColor.a = 1.0f;
+				}
+				else
+				{
+					imageColor.a = 0.0f;
+				}
+
+				reloadHintImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, imageColor.a);
 			}
 			else
 			{
-				imageColor.a = 0.0f;
+				++visibleCounter;
 			}
-
-			reloadHintImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, imageColor.a);
 		}
 		else
 		{
-			++visibleCounter;
+			reloadHintImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, 0.0f);
 		}
+	}
 
+	public void setReloadUI()
+	{
+		setVisible = true;
+	}
 
-
+	public void deleteReloadUI()
+	{
+		setVisible = false;
 	}
 }

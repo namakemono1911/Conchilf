@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class dangerUI : MonoBehaviour
 {
 	[SerializeField]
-	private Transform testTarnsform;			// テスト用の3d座標
+	private Bullet bulletTransfom;			// テスト用の3d座標
 	[SerializeField]
 	private Image dangetUI;                     // ui
 	[SerializeField]
@@ -28,8 +28,6 @@ public class dangerUI : MonoBehaviour
 
 	private void Start()
 	{
-		playerPos = new Vector3(0, 0, 0);
-		lengthStand = 10;
 		visibleTimeDifference = visibleTimeStart - visibleTimeEnd;
 		isCount = false;
 		visible = true;
@@ -65,8 +63,7 @@ public class dangerUI : MonoBehaviour
 			visible = !visible;
 
 			// 今の位置
-			Vector3 bulletPos = testTarnsform.position;
-			//bulletPos = bullet.GetPos();    // 弾の位置取得
+			Vector3 bulletPos = bulletTransfom.transform.position;
 													// 距離の計算
 			length = Vector3.Distance(bulletPos, playerPos);
 			// 今の距離の初めの距離に対する割合
@@ -98,8 +95,8 @@ public class dangerUI : MonoBehaviour
 	}
 
 	// 敵の弾セット
-	//public void setEnemyBullet((敵の弾型) bt)
-	//{
-	//	bullet = bt;
-	//}
+	public void setEnemyBullet(Bullet bt)
+	{
+		bulletTransfom = bt;
+	}
 }

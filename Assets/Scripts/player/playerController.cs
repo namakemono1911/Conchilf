@@ -38,6 +38,16 @@ public class GunSetting
     {
         remBullet = numBullet;
     }
+
+	public bool isReload()
+	{
+		if(remBullet <= 0)
+		{
+			return true;
+		}
+
+		return false;
+	}
 }
 
 //不本意なInputクラス
@@ -138,6 +148,8 @@ public class PlayerUI
 {
     public bulletLifeUI bulletUI = null;      //弾のUI
     public GameObject bulletMark = null;      //弾のエフェクト
+	public reloadHintUI reloadUI = null;      // リロードの示唆エフェクト
+	public GameObject enemyBulletMarkUI = null;	// 被弾エフェクト
 }
 
 public enum ControllerArm
@@ -215,12 +227,21 @@ public class playerController : MonoBehaviour {
 		reticlePos.y = Input.GetAxis(control.axisNameY) * control.mouseSensitivity;
 		control.reticle.anchoredPosition += reticlePos;
 
+		// 残段が無ければui表示
+		if(gun.isReload())
+		{
+			ui.reloadUI.setReloadUI();
+		}
+		else
+		{
+			ui.reloadUI.deleteReloadUI();
+		}
 		//float[] ir = wiiInput[(int)ControllerArm.right].Ir.GetPointingPosition();
-  //      var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
-  //      control.reticle.anchoredPosition3D
-  //          = new Vector2((ir[0] * Screen.width + originPos.x) * gun.sensitivity,
-  //          (ir[1] * Screen.height + originPos.y) * gun.sensitivity);
-    }
+		//      var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
+		//      control.reticle.anchoredPosition3D
+		//          = new Vector2((ir[0] * Screen.width + originPos.x) * gun.sensitivity,
+		//          (ir[1] * Screen.height + originPos.y) * gun.sensitivity);
+	}
 
     public void changeState(playerState newState)
     {
@@ -233,11 +254,17 @@ public class playerController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-            Destroy(collision.gameObject);
 
         if (collision.gameObject.tag == "enemyBullet")
         {
-            state.hitBullet();
+			Destroy(collision.gameObject.GetComponent<Bullet>().getDangerUI());
+			Destroy(collision.gameObject);
+
+			// 被弾エフェクト
+			GameObject parent = GameObject.Find("UICanvasMiddle");
+			GameObject.Instantiate(ui.enemyBulletMarkUI, parent.transform);
+
+			state.hitBullet();
         }
     }
 
