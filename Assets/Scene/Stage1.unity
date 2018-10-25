@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44391727, g: 0.49329662, b: 0.5727822, a: 1}
+  m_IndirectSpecularColor: {r: 0.44391727, g: 0.49329662, b: 0.57278216, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -456,8 +456,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1844291253515298, guid: 87684e93367e43f49b1112ddf5a983b2, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 223334890603267752, guid: 87684e93367e43f49b1112ddf5a983b2,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1647066274}
+    - target: {fileID: 114424944597254020, guid: 87684e93367e43f49b1112ddf5a983b2,
+        type: 2}
+      propertyPath: ui.bulletUI
+      value: 
+      objectReference: {fileID: 1527018036}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87684e93367e43f49b1112ddf5a983b2, type: 2}
   m_IsPrefabParent: 0
@@ -1073,7 +1083,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1162927644034320, guid: 4625e668347b44a4988ee8adaabaf0e3, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4625e668347b44a4988ee8adaabaf0e3, type: 2}
@@ -2076,6 +2086,12 @@ MonoBehaviour:
     InputCsvName: EnemyData
     OutputCsvName: EnemyData.csv
     enemyCreater: {fileID: 1357207308}
+--- !u!114 &1527018036 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114816899226804950, guid: 4625e668347b44a4988ee8adaabaf0e3,
+    type: 2}
+  m_PrefabInternal: {fileID: 879084744}
+  m_Script: {fileID: 11500000, guid: f4c8b35cce73f2f43bf51d8cd6dbc21a, type: 3}
 --- !u!1001 &1548146012
 Prefab:
   m_ObjectHideFlags: 0
@@ -2403,7 +2419,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1699025718999248, guid: 93c900af7c6382243abd5892f20e2e50, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93c900af7c6382243abd5892f20e2e50, type: 2}
