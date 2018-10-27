@@ -13,24 +13,28 @@ public class virtualCameraSet : MonoBehaviour
 	private float moveCameraSecond;
 	[SerializeField]
 	private float moveLookAtSecond;
+
 	[SerializeField]
-	private float changeDistance;
+	private float[] CameraPer;
 	[SerializeField]
-	private float[] per;
-	[SerializeField]
-	private Transform[] obj;
+	private float[] LookatPer;
 
 	private int nowWaypoint;
 	private bool nearWaypoint;
+	private float changeDistance;
+	private Vector3[] obj;
+
 	private void Start()
 	{
 		nowWaypoint = 1;
 		nearWaypoint = true;
+		changeDistance = 1.0f;
 		// objを各pathにセット
+		obj = new Vector3[obj.Length];
 		for (int i = 0; i < obj.Length; ++i)
 		{
 			Vector3 pos = cameraPsth.m_Waypoints[i].position;
-			obj[i].position = new Vector3(pos.x, pos.y, pos.z);
+			obj[i] = new Vector3(pos.x, pos.y, pos.z);
 		}
 	}
 
@@ -40,7 +44,7 @@ public class virtualCameraSet : MonoBehaviour
 		if (nearWaypoint == false)
 		{
 			// 今のwaypointとカメラとの距離を比較
-			float distance = Vector3.Distance(Camera.main.transform.position, obj[nowWaypoint].position);
+			float distance = Vector3.Distance(Camera.main.transform.position, obj[nowWaypoint]);
 			// 一定以下なら
 			if (distance < changeDistance)
 			{
@@ -59,7 +63,7 @@ public class virtualCameraSet : MonoBehaviour
 		{
 			// 一定距離離れたら
 			// 今のwaypointとカメラとの距離を比較
-			float distance = Vector3.Distance(Camera.main.transform.position, obj[nowWaypoint].position);
+			float distance = Vector3.Distance(Camera.main.transform.position, obj[nowWaypoint]);
 			// 一定以上なら
 			if (distance > changeDistance)
 			{
@@ -79,13 +83,23 @@ public class virtualCameraSet : MonoBehaviour
 	{
 		return lookAtPsth;
 	}
+
 	public float getCameraSpeed()
 	{
-		return cameraPsth.PathLength / moveCameraSecond / 60.0f * per[nowWaypoint - 1];
+		if (CameraPer.Length <= nowWaypoint - 1)
+		{
+			return cameraPsth.PathLength / moveCameraSecond / 60.0f;
+		}
+		return cameraPsth.PathLength / moveCameraSecond / 60.0f * CameraPer[nowWaypoint - 1];
 	}
 	public float getLookAtSpeed()
 	{
-		return lookAtPsth.PathLength / moveLookAtSecond / 60.0f;
+		if (LookatPer.Length <= nowWaypoint - 1)
+		{
+			return lookAtPsth.PathLength / moveLookAtSecond / 60.0f;
+		}
+
+		return lookAtPsth.PathLength / moveLookAtSecond / 60.0f * LookatPer[nowWaypoint - 1];
 	}
 
 	public int getNumWaypoints()
@@ -93,8 +107,4 @@ public class virtualCameraSet : MonoBehaviour
 		return cameraPsth.m_Waypoints.Length - 1;
 	}
 
-	public float getSpeedChange()
-	{
-		return per[nowWaypoint] * getCameraSpeed();
-	}
 }
