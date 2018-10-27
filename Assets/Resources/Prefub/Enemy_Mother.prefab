@@ -672,7 +672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4200336480474316}
   m_Layer: 0
-  m_Name: Moved_Position
+  m_Name: Start_Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1142,7 +1142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1722501893345614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4957916343101468}
@@ -1306,7 +1306,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1987121572862466}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 50, y: 0, z: -55}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4164126546291598}
@@ -1890,13 +1890,13 @@ MonoBehaviour:
   enemycsvInfo:
     MODEL_NUMBER: 0
     WAVE_NUMBER: 0
-    MOVE_SECOND: 0.8
-    ENEMY_POS: {x: 50, y: 0, z: -60}
-    ENEMY_MOVE_POS: {x: 55, y: 0, z: -70}
+    MOVE_SECOND: 1
+    ENEMY_POS: {x: 0, y: 0, z: 0}
+    ENEMY_MOVE_POS: {x: 0, y: 0, z: 0}
   enemyTypeManager: {fileID: 0}
   playersPos: []
   gun: {fileID: 114083265737635160}
-  unchi: {fileID: 4200336480474316}
+  startPos: {fileID: 4200336480474316}
 --- !u!114 &114269611262169436
 MonoBehaviour:
   m_ObjectHideFlags: 1

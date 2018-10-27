@@ -12,6 +12,10 @@ public class enemyStateMove : enemyState
 	{
 		enemy.timerStart();
 
+		Debug.Log ("enemy.enemyCSVInfo.ENEMY_POS" + enemy.enemyCSVInfo.ENEMY_POS);
+		Debug.Log ("enemy.enemyCSVInfo.ENEMY_MOVE_POS" + enemy.enemyCSVInfo.ENEMY_MOVE_POS);
+		Debug.Log ("enemy.enemyCSVInfo.MOVE_SECOND" + enemy.enemyCSVInfo.MOVE_SECOND);
+
 		// 移動開始
 		enemy.transform.DOMove(enemy.enemyCSVInfo.ENEMY_MOVE_POS, enemy.enemyCSVInfo.MOVE_SECOND);
 

@@ -9,13 +9,20 @@ public class cameraMove : MonoBehaviour {
 	[SerializeField]
 	private int setNum;
 
-	private float speed;
-	private float now;
+	private float speedCamera;
+	private float speedLookAt;
+	private float nowCamera;
+	private float nowLookAt;
+	private int oldPath;
+
 	// Use this for initialization
 	void Start () {
-		speed = 0.01f * cameraSet[setNum].getSpeed();
-		Debug.Log((float)cameraSet[setNum].getNumWaypoints());
-		now = 0.0f;
+		speedCamera = cameraSet[setNum].getCameraSpeed();
+		speedLookAt = cameraSet[setNum].getLookAtSpeed();
+
+		nowCamera = 0.0f;
+		nowLookAt = 0.0f;
+		oldPath = 0;
 	}
 	
 	// Update is called once per frame
@@ -26,13 +33,22 @@ public class cameraMove : MonoBehaviour {
 			setNum = 0;
 		}
 
-		transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(now, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
-		transform.LookAt(cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(now, Cinemachine.CinemachinePathBase.PositionUnits.Distance));
-		now += speed;
+
+		speedCamera = cameraSet[setNum].getCameraSpeed();
+		speedLookAt = cameraSet[setNum].getLookAtSpeed();
+
+		// 座標移動
+		transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(nowCamera, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
+		// カメラ角度
+		transform.LookAt(cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance));
+		//Debug.Log (nowLookAt);
+		nowCamera += speedCamera;
+		nowLookAt += speedLookAt;
+
+
 
 		if (Input.GetKeyDown(KeyCode.Space))
 			nextMove();
-
 	}
 
 	public void nextMove()
@@ -44,7 +60,10 @@ public class cameraMove : MonoBehaviour {
 			setNum = 0;
 		}
 
-		speed = 0.01f * cameraSet[setNum].getSpeed();
-		now = 0.0f;
+		speedCamera = cameraSet[setNum].getCameraSpeed();
+		speedLookAt = cameraSet[setNum].getLookAtSpeed();
+		nowCamera = 0.0f;
+		nowLookAt = 0.0f;
+
 	}
 }

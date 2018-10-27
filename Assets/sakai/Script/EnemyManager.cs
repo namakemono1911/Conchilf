@@ -138,9 +138,12 @@ public class EnemyManager : MonoBehaviour {
                 Mpos.y = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Move_y]);
                 Mpos.z = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Move_z]);
                 buf.ENEMY_MOVE_POS = Mpos;
-                
+
                 // エネミー生成
                 obj = Instantiate(OptionInfo.Enemy00, pos, Quaternion.identity);
+
+				// 生成フラグをたてる
+				obj.GetComponent<enemy>().createMeFrag();
 
                 // エネミー情報セット
                 obj.GetComponent<enemy>().setEnemyInfo(buf);

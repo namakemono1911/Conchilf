@@ -14,8 +14,8 @@ public class enemy : MonoBehaviour {
         public enemyTypeManager.ENEMY_TYPE MODEL_NUMBER;    // モデル(強さ)の識別番号
         public int WAVE_NUMBER;                             // 自身のウェーブ番号
         public float MOVE_SECOND;                           // スポーン位置~移動位置を何秒で移動するか
-        public Vector3 ENEMY_POS;        // スポーン位置
-        public Vector3 ENEMY_MOVE_POS;   // 移動位置
+        public Vector3 ENEMY_POS;        					// スポーン位置
+        public Vector3 ENEMY_MOVE_POS;						// 移動位置
     }
 
 	[SerializeField]
@@ -28,18 +28,19 @@ public class enemy : MonoBehaviour {
 	private Enemy_gun gun;								// 敵の弾
 
 	[SerializeField]
-	private Transform unchi;                     // csv必要な情報
+	private Transform startPos;                     	// 移動開始位置
+	private Vector3 goalPos;							// 移動終了位置
+	private bool created = false;						// 作られたかどうかのフラグ
 
-	private Vector3 unko;
 	private int damege;                                 // 総合ダメージ
 	private enemyTypeManager.EnemyTypeInfo typeInfo;    // タイプ情報
 	private enemyState enemyState;                      // 状態
 	private enemyAnimation enemyAnimation;              // アニメーション管理
 	private float enemyTimer;                           // タイマー
 	private enemyAnimationManager.ENEMY_ANIMATION_TYPE beforAnimation;	// 以前のアニメーション種類
-	private bool isCount;                                                   // カウントしているか否か
-	private enemyBullet enemyBullet;                                        // 敵の弾処理
-	private playerController[] playerControllers;										// プレイヤーの情報
+	private bool isCount;                                               // カウントしているか否か
+	private enemyBullet enemyBullet;                                    // 敵の弾処理
+	private playerController[] playerControllers;						// プレイヤーの情報
 
 	// getter
 	// タイプ情報
@@ -95,8 +96,15 @@ public class enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		// 位置情報保存
-		unko = this.transform.position;
+		// 現在位置を移動終了位置として保存
+		//goalPos = this.transform.position;
+
+		// 創られてはいない時
+		if (!created)
+		{
+			enemycsvInfo.ENEMY_POS = startPos.position;
+			enemycsvInfo.ENEMY_MOVE_POS = this.transform.position;
+		}
 
 		damege = 0;
 		isCount = false;
@@ -167,8 +175,6 @@ public class enemy : MonoBehaviour {
 	// 敵情報を取得
 	public EnemyInfo getEnemyInfo()
 	{
-		enemycsvInfo.ENEMY_POS = unko;
-		enemycsvInfo.ENEMY_MOVE_POS = unchi.position;
 		return enemycsvInfo;
 	}
 
@@ -284,6 +290,10 @@ public class enemy : MonoBehaviour {
 		return false;
 	}
 
+	public void createMeFrag()
+	{
+		created = true;
+	}
 }
 
 
