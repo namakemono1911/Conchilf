@@ -5,6 +5,8 @@ using UnityEngine;
 public class cameraMove : MonoBehaviour {
 
 	[SerializeField]
+	private int debugCamera;
+	[SerializeField]
 	private virtualCameraSet[] cameraSet;
 	[SerializeField]
 	private int setNum;
@@ -47,8 +49,15 @@ public class cameraMove : MonoBehaviour {
 
 
 
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Space))
+		{
+			setMove();
+			return;
+		}
+
 		if (Input.GetKeyDown(KeyCode.Space))
 			nextMove();
+
 	}
 
 	public void nextMove()
@@ -64,6 +73,21 @@ public class cameraMove : MonoBehaviour {
 		speedLookAt = cameraSet[setNum].getLookAtSpeed();
 		nowCamera = 0.0f;
 		nowLookAt = 0.0f;
-
 	}
+
+	public void setMove()
+	{
+		setNum = debugCamera;
+
+		if (setNum >= cameraSet.Length)
+		{
+			setNum = 0;
+		}
+
+		speedCamera = cameraSet[setNum].getCameraSpeed();
+		speedLookAt = cameraSet[setNum].getLookAtSpeed();
+		nowCamera = 0.0f;
+		nowLookAt = 0.0f;
+	}
+
 }

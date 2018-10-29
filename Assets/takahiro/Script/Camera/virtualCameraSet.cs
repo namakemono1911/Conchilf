@@ -24,17 +24,37 @@ public class virtualCameraSet : MonoBehaviour
 	private float changeDistance;
 	private Vector3[] obj;
 
+	private int nowWaypointLook;
+	private bool nearWaypointLook;
+	private float changeDistanceLook;
+	private Vector3[] objLook;
+	private Vector3 lookPos;
+	private float nowLookAt;
 	private void Start()
 	{
+		nowLookAt = 0.0f;
+
 		nowWaypoint = 1;
 		nearWaypoint = true;
+
+		nowWaypointLook = 1;
+		nearWaypointLook = true;
+
 		changeDistance = 1.0f;
+		changeDistanceLook = 0.1f;
 		// objを各pathにセット
-		obj = new Vector3[obj.Length];
+		obj = new Vector3[cameraPsth.m_Waypoints.Length];
 		for (int i = 0; i < obj.Length; ++i)
 		{
 			Vector3 pos = cameraPsth.m_Waypoints[i].position;
 			obj[i] = new Vector3(pos.x, pos.y, pos.z);
+		}
+
+		objLook = new Vector3[lookAtPsth.m_Waypoints.Length];
+		for (int i = 0; i < objLook.Length; ++i)
+		{
+			Vector3 pos = lookAtPsth.m_Waypoints[i].position;
+			objLook[i] = new Vector3(pos.x, pos.y, pos.z);
 		}
 	}
 
@@ -56,7 +76,6 @@ public class virtualCameraSet : MonoBehaviour
 				}
 
 				nearWaypoint = true;
-				Debug.Log("速度変化" + nowWaypoint);
 			}
 		}
 		else
@@ -69,7 +88,47 @@ public class virtualCameraSet : MonoBehaviour
 			{
 
 				nearWaypoint = false;
-				Debug.Log("もくひょう" + nowWaypoint);
+			}
+		}
+
+
+
+		// 注視点の更新
+		nowLookAt += getLookAtSpeed();
+		lookPos = getcameraPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
+
+		// 近くにwaypointが無い
+		if (nearWaypointLook == false)
+		{
+			// 今のwaypointとカメラとの距離を比較
+			float distance = Vector3.Distance(lookPos, objLook[nowWaypointLook]);
+			// 一定以下なら
+			if (distance < changeDistanceLook)
+			{
+				// 次のwaypointに変更
+				++nowWaypointLook;
+				if (nowWaypointLook >= objLook.Length)
+				{
+					nowWaypointLook = objLook.Length - 1;
+					Debug.Log("制限" + nowWaypointLook);
+
+				}
+
+				nearWaypointLook = true;
+				Debug.Log("速度変化" + nowWaypointLook);
+			}
+		}
+		else
+		{
+			// 一定距離離れたら
+			// 今のwaypointとカメラとの距離を比較
+			float distance = Vector3.Distance(lookPos, objLook[nowWaypointLook]);
+			// 一定以上なら
+			if (distance > changeDistanceLook)
+			{
+
+				nearWaypointLook = false;
+				Debug.Log("もくひょう" + nowWaypointLook);
 			}
 		}
 	}
@@ -94,12 +153,12 @@ public class virtualCameraSet : MonoBehaviour
 	}
 	public float getLookAtSpeed()
 	{
-		if (LookatPer.Length <= nowWaypoint - 1)
+		if (LookatPer.Length <= nowWaypointLook - 1)
 		{
 			return lookAtPsth.PathLength / moveLookAtSecond / 60.0f;
 		}
-			
-		return lookAtPsth.PathLength / moveLookAtSecond / 60.0f * LookatPer[nowWaypoint - 1];
+
+		return lookAtPsth.PathLength / moveLookAtSecond / 60.0f * LookatPer[nowWaypointLook - 1];
 	}
 
 	public int getNumWaypoints()
