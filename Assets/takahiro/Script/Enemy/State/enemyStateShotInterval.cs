@@ -8,6 +8,11 @@ public class enemyStateShotInterval : enemyState
 
 	public override void initState()
 	{
+		if(enemy.bullet.isBullet())
+		{
+			enemy.shotDanger.flashStart();
+		}
+
 		enemy.timerStart();
 		enemy.myAnimation.playAnimation(enemyAnimationManager.ENEMY_ANIMATION_TYPE.ANIMATION_SHOT_INTERVAL);
 	}
@@ -17,6 +22,7 @@ public class enemyStateShotInterval : enemyState
 		if(enemy.timer >= enemy.enemyTypeInfo.shotInterval)
 		{
 			enemy.timerReset();
+			enemy.shotDanger.flashEnd();
 			// 残弾によって変化
 			if (enemy.bullet.isBullet())
 			{

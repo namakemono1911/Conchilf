@@ -19,6 +19,8 @@ public class enemy : MonoBehaviour {
     }
 
 	[SerializeField]
+	private enemyShotDanger enemyShotDanger;
+	[SerializeField]
 	private EnemyInfo enemycsvInfo;                     // csv必要な情報
 	[SerializeField]
 	private enemyTypeManager enemyTypeManager;          // タイプ情報管理
@@ -87,6 +89,11 @@ public class enemy : MonoBehaviour {
 	public Enemy_gun bulletInstance
 	{
 		get { return gun; }
+	}
+	// 弾撃つ前のui
+	public enemyShotDanger shotDanger
+	{
+		get { return enemyShotDanger; }
 	}
 	private void Awake()
 	{
@@ -293,6 +300,16 @@ public class enemy : MonoBehaviour {
 	public void createMeFrag()
 	{
 		created = true;
+	}
+
+	public int nowHp()
+	{
+		if(damege >= enemyTypeInfo.hp)
+		{
+			return 0;
+		}
+
+		return enemyTypeInfo.hp - damege;
 	}
 }
 
