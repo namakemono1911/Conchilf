@@ -6,13 +6,11 @@ using DG.Tweening;
 public class playerGuardUi : MonoBehaviour {
 
 	[SerializeField]
-	private Transform guardUI;
-	[SerializeField]
 	private float moveTime; // 移動時間
 	[SerializeField]
 	private Transform movePosStart; // 移動開始位置
 	[SerializeField]
-	private Transform movePosEnd;	// 移動終了位置
+	private Transform movePosEnd;   // 移動終了位置
 
 	private bool guard;
 	private bool move;
@@ -26,7 +24,17 @@ public class playerGuardUi : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(guard != true)
+
+		if (Input.GetKeyDown(KeyCode.G))
+		{
+			guardStart();
+		}
+		if (Input.GetKeyDown(KeyCode.D))
+		{
+			guardEnd();
+		}
+
+		if (guard != true)
 		{
 			return;
 		}
@@ -37,11 +45,12 @@ public class playerGuardUi : MonoBehaviour {
 				// 移動
 				if(start)
 				{
-					guardUI.DOMove(movePosEnd, moveTime);
+					this.transform.DOMove(movePosEnd.position, moveTime);
 				}
 				else
 				{
-					guardUI.DOMove(movePosStart, moveTime);
+					guard = false;
+					this.transform.DOMove(movePosStart.position, moveTime);
 				}
 			}
 		}
@@ -49,6 +58,7 @@ public class playerGuardUi : MonoBehaviour {
 
 	public void guardStart()
 	{
+		Debug.Log("guardStart");
 		guard = true;
 		move = true;
 		start = true;
@@ -56,6 +66,7 @@ public class playerGuardUi : MonoBehaviour {
 
 	public void guardEnd()
 	{
+		Debug.Log("guardEnd");
 		move = true;
 		start = false;
 	}
