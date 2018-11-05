@@ -140,11 +140,6 @@ public class PlayerUI
     public GameObject bulletMark = null;      //弾のエフェクト
 }
 
-public enum ControllerArm
-{
-    right = 0,
-    left
-}
 
 public class playerController : MonoBehaviour {
 
@@ -222,10 +217,10 @@ public class playerController : MonoBehaviour {
 		control.reticle.anchoredPosition += reticlePos;
 
 		//float[] ir = wiiInput[(int)ControllerArm.right].Ir.GetPointingPosition();
-  //      var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
-  //      control.reticle.anchoredPosition3D
-  //          = new Vector2((ir[0] * Screen.width + originPos.x) * gun.sensitivity,
-  //          (ir[1] * Screen.height + originPos.y) * gun.sensitivity);
+        //var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
+        //control.reticle.anchoredPosition3D
+        //    = new Vector2((ir[0] * Screen.width + originPos.x) * gun.sensitivity,
+        //    (ir[1] * Screen.height + originPos.y) * gun.sensitivity);
     }
 
     public void changeState(playerState newState)
