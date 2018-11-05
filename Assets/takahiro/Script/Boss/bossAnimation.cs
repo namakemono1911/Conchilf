@@ -14,12 +14,12 @@ public class bossAnimation : MonoBehaviour {
 		ANIMATION_SHOT_ROTATE,
 		ANIMATION_RELOAD,
 		ANIMATION_DETH,
-		ANIMATION_MAX
+        ANIMATION_SHOCKWAVE,
+        ANIMATION_MAX
 	}
 
 	private Dictionary<int, string> animationNames;
 	private Animator myAnimator;
-
 
 	private void Awake()
 	{
@@ -37,8 +37,8 @@ public class bossAnimation : MonoBehaviour {
 				{(int)BOSS_ANIMATION_TYPE.ANIMATION_SHOT_ROTATE , "shotRotate"},
 				{(int)BOSS_ANIMATION_TYPE.ANIMATION_RELOAD , "reload"},
 				{(int)BOSS_ANIMATION_TYPE.ANIMATION_DETH , "deth"},
-
-			};
+                {(int)BOSS_ANIMATION_TYPE.ANIMATION_SHOCKWAVE , "jamp"},
+            };
 
 	}
 
@@ -65,4 +65,11 @@ public class bossAnimation : MonoBehaviour {
 
 		return false;
 	}
+    
+    
+    // ノーマライズタイム
+    public float GetNormalizedTime()
+    {
+        return myAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    }
 }
