@@ -86,7 +86,7 @@ public class enemy : MonoBehaviour {
 	}
 	private void Awake()
 	{
-		//playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
+		playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
 	}
 
 	// Use this for initialization
