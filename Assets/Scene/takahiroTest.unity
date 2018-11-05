@@ -189,6 +189,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2347878}
+--- !u!1 &247202067 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1051544753542370, guid: 5add25e33907dc0409ce9df0b40c821a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1029109381}
+--- !u!136 &247202068
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 247202067}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.022700848
+  m_Height: 0.096900836
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.027299177, z: 0.033876553}
 --- !u!1 &376308706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1558,15 @@ Prefab:
       propertyPath: m_Name
       value: boss
       objectReference: {fileID: 0}
+    - target: {fileID: 114910155170141084, guid: 5add25e33907dc0409ce9df0b40c821a,
+        type: 2}
+      propertyPath: bossInfo.standardInfo.hitProbability
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051544753542370, guid: 5add25e33907dc0409ce9df0b40c821a, type: 2}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5add25e33907dc0409ce9df0b40c821a, type: 2}
   m_IsPrefabParent: 0
@@ -1807,7 +1834,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1699025718999248, guid: 93c900af7c6382243abd5892f20e2e50, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93c900af7c6382243abd5892f20e2e50, type: 2}
@@ -2735,7 +2762,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1162927644034320, guid: 4625e668347b44a4988ee8adaabaf0e3, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4625e668347b44a4988ee8adaabaf0e3, type: 2}

@@ -12,16 +12,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Common;
 
+[System.Serializable]
+public struct BossInfo
+{
+	public enemyTypeManager.EnemyTypeInfo standardInfo;	// 情報
+	// 他にボスに必要な情報
+}
+
 // ボス処理
 public class boss : MonoBehaviour {
-
-	[System.Serializable]
-	public struct BossInfo
-	{
-		public enemyTypeManager.EnemyTypeInfo standardInfo;	// 情報
-		// 他にボスに必要な情報
-	}
-
 	// ボスパラメータ
 	[SerializeField]
 	private BossInfo bossInfo;                      // ボス情報
@@ -152,7 +151,7 @@ public class boss : MonoBehaviour {
 
             RoopNum = 0;
 
-            if (bossInfo.standardInfo.hp < 3)
+            if ((bossInfo.standardInfo.hp * 0.7)  <= SumDamage)
             {
                 ChangeState(new BossStateWaitToShockWave(this), bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
             }
@@ -191,6 +190,7 @@ public class boss : MonoBehaviour {
         Bullet.reloadBullet();
 
         // 初期ステート（同時打ち）
+        var test = new BossStateWaitToDubleAtk(this);
         ChangeState(new BossStateWaitToDubleAtk(this), bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
 
         // ステート初期化
@@ -216,6 +216,15 @@ public class boss : MonoBehaviour {
     /////////////////////////////////////////
     /// 外部メソッド
     ///////////////////////////////////////// 
+    ///
+
+    // 当たった
+    public void BulletHit()
+    {
+        bossState.hitBullet(-1, false);
+    }
+
+
 
     // ステート変更
     public void ChangeState(bossState NewState, bossAnimation.BOSS_ANIMATION_TYPE befor)
@@ -266,7 +275,7 @@ public class boss : MonoBehaviour {
     }
 
     // ダメージ加算
-    public void Add_Damage(int num){    SumDamage += num; }
+    public void Add_Damage(int num){    SumDamage += 1;  }
 
     // タイマーリセット
     public void timerReset(){   bossTimer = 0.0f; }

@@ -235,10 +235,10 @@ public class playerController : MonoBehaviour {
     {
             Destroy(collision.gameObject);
 
-        if (collision.gameObject.tag == "enemyBullet")
-        {
-            state.hitBullet();
-        }
+        //if (collision.gameObject.tag == "enemyBullet")
+        //{
+        //    state.hitBullet();
+        //}
     }
 
 	public Vector3 getHitPos()

@@ -105,6 +105,9 @@ public class playerDefault : playerState {
 
             if (hit.collider.tag == "enemyCritical")
                 hit.transform.gameObject.GetComponent<rightGun>().Enemy.State.hitBullet(1, true);
+
+            if (hit.collider.tag == "Boss")
+                hit.transform.gameObject.GetComponent<boss>().BulletHit();
         }
 
         //デバッグ表示

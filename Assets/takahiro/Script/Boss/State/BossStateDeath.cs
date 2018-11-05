@@ -28,10 +28,11 @@ public class BossStateDeath : bossState
     public override void updateState()
     {
         // モーションが終了したらインターバルに遷移
-        if (boss.myAnimation.isPlayingAnimation())
+        if (boss.myAnimation.isPlayingAnimation() == true)
         {
+            
             // 消す
-            Destroy(gameObject);
+            Destroy(boss.gameObject);
 
         }
     }
@@ -39,6 +40,6 @@ public class BossStateDeath : bossState
     // ヒット時
     public override void hitBullet(int damege, bool critical)
     {
-        hitBoss(damege, critical, bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_SHOT_ROTATE);
+       // hitBoss(damege, critical, bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_SHOT_ROTATE);
     }
 }

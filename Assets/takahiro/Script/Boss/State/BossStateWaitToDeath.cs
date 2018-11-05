@@ -46,7 +46,7 @@ public class BossStateWaitoToDeath : bossState
     // ヒット時
     public override void hitBullet(int damege, bool critical)
     {
-        hitBoss(damege, critical, bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
+        // hitBoss(damege, critical, bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
     }
 
 }
