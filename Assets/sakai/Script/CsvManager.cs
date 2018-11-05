@@ -83,6 +83,34 @@ public class CsvManager : MonoBehaviour {
     {
     }
 
+    public void Update()
+    {
+    	// デバッグ用
+    	if(Input.GetKey(KeyCode.C))
+    	{
+	    	// Save
+	    	if(Input.GetKeyDown("1"))
+	    	{
+	    		CsvOutput();
+				Debug.Log ("CSV -> Save!");
+	    	}
+	    	
+	    	// Load
+	    	if(Input.GetKeyDown("2"))
+	    	{
+	    		CsvLoad();
+				Debug.Log ("CSV -> Load!");
+	    	}
+	    	
+	    	// AllDelete
+			if(Input.GetKeyDown("3"))
+	    	{
+	    		Alldelete();
+				Debug.Log ("CSV -> AllDelete");
+	    	}
+    	}
+    }
+
     // ログの書き込み
     public void CsvOutput()
     {
@@ -135,7 +163,7 @@ public class CsvManager : MonoBehaviour {
             E_Script= obj.GetComponent<enemy>();
 
             // エネミー情報構造体を取得
-            buf = E_Script.enemyCSVInfo;
+			buf = E_Script.getEnemyInfo();
 
             // モデル識別番号追加
             stringlist.Add(( (int)buf.MODEL_NUMBER ).ToString());

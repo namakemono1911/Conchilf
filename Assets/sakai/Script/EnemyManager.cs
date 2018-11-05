@@ -58,6 +58,31 @@ public class EnemyManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	    // デバッグ
+	    if(Input.GetKey(KeyCode.C))
+		{
+			if(Input.GetKeyDown("4"))
+	    	{
+	    		WaveDateMake(0);
+				Debug.Log ("CSV -> EnemyCreate");
+	    	}
+	    }
+
+		// ウェーブ指定
+		if(Input.GetKey(KeyCode.W))
+		{
+			if (Input.GetKeyDown ("0")) { WaveDateMake(0); }
+			if (Input.GetKeyDown ("1")) { WaveDateMake(1); }
+			if (Input.GetKeyDown ("2")) { WaveDateMake(2); }
+			if (Input.GetKeyDown ("3")) { WaveDateMake(3); }
+			if (Input.GetKeyDown ("4")) { WaveDateMake(4); }
+			if (Input.GetKeyDown ("5")) { WaveDateMake(5); }
+			if (Input.GetKeyDown ("6")) { WaveDateMake(6); }
+			if (Input.GetKeyDown ("7")) { WaveDateMake(7); }
+			if (Input.GetKeyDown ("8")) { WaveDateMake(8); }
+			if (Input.GetKeyDown ("9")) { WaveDateMake(9); }
+			Debug.Log ("CSV -> EnemyCreate -> Wave Select");
+		}
 	}
 
     // ウェーブデータ作成
@@ -98,7 +123,7 @@ public class EnemyManager : MonoBehaviour {
                 buf.MODEL_NUMBER = (enemyTypeManager.ENEMY_TYPE)Enum.ToObject(typeof(enemyTypeManager.ENEMY_TYPE), id);
 
                 // 移動間秒数取得
-                buf.MOVE_SECOND = int.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_MoveSec] );
+                buf.MOVE_SECOND = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_MoveSec] );
 
                 // 生成座標を取得
                 Vector3 pos;
@@ -113,9 +138,12 @@ public class EnemyManager : MonoBehaviour {
                 Mpos.y = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Move_y]);
                 Mpos.z = float.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Move_z]);
                 buf.ENEMY_MOVE_POS = Mpos;
-                
+
                 // エネミー生成
                 obj = Instantiate(OptionInfo.Enemy00, pos, Quaternion.identity);
+
+				// 生成フラグをたてる
+				obj.GetComponent<enemy>().createMeFrag();
 
                 // エネミー情報セット
                 obj.GetComponent<enemy>().setEnemyInfo(buf);

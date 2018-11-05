@@ -13,12 +13,13 @@ public class enemy : MonoBehaviour {
     {
         public enemyTypeManager.ENEMY_TYPE MODEL_NUMBER;    // モデル(強さ)の識別番号
         public int WAVE_NUMBER;                             // 自身のウェーブ番号
-        public int MOVE_SECOND;                             // スポーン位置~移動位置を何秒で移動するか
-        public Vector3 ENEMY_POS;        // スポーン位置
-        public Vector3 ENEMY_MOVE_POS;   // 移動位置
+        public float MOVE_SECOND;                           // スポーン位置~移動位置を何秒で移動するか
+        public Vector3 ENEMY_POS;        					// スポーン位置
+        public Vector3 ENEMY_MOVE_POS;						// 移動位置
     }
 
-
+	[SerializeField]
+	private enemyShotDanger enemyShotDanger;
 	[SerializeField]
 	private EnemyInfo enemycsvInfo;                     // csv必要な情報
 	[SerializeField]
@@ -28,15 +29,20 @@ public class enemy : MonoBehaviour {
 	[SerializeField]
 	private Enemy_gun gun;								// 敵の弾
 
+	[SerializeField]
+	private Transform startPos;                     	// 移動開始位置
+	private Vector3 goalPos;							// 移動終了位置
+	private bool created = false;						// 作られたかどうかのフラグ
+
 	private int damege;                                 // 総合ダメージ
 	private enemyTypeManager.EnemyTypeInfo typeInfo;    // タイプ情報
 	private enemyState enemyState;                      // 状態
 	private enemyAnimation enemyAnimation;              // アニメーション管理
 	private float enemyTimer;                           // タイマー
 	private enemyAnimationManager.ENEMY_ANIMATION_TYPE beforAnimation;	// 以前のアニメーション種類
-	private bool isCount;                                                   // カウントしているか否か
-	private enemyBullet enemyBullet;                                        // 敵の弾処理
-	private playerController[] playerControllers;										// プレイヤーの情報
+	private bool isCount;                                               // カウントしているか否か
+	private enemyBullet enemyBullet;                                    // 敵の弾処理
+	private playerController[] playerControllers;						// プレイヤーの情報
 
 	// getter
 	// タイプ情報
@@ -84,6 +90,11 @@ public class enemy : MonoBehaviour {
 	{
 		get { return gun; }
 	}
+	// 弾撃つ前のui
+	public enemyShotDanger shotDanger
+	{
+		get { return enemyShotDanger; }
+	}
 	private void Awake()
 	{
 		playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
@@ -92,11 +103,22 @@ public class enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		// 現在位置を移動終了位置として保存
+		//goalPos = this.transform.position;
+
+		// 創られてはいない時
+		if (!created)
+		{
+			enemycsvInfo.ENEMY_POS = startPos.position;
+			enemycsvInfo.ENEMY_MOVE_POS = this.transform.position;
+		}
+
 		damege = 0;
 		isCount = false;
         
         // タイプ管理
         typeInit();
+
 	}
 
 	private void FixedUpdate()
@@ -275,6 +297,20 @@ public class enemy : MonoBehaviour {
 		return false;
 	}
 
+	public void createMeFrag()
+	{
+		created = true;
+	}
+
+	public int nowHp()
+	{
+		if(damege >= enemyTypeInfo.hp)
+		{
+			return 0;
+		}
+
+		return enemyTypeInfo.hp - damege;
+	}
 }
 
 

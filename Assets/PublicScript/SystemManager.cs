@@ -59,7 +59,7 @@ public class SystemManager : SingletonMonoBehaviour<SystemManager>
 
         if (time >= 0.5f)
         {
-            Debug.Log("<color=red>■フレームレート  :   </color>" + FrameCount / time);
+            //Debug.Log("<color=red>■フレームレート  :   </color>" + FrameCount / time);
 
             // カウンタリセット
             FrameCount = Initialize.INIT_INT;

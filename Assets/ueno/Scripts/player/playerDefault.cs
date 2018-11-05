@@ -111,9 +111,9 @@ public class playerDefault : playerState {
         }
 
         //デバッグ表示
-        var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
-		line.SetPosition(0, ray.origin);
-		line.SetPosition(1, hit.point);
+  //      var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
+		//line.SetPosition(0, ray.origin);
+		//line.SetPosition(1, hit.point);
 	}
 
     //ヒット時処理
