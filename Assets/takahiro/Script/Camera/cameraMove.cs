@@ -7,6 +7,10 @@ public class cameraMove : MonoBehaviour {
 	[SerializeField]
 	private int debugCamera;
 	[SerializeField]
+	private bool debugLookAt;
+	[SerializeField]
+	private GameObject debugLookAtObj;
+	[SerializeField]
 	private virtualCameraSet[] cameraSet;
 	[SerializeField]
 	private int setNum;
@@ -35,6 +39,10 @@ public class cameraMove : MonoBehaviour {
 			setNum = 0;
 		}
 
+		if(debugLookAt == false && debugLookAtObj != null)
+		{
+			Destroy(debugLookAtObj);
+		}
 
 		speedCamera = cameraSet[setNum].getCameraSpeed();
 		speedLookAt = cameraSet[setNum].getLookAtSpeed();
@@ -43,6 +51,7 @@ public class cameraMove : MonoBehaviour {
 		transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(nowCamera, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
 		// カメラ角度
 		transform.LookAt(cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance));
+		debugLookAtObj.transform.position = cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
 		//Debug.Log (nowLookAt);
 		nowCamera += speedCamera;
 		nowLookAt += speedLookAt;
@@ -84,6 +93,7 @@ public class cameraMove : MonoBehaviour {
 			setNum = 0;
 		}
 
+		cameraSet[setNum].debugMove();
 		speedCamera = cameraSet[setNum].getCameraSpeed();
 		speedLookAt = cameraSet[setNum].getLookAtSpeed();
 		nowCamera = 0.0f;

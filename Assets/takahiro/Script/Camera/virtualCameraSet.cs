@@ -164,4 +164,17 @@ public class virtualCameraSet : MonoBehaviour
 		return cameraPsth.m_Waypoints.Length - 1;
 	}
 
+	public void debugMove()
+	{
+		nowLookAt = 0.0f;
+
+		nowWaypoint = 1;
+		nearWaypoint = true;
+
+		nowWaypointLook = 1;
+		nearWaypointLook = true;
+
+		changeDistance = 1.0f;
+		changeDistanceLook = 8.0f;
+	}
 }
