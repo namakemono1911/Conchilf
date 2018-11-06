@@ -14,6 +14,12 @@ public class inputNameController : MonoBehaviour
     [SerializeField]
     private reticleController reticle;  //レティクル
 
+    [SerializeField]
+    private GameObject messageBox;      //メッセージボックス
+
+    [SerializeField]
+    private messageController messageController;
+
     private string text;                //入力テキスト
 
 
@@ -21,12 +27,13 @@ public class inputNameController : MonoBehaviour
     void Start()
     {
         playerName.text = "";
+        messageController.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (reticle.whetherShot() && playerName.text.Length <= maxNum)
+        if (reticle.whetherShot())
         {
             if (text == "BK")
             {
@@ -36,8 +43,11 @@ public class inputNameController : MonoBehaviour
             else if (text == "END")
             {
                 //確認画面
+                messageBox.SetActive(true);
+                messageController.enabled = true;
+                enabled = false;
             }
-            else
+            else if (playerName.text.Length < maxNum)
             {
                 playerName.text += text;
             }
@@ -45,14 +55,20 @@ public class inputNameController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        text = collision.gameObject.GetComponent<Text>().text;
+        if (collision.gameObject.tag == "inputTable")
+        {
+            text = collision.gameObject.GetComponent<Text>().text;
 
-        if (text == "SP")
-            text = " ";
+            if (text == "SP")
+                text = " ";
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        text = "";
+        if (collision.gameObject.tag == "inputTable")
+        {
+            text = "";
+        }
     }
 }
