@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 461354697}
   - component: {fileID: 461354698}
   m_Layer: 5
-  m_Name: verticalRanking
+  m_Name: rankers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1063,6 +1063,9 @@ GameObject:
   m_Component:
   - component: {fileID: 838236931}
   - component: {fileID: 838236932}
+  - component: {fileID: 838236935}
+  - component: {fileID: 838236933}
+  - component: {fileID: 838236934}
   m_Layer: 5
   m_Name: ranking
   m_TagString: Untagged
@@ -1112,6 +1115,42 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &838236933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 838236930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c870dcd9ed0b30d4b91310f877b62394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &838236934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 838236930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b3f9f1b7f4d8641b18a9c06184e056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 838236933}
+  rankers:
+  - {fileID: 461354696}
+--- !u!114 &838236935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 838236930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d94a4dbc3ba6cb4a8321e530f86c469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &844183911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,7 +2749,7 @@ GameObject:
   - component: {fileID: 1848263012}
   - component: {fileID: 1848263013}
   m_Layer: 5
-  m_Name: verticalRanking
+  m_Name: rankers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,25 +4,45 @@ using UnityEngine;
 
 public class RankData
 {
+    public RankData() { }
+    public RankData(string n, int s) { name = n; score = s; }
     public string name;
-    public uint score;
+    public int score;
 }
 
 public class rankingManager : MonoBehaviour
 {
-    private static List<RankData> rankDatas;
+    List<RankData> rankDatas = new List<RankData>();
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    private void Awake()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        for (int i = 0; ; i++)
+        {
+            if (PlayerPrefs.HasKey(i.ToString()))
+            {
+                rankDatas[i].name = PlayerPrefs.GetString(i.ToString());
+                rankDatas[i].score = PlayerPrefs.GetInt(i.ToString() + rankDatas[i].name);
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    public void saveRanking()
     {
-		
-	}
+        int num = 0;
+        foreach (var rank in rankDatas)
+        {
+            PlayerPrefs.SetString(num.ToString(), rank.name);
+            PlayerPrefs.SetInt(num.ToString() + rank.name, rank.score);
+            num++;
+        }
+
+        //PlayerPrefs.Save();
+    }
 
     //ランクインしてるかどうか
     public bool whetherRankin(RankData data)
@@ -45,18 +65,12 @@ public class rankingManager : MonoBehaviour
     //ランキングデータ設定
     public bool setRankData(RankData data)
     {
-        int num = 0;
-        foreach (var rank in rankDatas)
-        {
-            if (rank.score >= data.score)
-            {
-                rankDatas[num] = data;
-                return true;
-            }
-            num++;
-        }
+        if (data == null)
+            return false;
 
-        return false;
+        rankDatas.Add(data);
+        rankDatas.Sort((a, b) => b.score - a.score);
+
+        return true;
     }
-
 }
