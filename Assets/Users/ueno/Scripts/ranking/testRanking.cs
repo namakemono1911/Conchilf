@@ -5,7 +5,7 @@ using UnityEngine;
 public class testRanking : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         RankData[] rank = { new RankData("yunsu", 810), new RankData("aira", 114514), new RankData("syou", 1919) };
         var manager = GetComponent<rankingManager>();
         foreach (var a in rank)

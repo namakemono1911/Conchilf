@@ -26,13 +26,7 @@ public class rankingController : MonoBehaviour {
 
                 var texts = rankinPlayer.GetComponentsInChildren<Text>(true);
 
-                if (rankData == null)
-                {
-                    texts[0].text = "";
-                    texts[1].text = "";
-                    texts[2].text = "";
-                }
-                else if (rankData[num] == null)
+                if (rankData.Count <= num)
                 {
                     texts[0].text = "";
                     texts[1].text = "";
@@ -43,8 +37,8 @@ public class rankingController : MonoBehaviour {
                     texts[0].text = (num + 1).ToString();
                     texts[1].text = rankData[num].name;
                     texts[2].text = rankData[num].score.ToString();
-                    num++;
                 }
+                num++;
             }
         }
 	}
