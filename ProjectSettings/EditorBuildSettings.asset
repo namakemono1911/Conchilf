@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scene/sakaiTest.unity
-    guid: 024a521fa911ea04fa7a197e33fc859b
+    path: Assets/Scene/title.unity
+    guid: a788e44c381d01a45a262cfe76c02781
+  - enabled: 1
+    path: Assets/Scene/Stage1.unity
+    guid: d5e68192f36caa84e92dd6266e7fa790
+  - enabled: 1
+    path: Assets/Scene/result.unity
+    guid: eb3bb0eb63a5d5947a40d8663444a0d5
+  - enabled: 1
+    path: Assets/Scene/ranking.unity
+    guid: 5f3c514429217614d97e5ccadd426b98
   - enabled: 1
     path: Assets/Scene/Manager.unity
     guid: 3ab09f784b176f74f9e7faa998b0cc30
