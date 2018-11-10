@@ -14,7 +14,7 @@ public class testSceneManeger : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_NORMAL);
+            sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_NORMAL_1);
         }
 
     }

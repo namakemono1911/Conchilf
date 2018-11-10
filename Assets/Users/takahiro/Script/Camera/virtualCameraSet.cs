@@ -145,7 +145,7 @@ public class virtualCameraSet : MonoBehaviour
 
 	public float getCameraSpeed()
 	{
-		if (CameraPer.Length <= nowWaypoint - 1)
+		if (CameraPer.Length <= nowWaypoint - 1 || nowWaypoint <= 0)
 		{
 			return cameraPsth.PathLength / moveCameraSecond / 60.0f;
 		}
@@ -153,7 +153,7 @@ public class virtualCameraSet : MonoBehaviour
 	}
 	public float getLookAtSpeed()
 	{
-		if (LookatPer.Length <= nowWaypointLook - 1)
+		if (LookatPer.Length <= nowWaypointLook - 1 || nowWaypointLook <= 0)
 		{
 			return lookAtPsth.PathLength / moveLookAtSecond / 60.0f;
 		}

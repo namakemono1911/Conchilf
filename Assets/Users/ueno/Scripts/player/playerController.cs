@@ -140,7 +140,6 @@ public class PlayerUI
     public GameObject bulletMark = null;      //弾のエフェクト
 }
 
-
 public class playerController : MonoBehaviour {
 
 	[SerializeField]
@@ -166,6 +165,8 @@ public class playerController : MonoBehaviour {
 
     private playerState state = null;   //プレイヤーのステートパターン
 
+    public playerScore result;
+
     public ControlSetting Control       //コントロール取得
     {
         get { return control; }
@@ -188,6 +189,8 @@ public class playerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        result = new playerScore(wiiInput[(int)ControllerArm.right].playerNum);
+
         changeState(new playerDefault(this));
 
 		Cursor.visible = false;

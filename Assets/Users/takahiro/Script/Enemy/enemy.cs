@@ -43,6 +43,13 @@ public class enemy : MonoBehaviour {
 	private bool isCount;                                               // カウントしているか否か
 	private enemyBullet enemyBullet;                                    // 敵の弾処理
 	private playerController[] playerControllers;						// プレイヤーの情報
+    private playerController player;
+
+    //プレイヤー
+    public playerController Player
+    {
+        get { return player; }
+    }
 
 	// getter
 	// タイプ情報
@@ -311,6 +318,11 @@ public class enemy : MonoBehaviour {
 
 		return enemyTypeInfo.hp - damege;
 	}
+
+    public void setPlayer(playerController p)
+    {
+        player = p;
+    }
 }
 
 

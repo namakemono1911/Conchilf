@@ -98,17 +98,31 @@ public class playerDefault : playerState {
         //    fuck.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, true);
 
         RaycastHit hit;
+        bool isHit = false;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
         {
             if (hit.collider.tag == "enemy")
+            {
+                hit.transform.gameObject.GetComponent<enemy>().setPlayer(player);
                 hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, false);
+                isHit = true;
+            }
 
             if (hit.collider.tag == "enemyCritical")
+            {
+                hit.transform.gameObject.GetComponent<enemy>().setPlayer(player);
                 hit.transform.gameObject.GetComponent<rightGun>().Enemy.State.hitBullet(1, true);
+                isHit = true;
+            }
 
             if (hit.collider.tag == "Boss")
+            {
+                hit.transform.gameObject.GetComponent<enemy>().setPlayer(player);
                 hit.transform.gameObject.GetComponent<boss>().BulletHit();
+                isHit = true;
+            }
         }
+        player.result.shot(isHit);
 
         //デバッグ表示
   //      var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
