@@ -143,6 +143,12 @@ public class virtualCameraSet : MonoBehaviour
 
 	public float getCameraSpeed()
 	{
+		// nowWaypointが0の場合のバグを予防する
+		if (nowWaypoint <= 0)
+		{
+			return 0.0f;
+		}
+
 		if (CameraPer.Length <= nowWaypoint - 1)
 		{
 			return cameraPsth.PathLength / moveCameraSecond / 60.0f;
@@ -151,6 +157,12 @@ public class virtualCameraSet : MonoBehaviour
 	}
 	public float getLookAtSpeed()
 	{
+		// nowWaypointが0の場合のバグを予防する
+		if (nowWaypoint <= 0)
+		{
+			return 0.0f;
+		}
+
 		if (LookatPer.Length <= nowWaypointLook - 1)
 		{
 			return lookAtPsth.PathLength / moveLookAtSecond / 60.0f;
