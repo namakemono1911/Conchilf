@@ -74,9 +74,13 @@ public class cameraMove : MonoBehaviour {
 			return;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space))
-			nextMove();
+		if (Input.GetKeyDown (KeyCode.Space)) 
+		{
+			nextMove ();
+		}
 
+		// 追加
+		watanabeDebug();
 	}
 
 	public void nextMove()
@@ -110,4 +114,46 @@ public class cameraMove : MonoBehaviour {
 		nowLookAt = 0.0f;
 	}
 
+	// 追加
+	public void watanabeDebug()
+	{
+		// 前へ
+		if (Input.GetKeyDown (KeyCode.LeftArrow))
+		{
+			setNum -= 1;
+
+			if (setNum < 0)
+			{
+				setNum = cameraSet.Length -1;
+			}
+
+			cameraSet[setNum].debugMove();
+			speedCamera = cameraSet[setNum].getCameraSpeed();
+			speedLookAt = cameraSet[setNum].getLookAtSpeed();
+			nowCamera = 0.0f;
+			nowLookAt = 0.0f;
+			Debug.Log ("NowCameraSet = [" + setNum + "]"+ cameraSet[setNum].gameObject.name);
+		}
+		// 次へ
+		if (Input.GetKeyDown (KeyCode.RightArrow))
+		{
+			nextMove ();
+			Debug.Log ("NowCameraSet = [" + setNum + "]"+ cameraSet[setNum].gameObject.name);
+		}
+		// 繰り返す
+		if (Input.GetKeyDown (KeyCode.DownArrow))
+		{
+			cameraSet[setNum].debugMove();
+			speedCamera = cameraSet[setNum].getCameraSpeed();
+			speedLookAt = cameraSet[setNum].getLookAtSpeed();
+			nowCamera = 0.0f;
+			nowLookAt = 0.0f;
+		}
+		// 指定のカメラへ
+		if (Input.GetKey(KeyCode.UpArrow))
+		{
+			setMove();
+			return;
+		}
+	}
 }
