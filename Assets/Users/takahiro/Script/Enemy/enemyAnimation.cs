@@ -28,7 +28,7 @@ public class enemyAnimation : MonoBehaviour {
 	// 指定アニメーションの再生
 	public void playAnimation(enemyAnimationManager.ENEMY_ANIMATION_TYPE type)
 	{
-		Debug.Log("モーション変更 : " + type);
+		//Debug.Log("モーション変更 : " + type);
 
 		myAnimator.Play(animationNames[(int)type]);
 	}
