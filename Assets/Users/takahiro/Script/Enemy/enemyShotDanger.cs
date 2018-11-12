@@ -18,7 +18,7 @@ public class enemyShotDanger : MonoBehaviour
 	void Start()
 	{
 		time = 0.0f;
-		isStart = false;
+		//isStart = false;
 		isFlash = true;
 	}
 

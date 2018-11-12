@@ -115,7 +115,20 @@ public class enemy : MonoBehaviour {
 
 		damege = 0;
 		isCount = false;
-        
+
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            for (int j = 0; j < transform.GetChild(i).childCount; ++j)
+            {
+                if (transform.GetChild(i).GetChild(j).GetComponent<enemyShotDanger>() != null)
+                {
+                    enemyShotDanger = transform.GetChild(i).GetChild(j).GetComponent<enemyShotDanger>();
+                }
+            }
+        }
+
+
+
         // タイプ管理
         typeInit();
 
