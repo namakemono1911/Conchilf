@@ -38,7 +38,7 @@ public class cameraMove : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate() {
 
 		if(setNum >= cameraSet.Length)
 		{
@@ -64,7 +64,7 @@ public class cameraMove : MonoBehaviour {
 		// カメラ角度
 		transform.LookAt(cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance));
 		debugLookAtObj.transform.position = cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
-		//Debug.Log (nowLookAt);
+
 		nowCamera += speedCamera;
 		nowLookAt += speedLookAt;
 
@@ -72,7 +72,7 @@ public class cameraMove : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Space))
 		{
-			setMove();
+			setMove(debugCamera);
 			return;
 		}
 
@@ -102,10 +102,10 @@ public class cameraMove : MonoBehaviour {
 		nowLookAt = 0.0f;
 	}
 
-	public void setMove()
+	public void setMove(int debug)
 	{
 		cameraSet[setNum].end();
-		setNum = debugCamera;
+		setNum = debug;
 
 		Debug.Log(setNum);
 
@@ -160,8 +160,33 @@ public class cameraMove : MonoBehaviour {
 		// 指定のカメラへ
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
-			setMove();
+			setMove(debugCamera);
 			return;
 		}
+	}
+
+	public int getCameraMoveNum()
+	{
+		if (setNum >= cameraSet.Length)
+		{
+			setNum = 0;
+		}
+
+		return setNum;
+	}
+
+	public bool isMaxCamera()
+	{
+		if(setNum >= cameraSet.Length)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	public bool isEndMove()
+	{
+		return cameraSet[setNum].endMove();
 	}
 }

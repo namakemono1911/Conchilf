@@ -669,6 +669,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6594c45c91dc0549828350070b1db8b, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &207501917 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114267126562855580, guid: e6594c45c91dc0549828350070b1db8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 207501916}
+  m_Script: {fileID: 11500000, guid: 2a1621a0af18f5a4cae6b8e9a6ddc59d, type: 3}
 --- !u!1001 &232759571
 Prefab:
   m_ObjectHideFlags: 0
@@ -7521,6 +7527,7 @@ GameObject:
   - component: {fileID: 1647066273}
   - component: {fileID: 1647066272}
   - component: {fileID: 1647066276}
+  - component: {fileID: 1647066277}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7616,7 +7623,22 @@ MonoBehaviour:
   - {fileID: 1469177272}
   - {fileID: 1273873872}
   - {fileID: 1703537052}
-  setNum: 7
+  setNum: 0
+--- !u!114 &1647066277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1647066271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadf67d87768c70499b0c891fe140700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraMove: {fileID: 1647066276}
+  enemySceneManager: {fileID: 207501917}
+  debugScene: 0
+  cameraCallEnemy: []
 --- !u!1001 &1660522600
 Prefab:
   m_ObjectHideFlags: 0
@@ -8305,7 +8327,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1881010014}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 86.09, y: 2.418, z: -60.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

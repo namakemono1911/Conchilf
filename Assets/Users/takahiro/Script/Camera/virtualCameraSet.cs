@@ -30,11 +30,15 @@ public class virtualCameraSet : MonoBehaviour
 	private Vector3[] objLook;
 	private Vector3 lookPos;
 	private float nowLookAt;
+	private float nowCamera;
 	private bool isStart;
+	private bool isEnd;
+
 	private void Start()
 	{
-		isStart = false;
+		isEnd = false;
 		nowLookAt = 0.0f;
+		nowCamera = 0.0f;
 
 		nowWaypoint = 1;
 		nearWaypoint = true;
@@ -60,7 +64,7 @@ public class virtualCameraSet : MonoBehaviour
 		}
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 
 		if(!isStart)
@@ -82,6 +86,7 @@ public class virtualCameraSet : MonoBehaviour
 				if (nowWaypoint >= obj.Length)
 				{
 					nowWaypoint = obj.Length - 1;
+					isEnd = true;
 				}
 
 				Debug.Log(CameraPer[nowWaypoint - 1]);
@@ -100,8 +105,6 @@ public class virtualCameraSet : MonoBehaviour
 				nearWaypoint = false;
 			}
 		}
-
-
 
 		// 注視点の更新
 		nowLookAt += getLookAtSpeed();
@@ -223,5 +226,15 @@ public class virtualCameraSet : MonoBehaviour
 	public void end()
 	{
 		isStart = false;
+	}
+
+	public bool endMove()
+	{
+		if(isStart)
+		{
+			return isEnd;
+		}
+
+		return false;
 	}
 }
