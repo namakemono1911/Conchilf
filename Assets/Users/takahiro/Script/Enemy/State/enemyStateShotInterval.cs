@@ -10,7 +10,7 @@ public class enemyStateShotInterval : enemyState
 	{
 		if(enemy.bullet.isBullet())
 		{
-			enemy.shotDanger.flashStart();
+			//enemy.shotDanger.flashStart();
 		}
 
 		enemy.timerStart();

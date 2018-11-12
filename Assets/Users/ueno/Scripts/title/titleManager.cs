@@ -13,7 +13,7 @@ public class titleManager : MonoBehaviour
     private Button mode2;
 
     [SerializeField]
-    private reticleController reticle;
+    private InputFacade reticle;
 
     private Button selectButton = null;
 

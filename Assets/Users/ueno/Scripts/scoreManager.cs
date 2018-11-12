@@ -14,7 +14,6 @@ public enum scoreType
     TYPE_MAX
 };
 
-[System.Serializable]
 public class playerScore
 {
     public playerScore(int num)
@@ -53,6 +52,8 @@ public class playerScore
 
     public void save()
     {
+        calcResult();
+
         foreach (var element in scoreDict)
             PlayerPrefs.SetInt(element.Key.ToString() + numPlayer.ToString(), element.Value);
     }

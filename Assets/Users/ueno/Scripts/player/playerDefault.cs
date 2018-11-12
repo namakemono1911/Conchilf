@@ -6,15 +6,8 @@ using WiimoteApi;
 
 public class playerDefault : playerState {
 
-    private Canvas canvas;
-
     public playerDefault(playerController p) : base(p) { }
-
-	// Use this for initialization
-	void Start () {
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-	}
-
+    
     public override void initState()
     {
 
@@ -23,7 +16,7 @@ public class playerDefault : playerState {
     public override void updateState()
     {
         //射撃
-        if (Input.GetKeyDown(player.Control.shotButtonD) || player.Wii[(int)ControllerArm.right].getTrigger(player.Control.shotButton))
+        if (player.Control.whetherShot())
         {
             shootGun();
 
@@ -33,33 +26,12 @@ public class playerDefault : playerState {
         }
 
         //ガード
-        //float[,] ir = player.Wii[(int)ControllerArm.left].Ir.GetProbableSensorBarIR();
-        //bool isVisible = true;
-        //var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
-
-        //for (int i = 0; i < 2; i++)
-        //{
-        //    Vector2 pos = new Vector2(ir[i, 0] / 1023f, ir[i, 1] / 767f);
-        //    player.Control.led[i].anchoredPosition = new Vector2((pos.x * Screen.width + originPos.x),
-        //    (pos.y * Screen.height + originPos.y));
-
-        //    if (pos.x <= 0.0f || pos.y <= 0.0f)
-        //    {
-        //        isVisible = false;
-        //        break;
-        //    }
-        //}
-
-        if (Input.GetKeyDown(player.Control.guardButtonD))
-        {
+        if (player.Control.whetherGuard())
             player.changeState(new playerGuard(player));
-        }
 
         //リロード
-        if (Input.GetKeyDown(player.Control.reloadButtonD))
-        {
+        if (player.Control.whetherReload())
             player.changeState(new playerReload(player));
-        }
 
         Debug.Log("state Default");
     }
@@ -70,33 +42,16 @@ public class playerDefault : playerState {
         //射撃処理
         player.Gun.shoot();
         player.UI.bulletUI.addBulletLife(-1);
-        Instantiate(player.UI.bulletMark, player.Control.reticle);
+        Instantiate(player.UI.bulletMark, player.Control.Reticle);
 
         //透視投影変換
-        var screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, player.Control.reticle.transform.position);
+        var screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, player.Control.Reticle.transform.position);
         var pos = Vector3.zero;
         var canvasRect = player.transform.parent.GetComponent<RectTransform>();
 
         var ray = RectTransformUtility.ScreenPointToRay(Camera.main, screenPos);
 
         //当たり判定
-        //var hitObjects = Physics.RaycastAll(ray, 100.0f, LayerMask.NameToLayer("Player"));
-        //RaycastHit fuck = hitObjects[0];
-        //var distance = 1000.0f;
-        //foreach (var hit in hitObjects)
-        //{
-        //    if (hit.distance < distance)
-        //    {
-        //        distance = hit.distance;
-        //        fuck = hit;
-        //    }
-        //}
-        //if (fuck.collider.tag == "enemy")
-        //    fuck.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, false);
-
-        //if (fuck.collider.tag == "enemyCritical")
-        //    fuck.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, true);
-
         RaycastHit hit;
         bool isHit = false;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
