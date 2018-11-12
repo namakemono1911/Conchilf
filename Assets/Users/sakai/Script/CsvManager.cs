@@ -20,6 +20,7 @@ using Common;
 ///////////////////////////////////////////////
 public static class GetAllChildren
 {
+    // 全取得
     public static List<GameObject> GetAll(this GameObject obj)
     {
         List<GameObject> allChildren = new List<GameObject>();
@@ -79,10 +80,10 @@ public class CsvManager : MonoBehaviour {
         CsvDate = new List<string[]>();
     }
 
-    public void Start()
-    {
-    }
+    // 初回処理
+    public void Start(){}
 
+    // 更新処理
     public void Update()
     {
     	// デバッグ用
@@ -92,14 +93,14 @@ public class CsvManager : MonoBehaviour {
 	    	if(Input.GetKeyDown("1"))
 	    	{
 	    		CsvOutput();
-				Debug.Log ("CSV -> Save!");
+				Debug.Log ("CSV -> Save");
 	    	}
 	    	
 	    	// Load
 	    	if(Input.GetKeyDown("2"))
 	    	{
 	    		CsvLoad();
-				Debug.Log ("CSV -> Load!");
+				Debug.Log ("CSV -> Load");
 	    	}
 	    	
 	    	// AllDelete
@@ -111,51 +112,75 @@ public class CsvManager : MonoBehaviour {
     	}
     }
 
-    // ログの書き込み
+    // CSV書き出し
     public void CsvOutput()
-    {
-        // 出力先のファイルパスを作成
+    {        
+        // 書き込み先のファイルを作成
         string CSVFilePath = Application.dataPath +"/Resources/" +  OptionInfo.OutputCsvName;
+
+        // SetBox以下の子要素を取得（Scene毎にすべて）
+        List<GameObject> childlist = new List<GameObject>();
+        childlist = GetAllChildren.GetAll(gameObject);
 
         //　ストリームで書き込み
         using (StreamWriter streamWriter = new StreamWriter(CSVFilePath))
         {
-            // カウンタ
+            // 変数
             int count = 0;
+            List<string> stringlist;
 
-            // リスト作成
-            List<string> stringlist = new List<string>();
-           
-            // ここらで情報取得&文字列変換
-            GetEnemyInfomation(ref stringlist);
+            // タイムスタンプ
+            streamWriter.Write(System.DateTime.Now.Hour.ToString() 　+ ',');
+            streamWriter.Write(System.DateTime.Now.Minute.ToString() + ',');
+            streamWriter.Write(System.DateTime.Now.Second.ToString() + ',');
+            // 改行
+            streamWriter.WriteLine();
 
-            foreach (var list in stringlist)
+            // 子要素事に探索
+            for (int i = 0; i < gameObject.transform.childCount; ++i)
             {
-                // カンマで区切る
-                streamWriter.Write(list.ToString() + ',');
+                // ストリングリストの作成
+                stringlist = new List<string>();
 
-                count++;
+                // 子要素の子要素[エネミー]を取得
+                GetEnemyInfomation(ref stringlist, childlist[i]);
 
-                // データの総数を書き込んだら改行
-                if (count % (int)EnemyAnalyze.Enemy_Param_Max == 0)
+                foreach (var list in stringlist)
                 {
-                    streamWriter.WriteLine();
+                    // カンマで区切る
+                    streamWriter.Write(list.ToString() + ',');
+
+                    // 書き込んだ要素数
+                    count++;
+
+                    // データの総数を書き込んだら改行
+                    if (count % ( (int)EnemyAnalyze.Enemy_Param_Max -1) == 0)
+                    {
+                        // SceneIndex番号を書き込み
+                        streamWriter.Write( (i).ToString() + ',');
+                        
+                        // 改行
+                        streamWriter.WriteLine();
+                    }
                 }
             }
         }
+        
     }
 
     // エネミーの情報を取得
-    public void GetEnemyInfomation(ref List<string> stringlist)
+    public void GetEnemyInfomation(ref List<string> stringlist, GameObject Child)
     {
-        // 子要素をすべて取得
+        // 変数
+        enemy.EnemyInfo buf;    // Enemy情報の取得
+        enemy E_Script;         // Enemyスクリプトの取得
+
+        // 子要素格納用のリスト作成
         List<GameObject> childlist = new List<GameObject>();
 
-        childlist = GetAllChildren.GetAll(gameObject);
-
-        enemy.EnemyInfo     buf;
-        enemy               E_Script;
-
+        // 子要素の取得
+        childlist = GetAllChildren.GetAll(Child);
+   
         // コンポーネントなど諸々の情報を取得
         foreach (GameObject obj in childlist)
         {
@@ -203,12 +228,15 @@ public class CsvManager : MonoBehaviour {
         List<string> stringlist = new List<string>();
         stringlist.Clear();
 
-        while(reader.Peek() > -1)
+        // 1行の読み飛ばし 
+        reader.ReadLine();
+        
+        // 情報の読み込み  
+        while (reader.Peek() > -1)
         {
             string line = reader.ReadLine();
             CsvDate.Add(line.Split(','));
         }
-         
     }
 
     // オブジェクトの全削除
@@ -235,5 +263,6 @@ public class CsvManager : MonoBehaviour {
 
         return CsvDate;
     }
-
+    
+    
 }

@@ -64,6 +64,7 @@ namespace Common
         Enemy_Move_x,
         Enemy_Move_y,
         Enemy_Move_z,
+        Enemy_Scene,
         Enemy_Param_Max,
     }
 
