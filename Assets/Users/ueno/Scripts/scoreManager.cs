@@ -10,7 +10,6 @@ public enum scoreType
     PORICE_POW,
     ACCURACY,
     DOWN_NUM,
-    SCORE,
     TYPE_MAX
 };
 
