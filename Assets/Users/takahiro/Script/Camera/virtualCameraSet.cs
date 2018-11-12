@@ -30,8 +30,10 @@ public class virtualCameraSet : MonoBehaviour
 	private Vector3[] objLook;
 	private Vector3 lookPos;
 	private float nowLookAt;
+	private bool isStart;
 	private void Start()
 	{
+		isStart = false;
 		nowLookAt = 0.0f;
 
 		nowWaypoint = 1;
@@ -60,11 +62,18 @@ public class virtualCameraSet : MonoBehaviour
 
 	private void Update()
 	{
+
+		if(!isStart)
+		{
+			return;
+		}
+
 		// 近くにwaypointが無い
 		if (nearWaypoint == false)
 		{
 			// 今のwaypointとカメラとの距離を比較
 			float distance = Vector3.Distance(Camera.main.transform.position, obj[nowWaypoint]);
+			Debug.Log(distance);
 			// 一定以下なら
 			if (distance < changeDistance)
 			{
@@ -75,6 +84,7 @@ public class virtualCameraSet : MonoBehaviour
 					nowWaypoint = obj.Length - 1;
 				}
 
+				Debug.Log(CameraPer[nowWaypoint - 1]);
 				nearWaypoint = true;
 			}
 		}
@@ -86,6 +96,7 @@ public class virtualCameraSet : MonoBehaviour
 			// 一定以上なら
 			if (distance > changeDistance)
 			{
+				Debug.Log("目標 : " + nowWaypoint);
 				nearWaypoint = false;
 			}
 		}
@@ -125,7 +136,6 @@ public class virtualCameraSet : MonoBehaviour
 			// 一定以上なら
 			if (distance > changeDistanceLook)
 			{
-				//Debug.Log("変化1" + (nowWaypointLook - 1));
 				nearWaypointLook = false;
 			}
 		}
@@ -188,5 +198,30 @@ public class virtualCameraSet : MonoBehaviour
 
 		changeDistance = 1.0f;
 		changeDistanceLook = 8.0f;
+
+		// objを各pathにセット
+		obj = new Vector3[cameraPsth.m_Waypoints.Length];
+		for (int i = 0; i < obj.Length; ++i)
+		{
+			Vector3 pos = cameraPsth.m_Waypoints[i].position + cameraPsth.gameObject.transform.position;
+			obj[i] = new Vector3(pos.x, pos.y, pos.z);
+		}
+
+		objLook = new Vector3[lookAtPsth.m_Waypoints.Length];
+		for (int i = 0; i < objLook.Length; ++i)
+		{
+			Vector3 pos = lookAtPsth.m_Waypoints[i].position + lookAtPsth.gameObject.transform.position;
+			objLook[i] = new Vector3(pos.x, pos.y, pos.z);
+		}
+	}
+
+	public void start()
+	{
+		isStart = true;
+	}
+
+	public void end()
+	{
+		isStart = false;
 	}
 }

@@ -33,8 +33,10 @@ public class cameraMove : MonoBehaviour {
 		nowCamera = 0.0f;
 		nowLookAt = 0.0f;
 		oldPath = 0;
+
+		cameraSet[setNum].start();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -85,6 +87,7 @@ public class cameraMove : MonoBehaviour {
 
 	public void nextMove()
 	{
+		cameraSet[setNum].end();
 		setNum += 1;
 
 		if (setNum >= cameraSet.Length)
@@ -92,6 +95,7 @@ public class cameraMove : MonoBehaviour {
 			setNum = 0;
 		}
 
+		cameraSet[setNum].start();
 		speedCamera = cameraSet[setNum].getCameraSpeed();
 		speedLookAt = cameraSet[setNum].getLookAtSpeed();
 		nowCamera = 0.0f;
@@ -100,7 +104,10 @@ public class cameraMove : MonoBehaviour {
 
 	public void setMove()
 	{
+		cameraSet[setNum].end();
 		setNum = debugCamera;
+
+		Debug.Log(setNum);
 
 		if (setNum >= cameraSet.Length)
 		{
@@ -108,6 +115,7 @@ public class cameraMove : MonoBehaviour {
 		}
 
 		cameraSet[setNum].debugMove();
+		cameraSet[setNum].start();
 		speedCamera = cameraSet[setNum].getCameraSpeed();
 		speedLookAt = cameraSet[setNum].getLookAtSpeed();
 		nowCamera = 0.0f;
