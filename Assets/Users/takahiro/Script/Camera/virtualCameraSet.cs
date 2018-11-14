@@ -31,9 +31,13 @@ public class virtualCameraSet : MonoBehaviour
 	private Vector3 lookPos;
 	private float nowLookAt;
 	private bool isStart;
+	private bool firstStart = false;
 	private void Start()
 	{
-		isStart = false;
+		if(!firstStart)
+		{
+			isStart = false;
+		}
 		nowLookAt = 0.0f;
 
 		nowWaypoint = 1;
@@ -217,6 +221,7 @@ public class virtualCameraSet : MonoBehaviour
 
 	public void start()
 	{
+		firstStart = true;
 		isStart = true;
 	}
 
