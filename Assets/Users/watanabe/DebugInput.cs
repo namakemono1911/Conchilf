@@ -15,22 +15,27 @@ public class DebugInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown ("1"))
+		if (Input.GetKey (KeyCode.D))
 		{
-			Time.timeScale = 0.3f;
-			Explotion.SetActive (true);
-		}
-		if (Input.GetKeyDown ("2"))
-		{
-			Time.timeScale = 1.0f;
-			Black.SetActive (true);
-		}
-		if (Input.GetKey ("3"))
-		{
-			if (Input.GetKeyDown (KeyCode.Space))
+			if (Input.GetKeyDown ("1"))
 			{
+				Time.timeScale = 0.3f;
+				Explotion.SetActive (false);
+				Explotion.SetActive (true);
+			}
+			if (Input.GetKeyDown ("2"))
+			{
+				Time.timeScale = 1.0f;
 				Black.SetActive (false);
-				policeCar.SetActive (false);
+				Black.SetActive (true);
+			}
+			if (Input.GetKey ("3"))
+			{
+				if (Input.GetKeyDown (KeyCode.Space))
+				{
+					Black.SetActive (false);
+					policeCar.SetActive (false);
+				}
 			}
 		}
 	}

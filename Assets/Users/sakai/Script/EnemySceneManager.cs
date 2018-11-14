@@ -60,7 +60,21 @@ public class EnemySceneManager : MonoBehaviour {
 
     // 更新処理
     void Update () {
-		
+		// デバッグ
+		if(Input.GetKey(KeyCode.C))
+		{
+			if(Input.GetKeyDown("5"))
+			{
+				DebugNextWave();
+				Debug.Log ("NextWave ->" + CurrentWaveNum);
+			}
+
+			if(Input.GetKeyDown("6"))
+			{
+				DebugNextScene();
+				Debug.Log ("NextScene ->" + CurrentSceneNum);
+			}
+		}
 	}
 
     /////////////////////////////
@@ -112,7 +126,7 @@ public class EnemySceneManager : MonoBehaviour {
         if(SceneDateMake() == false) { return false; }
 
         // ウェーブのアクティブ化
-        if(WaveActive() == false) { return false; }        
+        if(WaveActive() == false) { return false; }
 
         return true;
     }
