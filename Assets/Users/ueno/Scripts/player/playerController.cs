@@ -86,7 +86,7 @@ public class WiiInput
         if (!WiimoteManager.HasWiimote())
             if (!WiimoteManager.FindWiimotes())
             {
-                Debug.Log("リモコンがない");
+                //Debug.Log("リモコンがない");
                 return;
             }
 

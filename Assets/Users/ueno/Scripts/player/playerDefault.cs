@@ -61,7 +61,7 @@ public class playerDefault : playerState {
             player.changeState(new playerReload(player));
         }
 
-        Debug.Log("state Default");
+        //Debug.Log("state Default");
     }
 
     //射撃

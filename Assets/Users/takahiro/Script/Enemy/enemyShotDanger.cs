@@ -32,9 +32,9 @@ public class enemyShotDanger : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("aa");
+			//Debug.Log("aa");
 			time += Time.deltaTime;
-			Debug.Log(time);
+			//Debug.Log(time);
 
 			if (isFlash)
 			{
