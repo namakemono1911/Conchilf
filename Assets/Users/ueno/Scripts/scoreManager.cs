@@ -10,6 +10,7 @@ public enum scoreType
     PORICE_POW,
     ACCURACY,
     DOWN_NUM,
+    SUM_SCORE,
     TYPE_MAX
 };
 
@@ -47,6 +48,11 @@ public class playerScore
     {
         float parcent = (float)hitShot / totalShot;
         scoreDict[scoreType.ACCURACY] = (int)(parcent * 100.0f);
+
+        int sum = 0;
+        for (int i = 0; i < (int)scoreType.TYPE_MAX; i++)
+            sum += scoreDict[(scoreType)i];
+        scoreDict[scoreType.SUM_SCORE] = sum;
     }
 
     public void save()

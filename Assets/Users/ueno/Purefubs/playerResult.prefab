@@ -128,6 +128,8 @@ GameObject:
   - component: {fileID: 114439439402400804}
   - component: {fileID: 114200989226738252}
   - component: {fileID: 114072726192937558}
+  - component: {fileID: 114293373344271714}
+  - component: {fileID: 114763409343416774}
   m_Layer: 5
   m_Name: playerResult
   m_TagString: Untagged
@@ -549,17 +551,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f7aaf5eeff1654eb56cac82ce92086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNum: 0
-  basicValue: 6400000064000000640000006400000064000000
+  playerNum: 2
+  basicValue: 0100000001000000010000000100000001000000
   resultDatas:
   - type: 0
     scoreText: {fileID: 114394410886006592}
   - type: 1
     scoreText: {fileID: 114847379598927018}
   - type: 2
-    scoreText: {fileID: 114847379598927018}
-  - type: 3
     scoreText: {fileID: 114711726861518552}
+  - type: 3
+    scoreText: {fileID: 114872203133752664}
   - type: 4
     scoreText: {fileID: 114654126258771896}
 --- !u!114 &114127595769768170
@@ -772,6 +774,32 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 00000
+--- !u!114 &114293373344271714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273391073265742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f7aaf5eeff1654eb56cac82ce92086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNum: 2
+  basicValue: 640000006400000064000000640000006400000001000000
+  resultDatas:
+  - type: 0
+    scoreText: {fileID: 114132225523909854}
+  - type: 1
+    scoreText: {fileID: 114272664533121828}
+  - type: 2
+    scoreText: {fileID: 114320073768697314}
+  - type: 3
+    scoreText: {fileID: 114621917631213458}
+  - type: 4
+    scoreText: {fileID: 114976237065941280}
+  - type: 5
+    scoreText: {fileID: 114169224943697242}
 --- !u!114 &114297759139748500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -804,7 +832,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player1
+  m_Text: Player2
 --- !u!114 &114306637104107312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1289,6 +1317,20 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &114763409343416774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273391073265742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fc96a4861a8794fa435cb96892aca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNum: 1
+  scoreText: {fileID: 114362040049688698}
+  evalutionValue: f4010000c8000000
 --- !u!114 &114820753827170696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1706,7 +1748,7 @@ RectTransform:
   m_GameObject: {fileID: 1273391073265742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 0.9999998}
   m_Children:
   - {fileID: 224458708371142050}
   - {fileID: 224597380051404962}

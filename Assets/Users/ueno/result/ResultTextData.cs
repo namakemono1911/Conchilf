@@ -24,9 +24,11 @@ public class ResultTextData : MonoBehaviour
     private void Start()
     {
         //データ読み込み
-        foreach (var data in resultDatas)
+        for (int i = 0; i < resultDatas.Length; i++)
         {
-            data.scoreText.text = PlayerPrefs.GetInt(data.type.ToString() + playerNum.ToString()).ToString();
+            var score = PlayerPrefs.GetInt(resultDatas[i].type.ToString() + playerNum.ToString());
+            score *= basicValue[i];
+            resultDatas[i].scoreText.text = PlayerPrefs.GetInt(resultDatas[i].type.ToString() + playerNum.ToString()).ToString();
         }
     }
 }
