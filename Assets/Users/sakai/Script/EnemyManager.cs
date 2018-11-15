@@ -60,31 +60,7 @@ public class EnemyManager : MonoBehaviour {
 	
 	// 更新処理
 	void Update () {
-		
-	    // デバッグ
-	    if(Input.GetKey(KeyCode.C))
-		{
-			if(Input.GetKeyDown("4"))
-	    	{
-	    		WaveDateMake(0);
-				Debug.Log ("CSV -> EnemyCreate");
-	    	}
-	    }
 
-		// ウェーブ指定
-		if(Input.GetKey(KeyCode.W))
-		{
-			if (Input.GetKeyDown ("0")) { WaveDateMake(0); Debug.Log ("CSV -> EnemyCreate -> Wave Select"); }
-			if (Input.GetKeyDown ("1")) { WaveDateMake(1); Debug.Log ("CSV -> EnemyCreate -> Wave Select"); }
-			if (Input.GetKeyDown ("2")) { WaveDateMake(2); Debug.Log ("CSV -> EnemyCreate -> Wave Select"); }
-			if (Input.GetKeyDown ("3")) { WaveDateMake(3); Debug.Log ("CSV -> EnemyCreate -> Wave Select"); }
-			if (Input.GetKeyDown ("4")) { WaveDateMake(4); Debug.Log ("CSV -> EnemyCreate -> Wave Select"); }
-			if (Input.GetKeyDown ("5")) { WaveDateMake(5); Debug.Log ("CSV -> EnemyCreate -> Wave Select"); }
-			if (Input.GetKeyDown ("6")) { WaveDateMake(6); Debug.Log ("CSV -> EnemyCreate -> Wave Select"); }
-			if (Input.GetKeyDown ("7")) { WaveDateMake(7); Debug.Log ("CSV -> EnemyCreate -> Wave Select"); }
-			if (Input.GetKeyDown ("8")) { WaveDateMake(8); Debug.Log ("CSV -> EnemyCreate -> Wave Select"); }
-			if (Input.GetKeyDown ("9")) { WaveDateMake(9); Debug.Log ("CSV -> EnemyCreate -> Wave Select"); }
-		}
 	}
 
     // シーンデータの作成
@@ -103,6 +79,9 @@ public class EnemyManager : MonoBehaviour {
         CsvDate.Clear();
         // csvデータの取得
         CsvDate = OptionInfo.Csvmanager.CsvDataGet();
+
+        // リスト上のシーンデータを削除
+        SceneDate.Clear();
 
         // エネミー生成時に付与するマネージャを取得
         enemyTypeManager E_Type = OptionInfo.enemyCreater.GetComponent<EnemyCreater>().GetEnemyTypeManager();
@@ -217,8 +196,18 @@ public class EnemyManager : MonoBehaviour {
         return false;
     }
 
+    // 現在の敵を全削除
+    public void EnemyAllDelete()
+    {
+        // EnemyManager以下のオブジェクトを全削除
+        foreach (Transform child in gameObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    
+    }
 
-    // ウェーブデータ作成
+    // ウェーブデータ作成（旧メソッドのため使用禁止）
     public void WaveDateMake(int WaveNum)
     {
         // ゲームオブジェクト用
