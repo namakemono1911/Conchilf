@@ -7,7 +7,6 @@ public enum scoreType
 {
     DEFEAT_NUM = 0,
     ARREST_NUM,
-    PORICE_POW,
     ACCURACY,
     DOWN_NUM,
     SUM_SCORE,
@@ -26,6 +25,13 @@ public class playerScore
     private int totalShot;
     private int hitShot;
     private int numPlayer;
+    public static int[] baseScore = new int[]
+        {
+            100,
+            100,
+            100,
+            100
+        };
 
     public void setScore(scoreType type, int score)
     {
@@ -50,8 +56,8 @@ public class playerScore
         scoreDict[scoreType.ACCURACY] = (int)(parcent * 100.0f);
 
         int sum = 0;
-        for (int i = 0; i < (int)scoreType.TYPE_MAX; i++)
-            sum += scoreDict[(scoreType)i];
+        for (int i = 0; i < (int)scoreType.SUM_SCORE; i++)
+            sum += scoreDict[(scoreType)i] * baseScore[i];
         scoreDict[scoreType.SUM_SCORE] = sum;
     }
 

@@ -28,7 +28,7 @@ public class ResultTextData : MonoBehaviour
         {
             var score = PlayerPrefs.GetInt(resultDatas[i].type.ToString() + playerNum.ToString());
             score *= basicValue[i];
-            resultDatas[i].scoreText.text = PlayerPrefs.GetInt(resultDatas[i].type.ToString() + playerNum.ToString()).ToString();
+            resultDatas[i].scoreText.text = score.ToString();
         }
     }
 }
