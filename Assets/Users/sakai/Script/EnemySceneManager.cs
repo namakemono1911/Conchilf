@@ -60,27 +60,14 @@ public class EnemySceneManager : MonoBehaviour {
 
     // 更新処理
     void Update () {
-		// デバッグ
-		if(Input.GetKey(KeyCode.C))
-		{
-			if(Input.GetKeyDown("5"))
-			{
-				DebugNextWave();
-				Debug.Log ("NextWave ->" + CurrentWaveNum);
-			}
-
-			if(Input.GetKeyDown("6"))
-			{
-				DebugNextScene();
-				Debug.Log ("NextScene ->" + CurrentSceneNum);
-			}
-		}
-	}
+		
+    }
 
     /////////////////////////////
     //  外部用メソッド
     ////////////////////////////
 
+    // ボタン用
     public void DebugTest()
     {
         StartEnemyScene();
@@ -143,10 +130,32 @@ public class EnemySceneManager : MonoBehaviour {
         return true;
     }
 
+    // シーン番号の指定をして再生
+    public void EnemySceneNextToIndex(int SceneIndex)
+    {
+        // ウェーブ番号の初期化
+        CurrentWaveNum = 0;
 
-/////////////////////////////
-//  クラス内メソッド
-////////////////////////////
+        // 次シーンへ移行
+        CurrentSceneNum = SceneIndex;
+
+        // シーンデータの作成
+        SceneDateMake();
+
+        // ウェーブのアクティブ化
+        WaveActive();
+    }
+
+    // シーン上のエネミーを全削除
+    public void EnemyAllDelete()
+    {
+        // エネミーの全削除
+        SerializeMember.Enemy_manager.EnemyAllDelete();
+    }
+
+    /////////////////////////////
+    //  クラス内メソッド
+    ////////////////////////////
 
     // 敵が全滅したか
     public bool EnemyAllDead()
