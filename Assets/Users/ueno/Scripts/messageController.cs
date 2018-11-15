@@ -12,7 +12,7 @@ public class messageController : MonoBehaviour {
     private Button no;
 
     [SerializeField]
-    private reticleController reticle;
+    private InputFacade reticle;
 
     [SerializeField]
     private inputNameController inputName;

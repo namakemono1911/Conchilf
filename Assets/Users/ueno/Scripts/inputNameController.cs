@@ -12,7 +12,7 @@ public class inputNameController : MonoBehaviour
     private Text playerName;            //プレイヤー名
 
     [SerializeField]
-    private reticleController reticle;  //レティクル
+    private InputFacade reticle;        //レティクル
 
     [SerializeField]
     private GameObject messageBox;      //メッセージボックス
