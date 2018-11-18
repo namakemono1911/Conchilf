@@ -92,6 +92,7 @@ public class cameraMove : MonoBehaviour {
 
 		if (setNum >= cameraSet.Length)
 		{
+			return;
 			setNum = 0;
 		}
 
@@ -177,7 +178,7 @@ public class cameraMove : MonoBehaviour {
 
 	public bool isMaxCamera()
 	{
-		if(setNum >= cameraSet.Length)
+		if(setNum >= cameraSet.Length - 1)
 		{
 			return true;
 		}

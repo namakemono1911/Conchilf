@@ -5130,6 +5130,53 @@ MonoBehaviour:
     InputCsvName: EnemyData
     OutputCsvName: EnemyData.csv
     enemyCreater: {fileID: 211948124}
+--- !u!1001 &1155692029
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4587381636555020, guid: d3a80fbecde46964996b11686e767a33, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587381636555020, guid: d3a80fbecde46964996b11686e767a33, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587381636555020, guid: d3a80fbecde46964996b11686e767a33, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587381636555020, guid: d3a80fbecde46964996b11686e767a33, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587381636555020, guid: d3a80fbecde46964996b11686e767a33, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587381636555020, guid: d3a80fbecde46964996b11686e767a33, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587381636555020, guid: d3a80fbecde46964996b11686e767a33, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587381636555020, guid: d3a80fbecde46964996b11686e767a33, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114676784021905372, guid: d3a80fbecde46964996b11686e767a33,
+        type: 2}
+      propertyPath: instance
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d3a80fbecde46964996b11686e767a33, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1182573893
 Prefab:
   m_ObjectHideFlags: 0
@@ -10194,6 +10241,7 @@ GameObject:
   - component: {fileID: 1647066273}
   - component: {fileID: 1647066272}
   - component: {fileID: 1647066276}
+  - component: {fileID: 1647066277}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10290,7 +10338,22 @@ MonoBehaviour:
   - {fileID: 74674529}
   - {fileID: 790921294}
   - {fileID: 641128648}
-  setNum: 0
+  setNum: 8
+--- !u!114 &1647066277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1647066271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadf67d87768c70499b0c891fe140700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraMove: {fileID: 1647066276}
+  enemySceneManager: {fileID: 137115895}
+  debugScene: 0
+  cameraCallEnemy: []
 --- !u!4 &1657826982 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,

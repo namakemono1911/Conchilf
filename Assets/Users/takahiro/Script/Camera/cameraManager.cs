@@ -23,11 +23,12 @@ public class cameraManager : MonoBehaviour {
 	private int numCamera;
 	private int numScene;
 	private float timerScene;   // シーンごとのタイマー
-	private bool isEnemyWave;	// このシーンに敵がいるか
-
+	private bool isEnemyWave;   // このシーンに敵がいるか
+	private bool isSceneChange;
 	// Use this for initialization
 	void Start()
 	{
+		isSceneChange = false;
 		numCamera = 0;
 		numScene = 0;
 		timerScene = 0;
@@ -44,6 +45,9 @@ public class cameraManager : MonoBehaviour {
 
 		// ウェーブ処理
 		nextWave();
+
+		// このゲームシーンの終了を検知
+		chackSceneManager();
 	}
 
 	// カメラ変更
@@ -51,6 +55,11 @@ public class cameraManager : MonoBehaviour {
 	{
 		timerScene = 0.0f;
 		isEnemyWave = false;
+
+		if(cameraMove.isMaxCamera())
+		{
+			return;
+		}
 		++numCamera;
 
 		// カメラの移動
@@ -65,7 +74,7 @@ public class cameraManager : MonoBehaviour {
 		if (enemySceneManager.EnemySceneNext() == false)
 		{
 			// 全滅したらシーン遷移 ← ここまだ条件かわる可能性あり
-			//sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS);
+			//sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS_1);
 		}
 	}
 
@@ -120,6 +129,17 @@ public class cameraManager : MonoBehaviour {
 		else
 		{
 			timerScene = 0.0f;
+		}
+	}
+
+	// このゲームシーンの終了を検知
+	private void chackSceneManager()
+	{
+		// 最後のカメラが停止したら
+		if(cameraMove.isMaxCamera() && cameraMove.isEndMove() && isSceneChange == false)
+		{
+			isSceneChange = true;
+			sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS_1);
 		}
 	}
 }
