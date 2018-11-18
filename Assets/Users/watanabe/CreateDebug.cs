@@ -41,6 +41,7 @@ public class CreateDebug : MonoBehaviour {
         WaveNum     = 0;
 
 		// CSV用のエネミー全削除
+		Debug.Log("ClearEnemy = " + clearEnemy);
 		if (clearEnemy) 
 		{
 			SerializeMember.Csv_Manager.Alldelete();
