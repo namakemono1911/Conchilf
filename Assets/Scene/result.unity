@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -323,6 +323,12 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &296710392 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114388879897008002, guid: 58b9d07c220288f409950dbdd1377af3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1321724311}
+  m_Script: {fileID: 11500000, guid: d203b66c03a0abf4e98e6e069166c8d0, type: 3}
 --- !u!1 &653214207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,6 +1136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7395bb068d2664a4aa17f2c75e4849f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ranking: {fileID: 1259773922}
+  animation: {fileID: 296710392}
 --- !u!1001 &1321724311
 Prefab:
   m_ObjectHideFlags: 0

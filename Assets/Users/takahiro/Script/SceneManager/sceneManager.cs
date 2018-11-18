@@ -42,9 +42,11 @@ public class sceneManager : singletonMonobihavior<sceneManager> {
 			{(int)SCENE.SCENE_TITLE , sceneNames[0] },
             {(int)SCENE.SCENE_GAME_NORMAL_1 , sceneNames[1] },
             {(int)SCENE.SCENE_GAME_BOSS_1 , sceneNames[2] },
-            {(int)SCENE.SCENE_RESULT , sceneNames[3] },
-            {(int)SCENE.SCENE_INPUT_NAME , sceneNames[4] },
-            {(int)SCENE.SCENE_RANKING , sceneNames[5] },
+			{(int)SCENE.SCENE_GAME_NORMAL_2 , sceneNames[3] },
+			{(int)SCENE.SCENE_GAME_BOSS_2 , sceneNames[4] },
+			{(int)SCENE.SCENE_RESULT , sceneNames[5] },
+            {(int)SCENE.SCENE_INPUT_NAME , sceneNames[6] },
+            {(int)SCENE.SCENE_RANKING , sceneNames[7] },
         };
 
         beforScene = SCENE.SCENE_TITLE;
@@ -54,7 +56,7 @@ public class sceneManager : singletonMonobihavior<sceneManager> {
 
     private void Start()
     {
-        fadeSpeed = 1.0f / fadeSecond;
+        fadeSpeed = 1.0f / (fadeSecond * 60.0f);
     }
 
     private void Update()

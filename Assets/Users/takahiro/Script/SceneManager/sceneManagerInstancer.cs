@@ -6,13 +6,12 @@ public class sceneManagerInstancer : MonoBehaviour {
 
 	[SerializeField]
 	GameObject sceneManager;
+	[SerializeField]
+	private bool instance;
 
 	private void Awake()
 	{
-		GameObject gm;
-		gm = GameObject.Find("sceneManager");
-
-		if(gm == null)
+		if(instance == true)
 		{
 			GameObject.Instantiate(sceneManager);
 		}
