@@ -10,23 +10,23 @@ public class resultManager : MonoBehaviour
     [SerializeField]
     textAnimationController animation;  //アニメーション
 
-    private string nextScene;           //次のシーン名
+    private sceneManager.SCENE nextScene;           //次のシーン名
 
     private void Start()
     {
         RankData data = new RankData();
 
         if (ranking.whetherRankin(data))
-            nextScene = "inputName";
+            nextScene = sceneManager.SCENE.SCENE_INPUT_NAME;
         else
-            nextScene = "ranking";
+            nextScene = sceneManager.SCENE.SCENE_RANKING;
     }
 
     private void Update()
     {
         if (!animation.IsAnimation)
         {
-
+            sceneManager.Instance.SceneChange(nextScene);
         }
     }
 }

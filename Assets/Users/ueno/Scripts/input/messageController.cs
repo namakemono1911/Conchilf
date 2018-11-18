@@ -36,7 +36,7 @@ public class messageController : MonoBehaviour {
 
     public void selectYes()
     {
-        Debug.Log("YES");
+        sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_RANKING);
     }
 
     public void selectNo()

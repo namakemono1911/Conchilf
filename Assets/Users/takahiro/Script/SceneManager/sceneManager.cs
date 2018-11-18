@@ -14,6 +14,7 @@ public class sceneManager : singletonMonobihavior<sceneManager> {
         SCENE_GAME_NORMAL_2,
         SCENE_GAME_BOSS_2,
         SCENE_RESULT,
+        SCENE_INPUT_NAME,
 		SCENE_RANKING,
 		SCENE_MAX
 	}
@@ -39,11 +40,12 @@ public class sceneManager : singletonMonobihavior<sceneManager> {
 		// シーンと列挙型の関連付け
 		sceneNamesIdx = new Dictionary<int, string> {
 			{(int)SCENE.SCENE_TITLE , sceneNames[0] },
-			{(int)SCENE.SCENE_GAME_NORMAL_1 , sceneNames[1] },
-			//{(int)SCENE.SCENE_GAME_BOSS_1 , sceneNames[2] },
-			//{(int)SCENE.SCENE_RESULT , sceneNames[3] },
-			//{(int)SCENE.SCENE_RANKING , sceneNames[4] },
-		};
+            {(int)SCENE.SCENE_GAME_NORMAL_1 , sceneNames[1] },
+            {(int)SCENE.SCENE_GAME_BOSS_1 , sceneNames[2] },
+            {(int)SCENE.SCENE_RESULT , sceneNames[3] },
+            {(int)SCENE.SCENE_INPUT_NAME , sceneNames[4] },
+            {(int)SCENE.SCENE_RANKING , sceneNames[5] },
+        };
 
         beforScene = SCENE.SCENE_TITLE;
         nowScene = SCENE.SCENE_TITLE;

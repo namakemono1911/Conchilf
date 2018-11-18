@@ -41,10 +41,14 @@ public class WiiInputFacade : InputFacade
     // Update is called once per frame
     void Update()
     {
+        //コントローラー情報更新
         foreach (var input in wiiInput)
             input.update();
-
+        
         //レティクル移動
+        if (reticle == null)
+            return;
+
         float[] ir = wiiInput[(int)ControllerArm.right].Ir.GetPointingPosition();
         var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
         reticle.anchoredPosition3D

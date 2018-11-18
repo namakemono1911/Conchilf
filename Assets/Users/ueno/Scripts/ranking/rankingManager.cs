@@ -17,6 +17,7 @@ public class rankingManager : MonoBehaviour
     // Use this for initialization
     private void Awake()
     {
+        //ランキングデータ読み込み
         for (int i = 0; ; i++)
         {
             if (PlayerPrefs.HasKey(i.ToString()))
@@ -40,8 +41,6 @@ public class rankingManager : MonoBehaviour
             PlayerPrefs.SetInt(num.ToString() + rank.name, rank.score);
             num++;
         }
-
-        //PlayerPrefs.Save();
     }
 
     //ランクインしてるかどうか
