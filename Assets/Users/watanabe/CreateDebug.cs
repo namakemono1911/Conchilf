@@ -28,12 +28,26 @@ public class CreateDebug : MonoBehaviour {
     private int SceneNum;
     private int WaveNum;
 
+	public bool clearEnemy = false;
+
+	public GameObject policeCar = null;
+	public GameObject Explotion = null;
+	public GameObject Black = null;
+
     // Use this for initialization
     void Start () {
 
         // 初期化
         SceneNum    = 0;
         WaveNum     = 0;
+
+		// CSV用のエネミー全削除
+		if (clearEnemy) 
+		{
+			SerializeMember.Csv_Manager.Alldelete();
+			Debug.Log("Csv用の配置データを全削除しました");
+		}
+	
 
 	}
 	
@@ -99,8 +113,39 @@ public class CreateDebug : MonoBehaviour {
                 SerializeMember.EnemyScene_Manager.EnemyAllDelete();
                 Debug.Log("シーン内のエネミーを全削除しました -> ");
             }
-
-
         }
+
+		// イベントトリガー
+		EventTrigger ();
     }
+
+	void EventTrigger()
+	{
+		if (Input.GetKey (KeyCode.E))
+		{
+			if (Input.GetKeyDown ("1"))
+			{
+				Time.timeScale = 0.1f;
+				Explotion.SetActive (false);
+				Explotion.SetActive (true);
+				Debug.Log("Event : 爆発");
+			}
+			if (Input.GetKeyDown ("2"))
+			{
+				Time.timeScale = 1.0f;
+				Black.SetActive (false);
+				Black.SetActive (true);
+				Debug.Log("Event : フェードアウト");
+			}
+			if (Input.GetKey ("3"))
+			{
+				if (Input.GetKeyDown (KeyCode.Space))
+				{
+					Black.SetActive (false);
+					policeCar.SetActive (false);
+					Debug.Log("Event : フェードイン");
+				}
+			}
+		}
+	}
 }
