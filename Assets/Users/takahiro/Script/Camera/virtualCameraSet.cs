@@ -77,7 +77,7 @@ public class virtualCameraSet : MonoBehaviour
 		{
 			// 今のwaypointとカメラとの距離を比較
 			float distance = Vector3.Distance(Camera.main.transform.position, obj[nowWaypoint]);
-			Debug.Log(distance);
+
 			// 一定以下なら
 			if (distance < changeDistance)
 			{
@@ -89,7 +89,6 @@ public class virtualCameraSet : MonoBehaviour
 					isEnd = true;
 				}
 
-				Debug.Log(CameraPer[nowWaypoint - 1]);
 				nearWaypoint = true;
 			}
 		}
@@ -101,7 +100,6 @@ public class virtualCameraSet : MonoBehaviour
 			// 一定以上なら
 			if (distance > changeDistance)
 			{
-				Debug.Log("目標 : " + nowWaypoint);
 				nearWaypoint = false;
 			}
 		}
@@ -119,7 +117,6 @@ public class virtualCameraSet : MonoBehaviour
 			// 一定以下なら
 			if (distance < changeDistanceLook)
 			{
-				//Debug.Log("変化2" + nowWaypointLook);
 				// 次のwaypointに変更
 				++nowWaypointLook;
 				if (nowWaypointLook >= objLook.Length)

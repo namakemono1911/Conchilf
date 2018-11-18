@@ -11,6 +11,10 @@ public class enemyStateDown : enemyState
 
 	public override void initState()
 	{
+		// 後ろの敵に当たらないので、当たり判定を消す
+		enemy.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+
+
 		//	倒れるモーション開始(クリティカルで分岐)
 		if(bCritical)
 		{
@@ -25,10 +29,10 @@ public class enemyStateDown : enemyState
 	}
 	public override void updateState()
 	{
-		// モーションが終わったらデストロイ
+		// モーションが終わったらデストロイするとウェーブマネージャーがおかしくなるので、非アクティブ
 		if(enemy.myAnimation.isPlayingAnimation())
 		{
-			Destroy(enemy.gameObject);
+			enemy.gameObject.SetActive(false);
 		}
 	}
 

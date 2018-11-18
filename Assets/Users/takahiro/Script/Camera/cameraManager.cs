@@ -12,6 +12,9 @@ public class cameraManager : MonoBehaviour {
 	}
 
 	[SerializeField]
+	private GameObject EnemyManager;
+
+	[SerializeField]
 	private cameraMove cameraMove;
 	[SerializeField]
 	private EnemySceneManager enemySceneManager;
@@ -20,19 +23,33 @@ public class cameraManager : MonoBehaviour {
 	[SerializeField]
 	private CameraCallEnemy[] cameraCallEnemy;
 
-	private int numCamera;
 	private int numScene;
 	private float timerScene;   // シーンごとのタイマー
 	private bool isEnemyWave;   // このシーンに敵がいるか
 	private bool isSceneChange;
+	private bool isDebug;
 	// Use this for initialization
 	void Start()
 	{
-		isSceneChange = false;
-		numCamera = 0;
+
+		isDebug = false;
 		numScene = 0;
+
+		for (int cntEnemyCall = 0; cameraCallEnemy.Length - 1 >= cntEnemyCall; ++cntEnemyCall)
+		{
+			if(cameraCallEnemy[cntEnemyCall].cameraCallEnemy <= cameraMove.getCameraMoveNum())
+			{
+				++numScene;
+			}
+		}
+		isSceneChange = false;
 		timerScene = 0;
 		isEnemyWave = false;
+
+		if(cameraMove.getCameraMoveNum() != 0)
+		{
+			isDebug = true;
+		}
 	}
 	
 	// Update is called once per frame
@@ -60,7 +77,6 @@ public class cameraManager : MonoBehaviour {
 		{
 			return;
 		}
-		++numCamera;
 
 		// カメラの移動
 		cameraMove.nextMove();
@@ -71,8 +87,23 @@ public class cameraManager : MonoBehaviour {
 	{
 		++numScene;
 		isEnemyWave = true;
+
+		if(isDebug == true)
+		{
+			enemySceneManager.EnemySceneNextToIndex(numScene - 1);
+			return;
+		}
+
+		if(numScene == 1)
+		{
+			// 初めの敵
+			enemySceneManager.StartEnemyScene();
+			return;
+		}
+
 		if (enemySceneManager.EnemySceneNext() == false)
 		{
+			int ii = 00;
 			// 全滅したらシーン遷移 ← ここまだ条件かわる可能性あり
 			//sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS_1);
 		}
@@ -83,7 +114,7 @@ public class cameraManager : MonoBehaviour {
 	{
 		if (cameraMove.isEndMove() && isEnemyWave == false)
 		{
-			if(cameraCallEnemy.Length > numScene && cameraCallEnemy[numScene].cameraCallEnemy == numCamera)
+			if(cameraCallEnemy.Length > numScene && cameraCallEnemy[numScene].cameraCallEnemy == cameraMove.getCameraMoveNum())
 			{
 				// 敵再生
 				nextScene();
@@ -100,7 +131,7 @@ public class cameraManager : MonoBehaviour {
 	private void nextWave()
 	{
 		// 今のウェーブの敵がいない事を検知
-		if(enemySceneManager.EnemyAllDead() && isEnemyWave == true)
+		if(nowWaveEnemyAllDead() == true && isEnemyWave == true)
 		{
 			// 全滅
 			// 次のウェーブを呼ぶ
@@ -141,5 +172,18 @@ public class cameraManager : MonoBehaviour {
 			isSceneChange = true;
 			sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS_1);
 		}
+	}
+
+	private bool nowWaveEnemyAllDead()
+	{
+		int enemyNum = EnemyManager.transform.childCount;
+		for(int cntenemy = 0; cntenemy <= enemyNum - 1; ++cntenemy)
+		{
+			if(EnemyManager.transform.GetChild(cntenemy).gameObject.activeSelf == true)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 }
