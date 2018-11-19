@@ -60,26 +60,19 @@ public class cameraMove : MonoBehaviour {
 
 		// 座標移動
 		transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(nowCamera, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
-		debugMainCameraObj.transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(nowCamera, Cinemachine.CinemachinePathBase.PositionUnits.Distance);// [追加]
+		if (debugMainCameraObj != null)
+		{
+			debugMainCameraObj.transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(nowCamera, Cinemachine.CinemachinePathBase.PositionUnits.Distance);// [追加]
+		}
 		// カメラ角度
 		transform.LookAt(cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance));
-		debugLookAtObj.transform.position = cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
+		if (debugLookAtObj != null)
+		{
+			debugLookAtObj.transform.position = cameraSet [setNum].getlookAtPath ().EvaluatePositionAtUnit (nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
+		}
 
 		nowCamera += speedCamera;
 		nowLookAt += speedLookAt;
-
-
-
-		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Space))
-		{
-			setMove(debugCamera);
-			return;
-		}
-
-		if (Input.GetKeyDown (KeyCode.Space)) 
-		{
-			nextMove ();
-		}
 
 		// 追加
 		watanabeDebug();
