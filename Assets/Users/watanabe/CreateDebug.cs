@@ -137,7 +137,7 @@ public class CreateDebug : MonoBehaviour {
 			}
 			if (Input.GetKey ("3"))
 			{
-				if (Input.GetKeyDown (KeyCode.Space))
+				if (Input.GetKeyDown (KeyCode.RightArrow))
 				{
 					Black.SetActive (false);
 					policeCar.SetActive (false);
