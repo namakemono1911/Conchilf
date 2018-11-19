@@ -5,15 +5,17 @@ using UnityEngine;
 public class effectCaller : MonoBehaviour {
 
 	[SerializeField]
-	private int effectNumber;
+	private effectManager effectManager;
 
 	[SerializeField]
-	private effectManager effectManager;
+	private int effectNumber;
 
 	private void OnCollisionEnter(Collision collision)
 	{
+		Debug.Log("hit" + collision.transform.tag);
 		if(collision.transform.tag == "player")
 		{
+			Debug.Log("call");
 			effectManager.playEffect(effectNumber);
 		}
 	}
