@@ -993,7 +993,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 535483621}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 495a1045a4143cb448381f39040bf5b8, type: 3}
   m_Name: 
@@ -1004,7 +1004,7 @@ MonoBehaviour:
     shot: 323
     guard: 324
     reload: 0
-  sensitivity: 5
+  sensitivity: 10
 --- !u!61 &535483625
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 535483621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa0efceb803e26e4eabf18d24cb077b6, type: 3}
   m_Name: 

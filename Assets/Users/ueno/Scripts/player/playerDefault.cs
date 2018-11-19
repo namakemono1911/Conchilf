@@ -65,7 +65,7 @@ public class playerDefault : playerState {
 
             if (hit.collider.tag == "enemyCritical")
             {
-                hit.transform.gameObject.GetComponent<enemy>().setPlayer(player);
+                hit.transform.gameObject.GetComponent<rightGun>().Enemy.setPlayer(player);
                 hit.transform.gameObject.GetComponent<rightGun>().Enemy.State.hitBullet(1, true);
                 isHit = true;
             }

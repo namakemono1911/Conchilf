@@ -20195,7 +20195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 3
   Debug_HP: 1
-  control: {fileID: 1079740856}
+  control: {fileID: 1079740852}
   gun:
     numBullet: 12
     remBullet: 12
@@ -20211,6 +20211,8 @@ MonoBehaviour:
   - {fileID: 2132147497}
   - {fileID: 180243653}
   - {fileID: 1752774127}
+  animation:
+    guard: {fileID: 0}
 --- !u!114 &1079740852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20218,7 +20220,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1079740849}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 495a1045a4143cb448381f39040bf5b8, type: 3}
   m_Name: 
@@ -20286,7 +20288,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1079740849}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa0efceb803e26e4eabf18d24cb077b6, type: 3}
   m_Name: 
@@ -26171,7 +26173,6 @@ MonoBehaviour:
   EnemyManager: {fileID: 137115893}
   cameraMove: {fileID: 1647066276}
   enemySceneManager: {fileID: 137115895}
-  debugScene: 0
   cameraCallEnemy:
   - cameraCallEnemy: 2
     timeLimitSecond: 1000
@@ -26179,6 +26180,7 @@ MonoBehaviour:
     timeLimitSecond: 1000
   - cameraCallEnemy: 6
     timeLimitSecond: 1000
+  debugCameraStopMode: 0
 --- !u!4 &1657826982 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
