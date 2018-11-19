@@ -153,16 +153,17 @@ public class EnemySceneManager : MonoBehaviour {
         SerializeMember.Enemy_manager.EnemyAllDelete();
     }
 
-    /////////////////////////////
-    //  クラス内メソッド
-    ////////////////////////////
-
     // 敵が全滅したか
     public bool EnemyAllDead()
     {
         return SerializeMember.Enemy_manager.SceneEnemyAllDead();
     }
-    
+
+
+    /////////////////////////////
+    //  クラス内メソッド
+    ////////////////////////////
+
     // シーンデータの作成
     private bool SceneDateMake()
     {

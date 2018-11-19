@@ -322,6 +322,7 @@ public class enemy : MonoBehaviour {
 		created = true;
 	}
 
+    // enemyのhpを確認
 	public int nowHp()
 	{
 		if(damege >= enemyTypeInfo.hp)

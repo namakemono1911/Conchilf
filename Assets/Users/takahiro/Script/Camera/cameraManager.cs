@@ -38,7 +38,7 @@ public class cameraManager : MonoBehaviour {
 
 		for (int cntEnemyCall = 0; cameraCallEnemy.Length - 1 >= cntEnemyCall; ++cntEnemyCall)
 		{
-			if(cameraCallEnemy[cntEnemyCall].cameraCallEnemy <= cameraMove.getCameraMoveNum())
+			if(cameraCallEnemy[cntEnemyCall].cameraCallEnemy < cameraMove.getCameraMoveNum())
 			{
 				++numScene;
 			}
@@ -74,7 +74,7 @@ public class cameraManager : MonoBehaviour {
 	private void nextCamera()
 	{
 		timerScene = 0.0f;
-		//isEnemyWave = false;
+		isEnemyWave = false;
 
 		if(cameraMove.isMaxCamera())
 		{
@@ -83,6 +83,9 @@ public class cameraManager : MonoBehaviour {
 
 		// カメラの移動
 		cameraMove.nextMove();
+
+        // 敵の全消し
+        EnemyManager.GetComponent<EnemyManager>().EnemyAllDelete();
 	}
 
 	// シーン変更
@@ -96,7 +99,7 @@ public class cameraManager : MonoBehaviour {
 			enemySceneManager.EnemySceneNextToIndex(numScene - 1);
 			return;
 		}
-
+        
 		if(numScene == 1)
 		{
 			// 初めの敵
@@ -177,16 +180,18 @@ public class cameraManager : MonoBehaviour {
 		}
 	}
 
+    // ウェーブの全滅確認
 	private bool nowWaveEnemyAllDead()
 	{
-		int enemyNum = EnemyManager.transform.childCount;
-		for(int cntenemy = 0; cntenemy <= enemyNum - 1; ++cntenemy)
-		{
-			if(EnemyManager.transform.GetChild(cntenemy).gameObject.activeSelf == true)
-			{
-				return false;
-			}
-		}
-		return true;
+        int cntEnemy = EnemyManager.transform.childCount;
+        for (int i = 0; i < cntEnemy; ++i)
+        {
+            if (EnemyManager.transform.GetChild(i).GetComponent<enemy>().nowHp() > 0)
+            {
+                return false;
+            }
+        }
+        return true;
+//        return EnemyManager.GetComponent<EnemyManager>().WaveEnemyAllDead();
 	}
 }

@@ -31,7 +31,7 @@ public class EnemyManager : MonoBehaviour {
 
     private List<string[]>          CsvDate;            // csvデータ
     private List<GameObject>        WaveDate;           // ウェーブ毎のデータ
-    private List<GameObject>        SceneDate;           // ウェーブ毎のデータ
+    private List<GameObject>        SceneDate;          // シーン毎のデータ
 
     // インスペクター入力忘れ防止
     private void Awake()
@@ -194,6 +194,24 @@ public class EnemyManager : MonoBehaviour {
         if (SceneDate.Count == 0) { return true; }
         
         return false;
+    }
+
+    // 指定ウェーブのエネミーに生き残りがいるか
+    public bool WaveEnemyAllDead()
+    {
+        // ウェーブデータの確認
+        if (WaveDate == null) { return false; }
+
+        // ウェーブデータリストを確認
+        for(int i = 0; i < WaveDate.Count; i++){
+
+            // 生存確認
+            if( WaveDate[i].GetComponent<enemy>().nowHp() > 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     // 現在の敵を全削除
