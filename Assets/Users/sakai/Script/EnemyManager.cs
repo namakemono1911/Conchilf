@@ -32,9 +32,9 @@ public class EnemyManager : MonoBehaviour {
     private List<string[]>          CsvDate;            // csvデータ
     private List<GameObject>        WaveDate;           // ウェーブ毎のデータ
     private List<GameObject>        SceneDate;          // シーン毎のデータ
-
-    // インスペクター入力忘れ防止
-    private void Awake()
+	
+	// インスペクター入力忘れ防止
+	private void Awake()
     {
         if(OptionInfo.Enemy00 == null)
         {
@@ -49,7 +49,8 @@ public class EnemyManager : MonoBehaviour {
         CsvDate  = new List<string[]>();
         WaveDate = new List<GameObject>();
         SceneDate = new List<GameObject>();
-    }
+		
+	}
 
     // 初回処理
     void Start () {
@@ -96,7 +97,7 @@ public class EnemyManager : MonoBehaviour {
             // シーン数確認
             if (int.Parse(Scene) == SceneNum)
             {
-                GameObject obj = null;
+				GameObject obj = null;
 
                 // 識別番号取得
                 int id = int.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Type]);
@@ -144,12 +145,12 @@ public class EnemyManager : MonoBehaviour {
 
                 // Activeをfalseに
                 obj.SetActive(false);
-            }
+				
+			}
 
-        }
-
-        if (SceneDate.Count == 0) { return false; }
-        return true;
+		}
+		
+		return true;
     }
 
     // 指定ウェーブのエネミーアクティブ化
@@ -178,9 +179,9 @@ public class EnemyManager : MonoBehaviour {
             }
 
         }
+		if(Count == 0) { return false; }
 
-        if( Count == 0) { return false; }
-        return true;
+		return true;
         
     }
 
@@ -224,9 +225,34 @@ public class EnemyManager : MonoBehaviour {
         }
     
     }
+	
+	// 次回シーン有無確認
+	public bool GetNextSceneEnable(int SceneNum)
+	{  
+		// csvデータリストの初期化
+		CsvDate.Clear();
+		// csvデータの取得
+		CsvDate = OptionInfo.Csvmanager.CsvDataGet();
+		
+		// 解析（Csvデータの末尾まで）
+		for (int index = 0; index < CsvDate.Count; index++)
+		{
+			// シーン番号識別
+			string Scene = CsvDate[index][(int)EnemyAnalyze.Enemy_Scene];
 
-    // ウェーブデータ作成（旧メソッドのため使用禁止）
-    public void WaveDateMake(int WaveNum)
+			// シーン数確認
+			if (int.Parse(Scene) == SceneNum + 1)
+			{
+				return true;
+			}
+
+		}
+
+		return false;
+	}
+
+	// ウェーブデータ作成（旧メソッドのため使用禁止）
+	public void WaveDateMake(int WaveNum)
     {
         // ゲームオブジェクト用
         

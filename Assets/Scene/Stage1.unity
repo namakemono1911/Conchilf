@@ -3778,6 +3778,7 @@ MonoBehaviour:
   EnemyManager: {fileID: 137115893}
   cameraMove: {fileID: 439770699}
   enemySceneManager: {fileID: 137115895}
+  lastWaitTime: 0
   cameraCallEnemy:
   - cameraCallEnemy: 2
     timeLimitSecond: 1000
@@ -6816,6 +6817,7 @@ MonoBehaviour:
   EnemyManager: {fileID: 137115893}
   cameraMove: {fileID: 963789759}
   enemySceneManager: {fileID: 137115895}
+  lastWaitTime: 0
   cameraCallEnemy:
   - cameraCallEnemy: 2
     timeLimitSecond: 1000
@@ -7192,6 +7194,7 @@ MonoBehaviour:
   EnemyManager: {fileID: 137115893}
   cameraMove: {fileID: 1023797744}
   enemySceneManager: {fileID: 137115895}
+  lastWaitTime: 0
   cameraCallEnemy:
   - cameraCallEnemy: 2
     timeLimitSecond: 1000
@@ -30838,7 +30841,7 @@ MonoBehaviour:
   - {fileID: 74674529}
   - {fileID: 790921294}
   - {fileID: 641128648}
-  setNum: 5
+  setNum: 8
 --- !u!114 &1647066277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30853,6 +30856,7 @@ MonoBehaviour:
   EnemyManager: {fileID: 137115893}
   cameraMove: {fileID: 1647066276}
   enemySceneManager: {fileID: 137115895}
+  lastWaitTime: 5
   cameraCallEnemy:
   - cameraCallEnemy: 2
     timeLimitSecond: 30
@@ -30867,7 +30871,7 @@ MonoBehaviour:
   - cameraCallEnemy: 8
     timeLimitSecond: 30
   cameraWait:
-  - cameraWait: 5
+  - cameraWait: 8
     timeLimitSecond: 10
   debugCameraStopMode: 0
 --- !u!1001 &1649218072
@@ -33808,6 +33812,7 @@ MonoBehaviour:
   EnemyManager: {fileID: 137115893}
   cameraMove: {fileID: 2102937221}
   enemySceneManager: {fileID: 137115895}
+  lastWaitTime: 0
   cameraCallEnemy:
   - cameraCallEnemy: 2
     timeLimitSecond: 30
