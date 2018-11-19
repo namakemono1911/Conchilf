@@ -39,7 +39,6 @@ public class bossAnimation : MonoBehaviour {
 				{(int)BOSS_ANIMATION_TYPE.ANIMATION_DETH , "deth"},
                 {(int)BOSS_ANIMATION_TYPE.ANIMATION_SHOCKWAVE , "jamp"},
             };
-
 	}
 
 	// Use this for initialization
@@ -50,8 +49,6 @@ public class bossAnimation : MonoBehaviour {
 	// 指定アニメーションの再生
 	public void playAnimation(BOSS_ANIMATION_TYPE type)
 	{
-		Debug.Log("bossモーション変更 : " + type);
-
 		myAnimator.Play(animationNames[(int)type]);
 	}
 
