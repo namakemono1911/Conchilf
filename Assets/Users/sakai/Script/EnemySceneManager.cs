@@ -159,7 +159,6 @@ public class EnemySceneManager : MonoBehaviour {
         return SerializeMember.Enemy_manager.SceneEnemyAllDead();
     }
 
-
     /////////////////////////////
     //  クラス内メソッド
     ////////////////////////////

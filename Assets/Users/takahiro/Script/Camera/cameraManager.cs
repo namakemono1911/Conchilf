@@ -11,6 +11,14 @@ public class cameraManager : MonoBehaviour {
 		public float timeLimitSecond;
 	}
 
+	[System.Serializable]
+	public struct CameraWait
+	{
+		public int cameraWait;
+		public float timeLimitSecond;
+	}
+
+
 	[SerializeField]
 	private GameObject EnemyManager;
 
@@ -19,20 +27,30 @@ public class cameraManager : MonoBehaviour {
 	[SerializeField]
 	private EnemySceneManager enemySceneManager;
 	[SerializeField]
+	private float lastWaitTime;
+	[SerializeField]
 	private CameraCallEnemy[] cameraCallEnemy;
+	[SerializeField]
+	private CameraWait[] cameraWait;
 
 	private int numScene;
 	private float timerScene;   // シーンごとのタイマー
 	private bool isEnemyWave;   // このシーンに敵がいるか
 	private bool isSceneChange;
+	private bool isSceneChangebuf;
 	private bool isDebug;
-
+	private bool isWait;
+	private int waitNum;
+	private bool isLast;
 	public bool debugCameraStopMode = false;
 
 	// Use this for initialization
 	void Start()
 	{
-
+		isSceneChangebuf = false;
+		isLast = false;
+		waitNum = 0;
+		isWait = false;
 		isDebug = false;
 		numScene = 0;
 
@@ -43,6 +61,15 @@ public class cameraManager : MonoBehaviour {
 				++numScene;
 			}
 		}
+
+		for (int cntEnemyCall = 0; cameraWait.Length - 1 >= cntEnemyCall; ++cntEnemyCall)
+		{
+			if (cameraWait[cntEnemyCall].cameraWait < cameraMove.getCameraMoveNum())
+			{
+				++waitNum;
+			}
+		}
+
 		isSceneChange = false;
 		timerScene = 0;
 		isEnemyWave = false;
@@ -55,6 +82,32 @@ public class cameraManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate() {
+
+		if(isSceneChange)
+		{
+			endTimeUpdate();
+
+			timerScene += Time.deltaTime;
+			if(timerScene >= lastWaitTime)
+			{
+				sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS_1);
+			}
+			return;
+		}
+
+		if(isWait)
+		{
+			timerScene += Time.deltaTime;
+			if(cameraWait[waitNum].timeLimitSecond <= timerScene)
+			{
+				++waitNum;
+				isWait = false;
+				nextCamera();
+			}
+
+			return;
+		}
+
 		// タイマー処理 → 強制カメラ移動
 		checkTimer();
 
@@ -65,9 +118,6 @@ public class cameraManager : MonoBehaviour {
 
 		// ウェーブ処理
 		nextWave();
-
-		// このゲームシーンの終了を検知
-		chackSceneManager();
 	}
 
 	// カメラ変更
@@ -94,6 +144,11 @@ public class cameraManager : MonoBehaviour {
 		++numScene;
 		isEnemyWave = true;
 
+		if(cameraMove.isMaxCamera())
+		{
+			isLast = true;
+		}
+
 		if(isDebug == true)
 		{
 			enemySceneManager.EnemySceneNextToIndex(numScene - 1);
@@ -109,9 +164,6 @@ public class cameraManager : MonoBehaviour {
 
 		if (enemySceneManager.EnemySceneNext() == false)
 		{
-			int ii = 00;
-			// 全滅したらシーン遷移 ← ここまだ条件かわる可能性あり
-			//sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS_1);
 		}
 	}
 
@@ -124,6 +176,11 @@ public class cameraManager : MonoBehaviour {
 			{
 				// 敵再生
 				nextScene();
+			}
+			else if(cameraMove.getCameraMoveNum() == cameraWait[waitNum].cameraWait)
+			{
+				isWait = true;
+				timerScene = 0.0f;
 			}
 			else
 			{
@@ -143,6 +200,12 @@ public class cameraManager : MonoBehaviour {
 			// 次のウェーブを呼ぶ
 			if(enemySceneManager.EnemyWaveNext() == false)
 			{
+				// 次のシーンが無い時
+				if(EnemyManager.GetComponent<EnemyManager>().GetNextSceneEnable(numScene) == false)
+				{
+					chackSceneManager();
+					return;
+				}
 				// 次のウェーブが無い時
 				// カメラを動かす
 				nextCamera();
@@ -172,12 +235,8 @@ public class cameraManager : MonoBehaviour {
 	// このゲームシーンの終了を検知
 	private void chackSceneManager()
 	{
-		// 最後のカメラが停止したら
-		if(cameraMove.isMaxCamera() && cameraMove.isEndMove() && isSceneChange == false)
-		{
-			isSceneChange = true;
-			sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS_1);
-		}
+		timerScene = 0.0f;
+		isSceneChange = true;
 	}
 
     // ウェーブの全滅確認
@@ -192,6 +251,11 @@ public class cameraManager : MonoBehaviour {
             }
         }
         return true;
-//        return EnemyManager.GetComponent<EnemyManager>().WaveEnemyAllDead();
+	}
+
+
+	// カメラが最後まで行った後の残り時間に行うもの
+	private void endTimeUpdate()
+	{
 	}
 }
