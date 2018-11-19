@@ -123,14 +123,14 @@ public class CreateDebug : MonoBehaviour {
 		{
 			if (Input.GetKeyDown ("1"))
 			{
-				//Time.timeScale = 0.5f;
+				Time.timeScale = 0.2f;
 				Explotion.SetActive (false);
 				Explotion.SetActive (true);
 				Debug.Log("Event : 爆発");
 			}
 			if (Input.GetKeyDown ("2"))
 			{
-				//Time.timeScale = 1.0f;
+				Time.timeScale = 1.0f;
 				Black.SetActive (false);
 				Black.SetActive (true);
 				Debug.Log("Event : フェードアウト");

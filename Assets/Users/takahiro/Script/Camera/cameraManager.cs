@@ -74,7 +74,7 @@ public class cameraManager : MonoBehaviour {
 	private void nextCamera()
 	{
 		timerScene = 0.0f;
-		isEnemyWave = false;
+		//isEnemyWave = false;
 
 		if(cameraMove.isMaxCamera())
 		{

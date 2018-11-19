@@ -24,7 +24,7 @@ public class cameraMove : MonoBehaviour {
 	private float nowCamera;
 	private float nowLookAt;
 	private int oldPath;
-
+	private bool isUpdate;
 	// Use this for initialization
 	void Start () {
 		speedCamera = cameraSet[setNum].getCameraSpeed();
@@ -35,10 +35,14 @@ public class cameraMove : MonoBehaviour {
 		oldPath = 0;
 
 		cameraSet[setNum].start();
+		isUpdate = true;
 	}
 
 	// Update is called once per frame
 	void FixedUpdate() {
+
+		if (isUpdate)
+			return;
 
 		if(setNum >= cameraSet.Length)
 		{
@@ -78,10 +82,59 @@ public class cameraMove : MonoBehaviour {
 		watanabeDebug();
 	}
 
+	void Update()
+	{
+
+		if (!isUpdate)
+			return;
+
+		if (setNum >= cameraSet.Length)
+		{
+			setNum = 0;
+		}
+
+		if (debugMainCamera == false && debugMainCameraObj != null)// [追加]
+		{
+			Destroy(debugMainCameraObj);
+		}
+
+		if (debugLookAt == false && debugLookAtObj != null)
+		{
+			Destroy(debugLookAtObj);
+		}
+
+		speedCamera = cameraSet[setNum].getCameraSpeed();
+		speedLookAt = cameraSet[setNum].getLookAtSpeed();
+
+		// 座標移動
+		transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(nowCamera, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
+		if (debugMainCameraObj != null)
+		{
+			debugMainCameraObj.transform.position = cameraSet[setNum].getcameraPath().EvaluatePositionAtUnit(nowCamera, Cinemachine.CinemachinePathBase.PositionUnits.Distance);// [追加]
+		}
+		// カメラ角度
+		transform.LookAt(cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance));
+		if (debugLookAtObj != null)
+		{
+			debugLookAtObj.transform.position = cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
+		}
+
+		nowCamera += speedCamera;
+		nowLookAt += speedLookAt;
+
+		// 追加
+		watanabeDebug();
+	}
+
 	public void nextMove()
 	{
 		cameraSet[setNum].end();
 		setNum += 1;
+
+		if(setNum == 1)
+		{
+			isUpdate = false;
+		}
 
 		if (setNum >= cameraSet.Length)
 		{
