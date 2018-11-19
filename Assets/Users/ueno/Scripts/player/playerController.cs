@@ -48,6 +48,9 @@ public class playerController : MonoBehaviour {
 	[SerializeField]
 	private Transform[] hitPos;			//弾が飛んでく所
 
+    [SerializeField]
+    private playerGuardUi guardUI;      //ガードUI
+
     private playerState state = null;   //プレイヤーのステートパターン
 
     public playerScore result;          //リザルト
@@ -65,6 +68,11 @@ public class playerController : MonoBehaviour {
     public PlayerUI UI
     {
         get { return ui; }
+    }
+
+    public playerGuardUi GuardUI
+    {
+        get { return guardUI; }
     }
 
 	// Use this for initialization
@@ -89,6 +97,7 @@ public class playerController : MonoBehaviour {
 
     public void changeState(playerState newState)
     {
+        Debug.Log(newState);
         if (state != null)
             Destroy(state);
 

@@ -21,8 +21,7 @@ public enum ControllerArm
 //大本営
 public class WiiInputFacade : InputFacade
 {
-    [SerializeField]
-    private WiiInput[] wiiInput;          //Wiiリモコン
+    private WiiInput[] wiiInput = new WiiInput[2];          //Wiiリモコン
 
     [SerializeField]
     private wiiSetting setting;         //Wiiリモコンの設定
@@ -34,6 +33,8 @@ public class WiiInputFacade : InputFacade
     // Use this for initialization
     void Start()
     {
+        wiiInput[(int)ControllerArm.right] = new WiiInput(PlayerNum);
+        wiiInput[(int)ControllerArm.left] = new WiiInput(PlayerNum + 1);
         foreach (var input in wiiInput)
             input.start();
     }

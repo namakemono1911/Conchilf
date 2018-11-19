@@ -374,6 +374,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114676784021905372, guid: d3a80fbecde46964996b11686e767a33,
+        type: 2}
+      propertyPath: instance
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3a80fbecde46964996b11686e767a33, type: 2}
   m_IsPrefabParent: 0
@@ -931,6 +936,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 535483622}
+  - component: {fileID: 535483627}
   - component: {fileID: 535483624}
   - component: {fileID: 535483626}
   - component: {fileID: 535483625}
@@ -987,15 +993,17 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 535483621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 495a1045a4143cb448381f39040bf5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNum: 0
   reticle: {fileID: 535483622}
   setting:
     shot: 323
     guard: 324
+    reload: 0
   sensitivity: 5
 --- !u!61 &535483625
 BoxCollider2D:
@@ -1036,6 +1044,23 @@ MonoBehaviour:
   mode1: {fileID: 109991886}
   mode2: {fileID: 299914035}
   reticle: {fileID: 535483624}
+--- !u!114 &535483627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535483621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0efceb803e26e4eabf18d24cb077b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNum: 0
+  reticle: {fileID: 842963560}
+  setting:
+    shot: 1
+    reload: 0
+  sensitivity: 3
 --- !u!1 &559624820
 GameObject:
   m_ObjectHideFlags: 0

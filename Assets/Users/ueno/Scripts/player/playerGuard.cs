@@ -8,7 +8,8 @@ public class playerGuard : playerState {
 
     public override void initState()
     {
-
+        Debug.Log("playerState : Guard");
+        player.GuardUI.guardStart();
     }
 
     public override void updateState()
@@ -20,6 +21,8 @@ public class playerGuard : playerState {
                 player.changeState(new playerDefault(player));
             else
                 player.changeState(new playerNoAmmo(player));
+
+            player.GuardUI.guardEnd();
         }
         Debug.Log("state Gurd");
     }
