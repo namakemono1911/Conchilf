@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4740049839004958}
   - component: {fileID: 95754902619334488}
-  - component: {fileID: 136571621429950398}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -217,7 +216,7 @@ GameObject:
   - component: {fileID: 114690877906652310}
   m_Layer: 0
   m_Name: BossObject(Perfect)
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -465,9 +464,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4219152176579158}
+  - component: {fileID: 136892150572929438}
   m_Layer: 0
   m_Name: root
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1171,7 +1171,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1477679816864072}
-  m_LocalRotation: {x: -0.0020291598, y: 0.6326388, z: 0.77440804, w: 0.0075052693}
+  m_LocalRotation: {x: -0.0020291596, y: 0.63263875, z: 0.7744079, w: 0.0075052683}
   m_LocalPosition: {x: -0.0000022518634, y: -0.000000010728836, z: -0.00000008702278}
   m_LocalScale: {x: 0.009999996, y: 0.01, z: 0.009999999}
   m_Children: []
@@ -2648,16 +2648,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     bullet: {fileID: 1584491329846210, guid: 2b71ce189da3224459a4a61de105579f, type: 2}
---- !u!136 &136571621429950398
+--- !u!136 &136892150572929438
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1038462244651344}
+  m_GameObject: {fileID: 1583652706552142}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.02
-  m_Height: 0.085
+  m_Radius: 0.025
+  m_Height: 0.08
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -0.035}
+  m_Center: {x: 0, y: 0, z: -0.04}

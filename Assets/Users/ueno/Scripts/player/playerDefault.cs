@@ -72,15 +72,16 @@ public class playerDefault : playerState {
 
             if (hit.collider.tag == "Boss")
             {
-                hit.transform.gameObject.GetComponent<enemy>().setPlayer(player);
-                hit.transform.gameObject.GetComponent<boss>().BulletHit();
+                
+                hit.transform.gameObject.transform.parent.parent.GetComponent<boss>().setPlayer(player);
+                hit.transform.gameObject.transform.parent.parent.GetComponent<boss>().BulletHit();
                 isHit = true;
             }
         }
         player.result.shot(isHit);
 
         //デバッグ表示
-  //      var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
+        //var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
 		//line.SetPosition(0, ray.origin);
 		//line.SetPosition(1, hit.point);
 	}

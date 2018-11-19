@@ -49,6 +49,7 @@ public class boss : MonoBehaviour
     private int                 RoopNum;            // ループ数
 
     private bool                KusoFlug;           // 初回の例外処理用くそふらぐ
+    private playerController     Hit_Playerinfo;         // プレイヤー情報
 
     // 前回アニメーション情報
     private bossAnimation.BOSS_ANIMATION_TYPE beforeAnimation;
@@ -127,6 +128,8 @@ public class boss : MonoBehaviour
         RoopNum     = Common.Initialize.INIT_INT;
         bossTimer   = Common.Initialize.INIT_INT;
 
+        Hit_Playerinfo = null;
+
         // パラメータ初期化処理
         ParamaterInit();
 
@@ -147,14 +150,11 @@ public class boss : MonoBehaviour
 
         // タイプ更新
         ParamaterUpdate();
-
-        
+     
         // Y軸のみ常にカメラを向く
         LookAt(Camera.main.transform.position);
-        // this.transform.Rotate(-90.0f, 0.0f, 0.0f);
-
-        
-        // 3ループで天井打ちs
+                
+        // 3ループで天井打ち
         if(RoopNum  == 3)
         {
             // 天井打ちかショックウェーブかをHPで切り替え
@@ -211,18 +211,22 @@ public class boss : MonoBehaviour
         bossState.updateState();
     }
 
-    // プレイヤーの弾と当たったか
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "playerBullet")
-        {
-            bossState.hitBullet(-1, false);
-        }
-    }
+
 
     /////////////////////////////////////////
     /// 外部メソッド
     ///////////////////////////////////////// 
+
+    // プレイヤーの弾と当たったか
+    public void OnCollisionBoss(Collision collision)
+    {
+        if (collision.transform.tag == "playerBullet")
+        {
+            bossState.hitBullet(-1, false);
+            Debug.Log("※ボスへ攻撃がヒット [残体力]: " + (OptionInfo.bossInfo.standardInfo.hp - SumDamage));
+        }
+    }
+
 
     // 被ヒット時
     public void BulletHit()
@@ -315,5 +319,11 @@ public class boss : MonoBehaviour
     public bool isFailure()
     {
         return false;
+    }
+
+    // プレイヤー情報
+    public void setPlayer(playerController p)
+    {
+        Hit_Playerinfo = p;
     }
 }
