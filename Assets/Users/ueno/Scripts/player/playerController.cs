@@ -22,6 +22,12 @@ public class GunSetting
 }
 
 [System.Serializable]
+public class PlayerAnimation
+{
+    public UiAnimationInterface guard;     //ガードエフェクト
+}
+
+[System.Serializable]
 public class PlayerUI
 {
     public bulletLifeUI bulletUI = null;      //弾のUI
@@ -37,7 +43,7 @@ public class playerController : MonoBehaviour {
 	public bool Debug_HP = false;		//HPデバッグモード
 
     [SerializeField]
-    private InputFacade control;     //プレイヤーのコントロール
+    private InputFacade control;        //プレイヤーのコントロール
 
     [SerializeField]
     private GunSetting gun;             //銃の設定
@@ -47,6 +53,9 @@ public class playerController : MonoBehaviour {
 
 	[SerializeField]
 	private Transform[] hitPos;			//弾が飛んでく所
+
+    [SerializeField]
+    private PlayerAnimation animation;    //プレイヤーのエフェクト集
 
     private playerState state = null;   //プレイヤーのステートパターン
 
@@ -65,6 +74,11 @@ public class playerController : MonoBehaviour {
     public PlayerUI UI
     {
         get { return ui; }
+    }
+
+    public PlayerAnimation Animation
+    {
+        get { return animation; }
     }
 
 	// Use this for initialization
@@ -89,6 +103,7 @@ public class playerController : MonoBehaviour {
 
     public void changeState(playerState newState)
     {
+        Debug.Log(newState);
         if (state != null)
             Destroy(state);
 

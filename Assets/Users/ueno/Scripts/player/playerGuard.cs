@@ -8,18 +8,23 @@ public class playerGuard : playerState {
 
     public override void initState()
     {
-
+        Debug.Log("playerState : Guard");
+        //ガードアニメーション開始
+        player.Animation.guard.startAnimation();
     }
 
     public override void updateState()
     {
-        if (player.Control.whetherGuard())
+        if (!player.Control.whetherGuard())
         {
             //弾がなければNoAmmoに
             if (player.Gun.remBullet > 0)
                 player.changeState(new playerDefault(player));
             else
                 player.changeState(new playerNoAmmo(player));
+
+            //ガードアニメーション終了
+            player.Animation.guard.endAnimation();
         }
         Debug.Log("state Gurd");
     }
