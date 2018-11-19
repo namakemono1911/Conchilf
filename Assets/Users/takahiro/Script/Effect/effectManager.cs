@@ -7,8 +7,8 @@ public class effectManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject[] effects;
 
-	public void playEffect(int idx , Transform transform)
+	public void playEffect(int idx)
 	{
-		GameObject.Instantiate(effects[idx], transform);
+		effects[idx].SetActive(true);
 	}
 }

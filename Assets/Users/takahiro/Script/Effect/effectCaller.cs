@@ -14,7 +14,7 @@ public class effectCaller : MonoBehaviour {
 	{
 		if(collision.transform.tag == "player")
 		{
-			effectManager.playEffect(effectNumber, this.transform);
+			effectManager.playEffect(effectNumber);
 		}
 	}
 }
