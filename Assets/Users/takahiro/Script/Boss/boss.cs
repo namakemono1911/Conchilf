@@ -2,8 +2,8 @@
 //
 //  Title   : ボス処理
 //  Auther  : Shun Sakai 
-//  Date    : 2018/10/17
-//  Update  : ボス本体の処理
+//  Date    : 2018/11/19
+//  Update  : ボスシーン用に調整
 //  Memo    : タカヒロから引き継ぎ
 //
 ///////////////////////////////////////////////
@@ -15,26 +15,32 @@ using Common;
 [System.Serializable]
 public struct BossInfo
 {
+	// ボスのステータス
 	public enemyTypeManager.EnemyTypeInfo standardInfo;	// 情報
-	// 他にボスに必要な情報
 }
 
 // ボス処理
-public class boss : MonoBehaviour {
-	// ボスパラメータ
-	[SerializeField]
-	private BossInfo bossInfo;                      // ボス情報
-    [SerializeField]
-    private Enemy_gun gun_Right;                    // 銃口(右)
-    [SerializeField]
-    private Enemy_gun gun_Left;                     // 銃口(左)
+public class boss : MonoBehaviour
+{
 
+    // シリアライズ
+    [System.Serializable]
+    class Option
+    {
+        public BossInfo bossInfo;                      // ボス情報
+        public Enemy_gun gun_Right;                    // 銃口(右)
+        public Enemy_gun gun_Left;                     // 銃口(左)
+
+        public playerController[] Playerinfo;         // プレイヤー情報
+    }
+
+    [SerializeField]
+    private Option OptionInfo;         // オプション情報
 
     // 通常メンバ
     private int                 SumDamage;          // 総合ダメージ
     private float               bossTimer;          // ボス用タイマー
     private bool                CountEnable;        // カウントフラグ
-
 
     private bossState           bossState;          // ボスステート
     private bossAnimation       bossAnimation;      // アニメーション情報
@@ -51,7 +57,7 @@ public class boss : MonoBehaviour {
     // ボスステータス情報
     public enemyTypeManager.EnemyTypeInfo BossStatus
     {
-        get { return bossInfo.standardInfo; }
+        get { return OptionInfo.bossInfo.standardInfo; }
     }
     // ボスステート
 	public bossState state
@@ -61,7 +67,7 @@ public class boss : MonoBehaviour {
     // ボス個体情報
 	public BossInfo info
 	{
-		get { return bossInfo; }
+		get { return OptionInfo.bossInfo; }
 	}
     // アニメーション管理
 	public bossAnimation myAnimation
@@ -92,13 +98,13 @@ public class boss : MonoBehaviour {
     // 銃(右)
     public Enemy_gun bulletInstance_Right
     {
-        get { return gun_Right; }
+        get { return OptionInfo.gun_Right; }
 
     }
     // 銃(左)
     public Enemy_gun bulletInstance_Left
     {
-        get { return gun_Left; }
+        get { return OptionInfo.gun_Left; }
 
     }
 
@@ -141,8 +147,9 @@ public class boss : MonoBehaviour {
         // タイプ更新
         ParamaterUpdate();
 
-        // 向き修復
-        // LookAt(Camera.main.transform.position);
+        // Y軸のみ常にカメラを向く
+        LookAt(Camera.main.transform.position);
+        this.transform.Rotate(-90.0f, 0.0f, 0.0f);
 
         // 3ループで天井打ち
         if(RoopNum  == 3)
@@ -151,7 +158,7 @@ public class boss : MonoBehaviour {
 
             RoopNum = 0;
 
-            if ((bossInfo.standardInfo.hp * 0.7)  <= SumDamage)
+            if ((OptionInfo.bossInfo.standardInfo.hp * 0.7)  <= SumDamage)
             {
                 ChangeState(new BossStateWaitToShockWave(this), bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
             }
@@ -185,7 +192,7 @@ public class boss : MonoBehaviour {
         // バレット情報を取得
         Bullet = GetComponent<enemyBullet>();
         // 最大弾数セット
-        Bullet.setMaxBullet(bossInfo.standardInfo.bulletNum);
+        Bullet.setMaxBullet(OptionInfo.bossInfo.standardInfo.bulletNum);
         // リロード処理
         Bullet.reloadBullet();
 
@@ -216,16 +223,14 @@ public class boss : MonoBehaviour {
     /////////////////////////////////////////
     /// 外部メソッド
     ///////////////////////////////////////// 
-    ///
 
-    // 当たった
+    // 被ヒット時
     public void BulletHit()
     {
         bossState.hitBullet(-1, false);
+        Debug.Log("※ボスへ攻撃がヒット [残体力]: " + (OptionInfo.bossInfo.standardInfo.hp - SumDamage));     
     }
-
-
-
+    
     // ステート変更
     public void ChangeState(bossState NewState, bossAnimation.BOSS_ANIMATION_TYPE befor)
     {
@@ -246,19 +251,19 @@ public class boss : MonoBehaviour {
     // ボス情報を取得
     public BossInfo getBossInfo()
     {
-        return bossInfo;
+        return OptionInfo.bossInfo;
     }
 
     // ボス情報をセット
     public void setBossInfo(BossInfo buf)
     {
-        bossInfo = buf;
+        OptionInfo.bossInfo = buf;
     }
 
     // 生死判定
     public bool isDeth()
     {
-        if(bossInfo.standardInfo.hp <= SumDamage)
+        if(OptionInfo.bossInfo.standardInfo.hp <= SumDamage)
         {
             return true;
         }
@@ -266,12 +271,22 @@ public class boss : MonoBehaviour {
         return false;
     }
 
+    // プレイヤー座標取得
+    public Vector3 GetPlayerPos(int PlayerNum)
+    {
+        Vector3 pos = OptionInfo.Playerinfo[PlayerNum].getHitPos();
+        return pos;
+    }
+
+
     // 方向転換(Y軸のみ)
     public void LookAt(Vector3 at)
     {
-        Vector3 p = at;
-        p.y = transform.position.y;
-        transform.LookAt(p);
+        var position = at;
+
+        // 体全体をカメラに向ける(Y軸回転)
+        position.y = this.transform.position.y;
+        transform.LookAt(position);
     }
 
     // ダメージ加算
@@ -294,8 +309,6 @@ public class boss : MonoBehaviour {
         {
             ChangeState(new BossStateWait(this), beforeAnimation);
         }
-
-       
     }
 
     // 前に障害物があるかどうか

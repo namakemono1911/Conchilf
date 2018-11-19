@@ -54,8 +54,8 @@ public class BossStateShotuUp : bossState
         // 非ヒット時の演出用
         Vector3 camera = Camera.main.transform.position;
         Vector3 bossPos = boss.transform.position;
-        Pos0 = new Vector3(camera.x, camera.y + 10.0f, camera.z);
-        Pos1 = new Vector3(camera.x, camera.y + 10.0f, camera.z);
+        Pos0 = new Vector3(camera.x, camera.y + 20.0f, camera.z);
+        Pos1 = new Vector3(camera.x, camera.y + 20.0f, camera.z);
         
         // 発砲
         boss.bulletInstance_Right.SetBullet(Pos0, 5.0f);

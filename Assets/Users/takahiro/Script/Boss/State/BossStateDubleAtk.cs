@@ -57,22 +57,17 @@ public class BossStateDubleAtk : bossState {
         // ヒット確率計算
         if (HitProbability <= boss.BossStatus.hitProbability)
         {
-            // プレイヤー取得
-            playerController[] p = boss.players;
-
-            // プレイヤー1&2の座標取得
-            //  Pos0 = p[0].getHitPos();
-            //  Pos1 = p[1].getHitPos();
-
-            
+            // プレイヤー取得[Player1&2]
+            Pos0 = boss.GetPlayerPos(0);
+            Pos1 = boss.GetPlayerPos(0);
         }
         else
         {
             // 非ヒット時の演出用
             Vector3 camera = Camera.main.transform.position;
             Vector3 bossPos = boss.transform.position;
-            Pos0 = new Vector3(camera.x + 10.0f, camera.y + 10.0f, camera.z);
-            Pos1 = new Vector3(camera.x - 10.0f, camera.y + 10.0f, camera.z);
+            Pos0 = new Vector3(camera.x + 20.0f, camera.y + 20.0f, camera.z);
+            Pos1 = new Vector3(camera.x - 20.0f, camera.y + 20.0f, camera.z);
 
         }
 

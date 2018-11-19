@@ -42,8 +42,7 @@ abstract public class bossState : MonoBehaviour
 
         // ダメージ
         boss.Add_Damage(damege);
-
-
+        
 		// 生死判定
 		if(boss.isDeth())
 		{
