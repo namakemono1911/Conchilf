@@ -87,15 +87,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a3fe85c8f7e1844b742f545734aa20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSecond: 5
+  fadeSecond: 3
   fadeImage: {fileID: 114779193918243156}
   sceneNames:
   - title
   - Stage1
   - kariBoss
-  - kari
   - Stage2
+  - kariBoss2
   - result
+  - inputName
   - ranking
 --- !u!114 &114669645004471524
 MonoBehaviour:

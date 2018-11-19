@@ -9,6 +9,13 @@ public class textAnimationController : MonoBehaviour
 
     private int arrayNum = 0;
 
+    private bool isAnimation = true;
+
+    public bool IsAnimation
+    {
+        get { return isAnimation; }
+    }
+
 	// Use this for initialization
 	void Start ()
     {
@@ -31,9 +38,9 @@ public class textAnimationController : MonoBehaviour
 
     private void uninit()
     {
+        isAnimation = false;
+
         foreach (var anime in animation)
             Destroy(anime.table);
-
-        Destroy(this);
     }
 }

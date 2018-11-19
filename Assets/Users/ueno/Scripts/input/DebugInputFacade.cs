@@ -54,6 +54,9 @@ public class DebugInputFacade : InputFacade {
 	// Update is called once per frame
 	void Update ()
     {
+        if (reticle == null)
+            return;
+
         //レティクル移動
         Vector2 reticlePos = Vector2.zero;
         reticlePos.x = Input.GetAxis("Mouse X") * sensitivity;
