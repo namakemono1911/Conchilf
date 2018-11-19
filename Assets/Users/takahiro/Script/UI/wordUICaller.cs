@@ -12,5 +12,6 @@ public class wordUICaller : MonoBehaviour {
 	private void OnCollisionEnter(Collision collision)
 	{
 		wordUIManager.startPlayWordUI(callNumber);
+		Debug.Log ("Trigger");
 	}
 }

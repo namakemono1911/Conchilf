@@ -19,8 +19,6 @@ public class cameraManager : MonoBehaviour {
 	[SerializeField]
 	private EnemySceneManager enemySceneManager;
 	[SerializeField]
-	private int debugScene;
-	[SerializeField]
 	private CameraCallEnemy[] cameraCallEnemy;
 
 	private int numScene;
@@ -28,6 +26,9 @@ public class cameraManager : MonoBehaviour {
 	private bool isEnemyWave;   // このシーンに敵がいるか
 	private bool isSceneChange;
 	private bool isDebug;
+
+	public bool debugCameraStopMode = false;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -58,7 +59,9 @@ public class cameraManager : MonoBehaviour {
 		checkTimer();
 
 		// カメラの終了を検知 → 敵のシーンを再生
-		cameraMoveEnd();
+		if (!debugCameraStopMode) {
+			cameraMoveEnd();
+		}
 
 		// ウェーブ処理
 		nextWave();
@@ -71,7 +74,7 @@ public class cameraManager : MonoBehaviour {
 	private void nextCamera()
 	{
 		timerScene = 0.0f;
-		isEnemyWave = false;
+		//isEnemyWave = false;
 
 		if(cameraMove.isMaxCamera())
 		{
