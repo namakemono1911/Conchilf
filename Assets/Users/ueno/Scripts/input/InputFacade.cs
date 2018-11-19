@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
+[System.Serializable]
+public class InputSound
+{
+    public AudioSource shotSE;
+    public AudioSource reloadSE;
+    public AudioSource guardSE;
+}
+
 abstract public class InputFacade : MonoBehaviour
 {
     [SerializeField]
@@ -10,6 +18,9 @@ abstract public class InputFacade : MonoBehaviour
 
     [SerializeField]
     protected RectTransform reticle;        //レティクル
+
+    [SerializeField]
+    protected InputSound sound;
 
     public RectTransform Reticle
     {

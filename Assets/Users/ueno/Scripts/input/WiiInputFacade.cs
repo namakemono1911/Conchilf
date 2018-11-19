@@ -57,6 +57,7 @@ public class WiiInputFacade : InputFacade
             (ir[1] * Screen.height + originPos.y) * sensitivity);
     }
 
+    //ガード
     public override bool whetherGuard()
     {
         float[,] ir = wiiInput[(int)ControllerArm.left].Ir.GetProbableSensorBarIR();
@@ -70,6 +71,9 @@ public class WiiInputFacade : InputFacade
                 return false;
         }
 
+        if (sound.guardSE != null)
+            sound.guardSE.Play();
+
         return true;
     }
 
@@ -77,8 +81,12 @@ public class WiiInputFacade : InputFacade
     public override bool whetherShot()
     {
         if (wiiInput[(int)ControllerArm.right].getTrigger(setting.shot))
-            return true;
+        {
+            if (sound.shotSE != null)
+                sound.shotSE.Play();
 
+            return true;
+        }
         return false;
     }
 
@@ -86,7 +94,12 @@ public class WiiInputFacade : InputFacade
     public override bool whetherReload()
     {
         if (wiiInput[(int)ControllerArm.right].getTrigger(setting.reload))
+        {
+            if (sound.reloadSE != null)
+                sound.reloadSE.Play();
+
             return true;
+        }
 
         return false;
     }

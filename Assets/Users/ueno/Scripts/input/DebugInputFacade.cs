@@ -22,7 +22,12 @@ public class DebugInputFacade : InputFacade {
     public override bool whetherGuard()
     {
         if (Input.GetKey(setting.guard))
+        {
+            if (sound.guardSE != null)
+                sound.guardSE.Play();
+
             return true;
+        }
 
         return false;
     }
@@ -30,7 +35,12 @@ public class DebugInputFacade : InputFacade {
     public override bool whetherReload()
     {
         if (Input.GetKeyDown(setting.reload))
+        {
+            if (sound.reloadSE != null)
+                sound.reloadSE.Play();
+
             return true;
+        }
 
         return false;
     }
@@ -38,7 +48,12 @@ public class DebugInputFacade : InputFacade {
     public override bool whetherShot()
     {
         if (Input.GetKeyDown(setting.shot))
+        {
+            if (sound.shotSE != null)
+                sound.shotSE.Play();
+
             return true;
+        }
 
         return false;
     }
