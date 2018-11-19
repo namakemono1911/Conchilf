@@ -24,7 +24,7 @@ public class bossAnimation : MonoBehaviour {
 	private void Awake()
 	{
 		// アニメーションデータの取得
-		myAnimator = this.GetComponent<Animator>();
+		myAnimator = this.transform.GetComponentInChildren<Animator>();
 
 		// アニメーションのdictionary設定
 		animationNames = new Dictionary<int, string>()

@@ -1150,7 +1150,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1051544753542370}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -25, y: 0, z: 7}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 4375761408178116}
@@ -1575,7 +1575,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1932403520102876}
-  m_LocalRotation: {x: -0.0020291598, y: 0.6326388, z: 0.77440804, w: 0.0075052693}
+  m_LocalRotation: {x: -0.0020291596, y: 0.63263875, z: 0.7744079, w: 0.0075052683}
   m_LocalPosition: {x: -0.0000022518634, y: -0.000000010728836, z: -0.00000008702278}
   m_LocalScale: {x: 0.009999996, y: 0.01, z: 0.009999999}
   m_Children: []
@@ -2592,17 +2592,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f444311cf02a74c9d5a5e8adb51e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossInfo:
-    standardInfo:
-      score: 0
-      criticalMagnification: 0
-      shotInterval: 2
-      bulletNum: 0
-      hitProbability: 0
-      reloadFrame: 0
-      hp: 4
-  gun_Right: {fileID: 114724644031654990}
-  gun_Left: {fileID: 114985847568064044}
+  OptionInfo:
+    bossInfo:
+      standardInfo:
+        score: 0
+        criticalMagnification: 0
+        shotInterval: 0
+        bulletNum: 0
+        hitProbability: 50
+        reloadFrame: 0
+        hp: 10
+    gun_Right: {fileID: 114724644031654990}
+    gun_Left: {fileID: 114985847568064044}
+    Playerinfo:
+    - {fileID: 0}
 --- !u!114 &114985847568064044
 MonoBehaviour:
   m_ObjectHideFlags: 1
