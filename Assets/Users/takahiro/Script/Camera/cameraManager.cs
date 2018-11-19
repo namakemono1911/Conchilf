@@ -11,6 +11,14 @@ public class cameraManager : MonoBehaviour {
 		public float timeLimitSecond;
 	}
 
+	[System.Serializable]
+	public struct CameraWait
+	{
+		public int cameraWait;
+		public float timeLimitSecond;
+	}
+
+
 	[SerializeField]
 	private GameObject EnemyManager;
 
@@ -20,19 +28,23 @@ public class cameraManager : MonoBehaviour {
 	private EnemySceneManager enemySceneManager;
 	[SerializeField]
 	private CameraCallEnemy[] cameraCallEnemy;
+	[SerializeField]
+	private CameraWait[] cameraWait;
 
 	private int numScene;
 	private float timerScene;   // シーンごとのタイマー
 	private bool isEnemyWave;   // このシーンに敵がいるか
 	private bool isSceneChange;
 	private bool isDebug;
-
+	private bool isWait;
+	private int waitNum;
 	public bool debugCameraStopMode = false;
 
 	// Use this for initialization
 	void Start()
 	{
-
+		waitNum = 0;
+		isWait = false;
 		isDebug = false;
 		numScene = 0;
 
@@ -43,6 +55,15 @@ public class cameraManager : MonoBehaviour {
 				++numScene;
 			}
 		}
+
+		for (int cntEnemyCall = 0; cameraWait.Length - 1 >= cntEnemyCall; ++cntEnemyCall)
+		{
+			if (cameraWait[cntEnemyCall].cameraWait < cameraMove.getCameraMoveNum())
+			{
+				++waitNum;
+			}
+		}
+
 		isSceneChange = false;
 		timerScene = 0;
 		isEnemyWave = false;
@@ -55,6 +76,20 @@ public class cameraManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate() {
+
+		if(isWait)
+		{
+			timerScene += Time.deltaTime;
+			if(cameraWait[waitNum].timeLimitSecond <= timerScene)
+			{
+				++waitNum;
+				isWait = false;
+				nextCamera();
+			}
+
+			return;
+		}
+
 		// タイマー処理 → 強制カメラ移動
 		checkTimer();
 
@@ -124,6 +159,11 @@ public class cameraManager : MonoBehaviour {
 			{
 				// 敵再生
 				nextScene();
+			}
+			else if(cameraMove.getCameraMoveNum() == cameraWait[waitNum].cameraWait)
+			{
+				isWait = true;
+				timerScene = 0.0f;
 			}
 			else
 			{
