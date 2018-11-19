@@ -7,11 +7,16 @@ using WiimoteApi;
 [System.Serializable]
 public class WiiInput
 {
-    public int playerNum;
+    private int playerNum;
     private Wiimote wiimote;
     private bool[] isPress = new bool[11];
     private bool[] isPressBefore = new bool[11];
     private bool[] led = { false, false, false, false };
+
+    public WiiInput(int num)
+    {
+        playerNum = num;
+    }
 
     public IRData Ir
     {
@@ -47,11 +52,13 @@ public class WiiInput
     {
         //Wiiリモコン情報取得
         if (!WiimoteManager.HasWiimote())
+        {
             if (!WiimoteManager.FindWiimotes())
             {
                 Debug.Log("リモコンがない");
                 return;
             }
+        }
 
         int ret;
         do
