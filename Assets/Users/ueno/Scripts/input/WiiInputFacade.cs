@@ -24,11 +24,18 @@ public class WiiInputFacade : InputFacade
     private WiiInput[] wiiInput = new WiiInput[2];          //Wiiリモコン
 
     [SerializeField]
-    private wiiSetting setting;         //Wiiリモコンの設定
+    private wiiSetting setting;                             //Wiiリモコンの設定
 
     [SerializeField]
-    private float sensitivity;
-    
+    private float sensitivity;                              //感度
+
+    [SerializeField]
+    private int shakeValue;                                 //リモコンを振る回数
+
+    [SerializeField]
+    private float shakePower;                               //振る力
+
+    private int nowShake;                                   //振った回数
 
     // Use this for initialization
     void Start()
@@ -98,6 +105,22 @@ public class WiiInputFacade : InputFacade
             if (sound.reloadSE != null)
                 sound.reloadSE.Play();
 
+            return true;
+        }
+
+        return false;
+    }
+
+    //起き上がったかどうか
+    public override bool whetherWakeUp()
+    {
+        Debug.Log("pow : " + wiiInput[(int)ControllerArm.right].getAccelVector().magnitude.ToString());
+        if (shakePower <= wiiInput[(int)ControllerArm.right].getAccelVector().magnitude)
+            nowShake++;
+
+        if (nowShake >= shakeValue)
+        {
+            nowShake = 0;
             return true;
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
+//銃の設定
 [System.Serializable]
 public class GunSetting
 {
@@ -21,12 +22,14 @@ public class GunSetting
     }
 }
 
+//アニメーション
 [System.Serializable]
 public class PlayerAnimation
 {
     public UiAnimationInterface guard;     //ガードエフェクト
 }
 
+//UI
 [System.Serializable]
 public class PlayerUI
 {
@@ -55,7 +58,7 @@ public class playerController : MonoBehaviour {
 	private Transform[] hitPos;			//弾が飛んでく所
 
     [SerializeField]
-    private PlayerAnimation animation;    //プレイヤーのエフェクト集
+    private PlayerAnimation animation;  //プレイヤーのエフェクト集
 
     private playerState state = null;   //プレイヤーのステートパターン
 
@@ -86,7 +89,7 @@ public class playerController : MonoBehaviour {
         //リザルト初期化
         result = new playerScore(control.PlayerNum);
 
-        changeState(new playerDefault(this));
+        changeState(new playerDown(this));
 
 		if (ui.bulletUI != null)
 			ui.bulletUI.setBulletLifeFirst(gun.numBullet);

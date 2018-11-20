@@ -101,4 +101,19 @@ public class WiiInput
 
         return false;
     }
+
+    //加速度取得
+    public Vector3 getAccelVector()
+    {
+        float accel_x;
+        float accel_y;
+        float accel_z;
+
+        float[] accel = wiimote.Accel.GetCalibratedAccelData();
+        accel_x = accel[0];
+        accel_y = -accel[2];
+        accel_z = -accel[1];
+
+        return new Vector3(accel_x, accel_y, accel_z);
+    }
 }
