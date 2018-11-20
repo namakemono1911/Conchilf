@@ -18,7 +18,6 @@ public class enemyShotDanger : MonoBehaviour
 	void Start()
 	{
 		time = 0.0f;
-		//isStart = false;
 		isFlash = true;
 	}
 
@@ -32,9 +31,7 @@ public class enemyShotDanger : MonoBehaviour
 		}
 		else
 		{
-			//Debug.Log("aa");
 			time += Time.deltaTime;
-			//Debug.Log(time);
 
 			if (isFlash)
 			{
