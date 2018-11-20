@@ -10,6 +10,7 @@ public class KeySetting
     public KeyCode shot;
     public KeyCode guard;
     public KeyCode reload;
+    public KeyCode wakeUp;
 }
 
 public class DebugInputFacade : InputFacade {
@@ -54,6 +55,15 @@ public class DebugInputFacade : InputFacade {
 
             return true;
         }
+
+        return false;
+    }
+
+    //起き上がり判定
+    public override bool whetherWakeUp()
+    {
+        if (Input.GetKeyDown(setting.wakeUp))
+            return true;
 
         return false;
     }

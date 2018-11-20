@@ -32,7 +32,8 @@ abstract public class InputFacade : MonoBehaviour
         get { return playerNum; }
     }
 
-    abstract public bool whetherShot();
-    abstract public bool whetherGuard();
-    abstract public bool whetherReload();
+    abstract public bool whetherShot();         //射撃したかどうか
+    abstract public bool whetherGuard();        //ガードしたかどうか
+    abstract public bool whetherReload();       //リロードしたかどうか
+    abstract public bool whetherWakeUp();       //起き上がったかどうか
 }

@@ -32,8 +32,6 @@ public class playerDefault : playerState {
         //リロード
         if (player.Control.whetherReload())
             player.changeState(new playerReload(player));
-
-        //Debug.Log("state Default");
     }
 
     //射撃
@@ -79,11 +77,6 @@ public class playerDefault : playerState {
             }
         }
         player.result.shot(isHit);
-
-        //デバッグ表示
-        //var line = GameObject.Find("debugLine").GetComponent<LineRenderer>();
-		//line.SetPosition(0, ray.origin);
-		//line.SetPosition(1, hit.point);
 	}
 
     //ヒット時処理

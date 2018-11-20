@@ -20195,7 +20195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 3
   Debug_HP: 1
-  control: {fileID: 1079740852}
+  control: {fileID: 1079740856}
   gun:
     numBullet: 12
     remBullet: 12
@@ -20220,17 +20220,22 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1079740849}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 495a1045a4143cb448381f39040bf5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 1
   reticle: {fileID: 1265572117}
+  sound:
+    shotSE: {fileID: 0}
+    reloadSE: {fileID: 0}
+    guardSE: {fileID: 0}
   setting:
     shot: 323
     guard: 324
     reload: 114
+    wakeUp: 113
   sensitivity: 50
 --- !u!223 &1079740853
 Canvas:
@@ -20288,17 +20293,23 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1079740849}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa0efceb803e26e4eabf18d24cb077b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 0
   reticle: {fileID: 1265572117}
+  sound:
+    shotSE: {fileID: 0}
+    reloadSE: {fileID: 0}
+    guardSE: {fileID: 0}
   setting:
     shot: 1
     reload: 0
   sensitivity: 3
+  shakeValue: 30
+  shakePower: 3
 --- !u!1 &1081736654
 GameObject:
   m_ObjectHideFlags: 0
@@ -25443,9 +25454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656317cdb2211b94ab158dc495eb0b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  policeCar: {fileID: 2113086203}
-  Explotion: {fileID: 1786412062}
-  Black: {fileID: 710890890}
 --- !u!4 &1457370390
 Transform:
   m_ObjectHideFlags: 0
@@ -26704,10 +26712,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
     type: 2}
   m_PrefabInternal: {fileID: 1782012056}
---- !u!1 &1786412062 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100008, guid: 7e434543af9a9694eb543bfed5b37dcc, type: 2}
-  m_PrefabInternal: {fileID: 452851040}
 --- !u!4 &1786412064 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 7e434543af9a9694eb543bfed5b37dcc, type: 2}
