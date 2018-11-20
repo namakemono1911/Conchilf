@@ -23,7 +23,7 @@ TagManager:
   - Player
   - guardUI
   - enemyUI
-  - 
+  - enemy
   - 
   - 
   - 
@@ -47,4 +47,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: enemyUI
+    uniqueID: 504470179
+    locked: 0
+  - name: 
+    uniqueID: 246715037
     locked: 0
