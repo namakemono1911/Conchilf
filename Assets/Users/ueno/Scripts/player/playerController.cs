@@ -26,7 +26,8 @@ public class GunSetting
 [System.Serializable]
 public class PlayerAnimation
 {
-    public UiAnimationInterface guard;     //ガードエフェクト
+    public UiAnimationInterface guard;      //ガードエフェクト
+    public UiAnimationInterface reloadHint; //リロードヒント
 }
 
 //UI
