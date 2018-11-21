@@ -11,7 +11,7 @@ public class wordUICaller : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.transform.tag == "player")
+		if (collision.transform.tag == "event")
 		{
 			wordUIManager.startPlayWordUI(callNumber);
 			Debug.Log("Trigger");
