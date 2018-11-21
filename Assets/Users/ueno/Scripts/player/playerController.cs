@@ -90,7 +90,7 @@ public class playerController : MonoBehaviour {
         //リザルト初期化
         result = new playerScore(control.PlayerNum);
 
-        changeState(new playerDown(this));
+        changeState(new playerDefault(this));
 
 		if (ui.bulletUI != null)
 			ui.bulletUI.setBulletLifeFirst(gun.numBullet);

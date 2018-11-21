@@ -26,11 +26,20 @@ public class Flashing : UiAnimationInterface {
     public override void endAnimation()
     {
         wheterFlash = false;
+        image.color = new Color(1, 1, 1, flashAlpha);
     }
 
     public override void startAnimation()
     {
         wheterFlash = true;
+        isDisplay = true;
+        startTime = Time.time;
+        image.color = new Color(1, 1, 1, 1);
+    }
+
+    private void Start()
+    {
+        image.color = new Color(1, 1, 1, 0);
     }
 
     // Update is called once per frame
@@ -47,7 +56,7 @@ public class Flashing : UiAnimationInterface {
 
     private void displayTimeCount()
     {
-        if (displayTime >= Time.time - startTime)
+        if (displayTime <= Time.time - startTime)
         {
             startTime = Time.time;
             image.color = new Color(1, 1, 1, flashAlpha);
@@ -57,7 +66,7 @@ public class Flashing : UiAnimationInterface {
 
     private void flashTimeCount()
     {
-        if (flashTime >= Time.time - startTime)
+        if (flashTime <= Time.time - startTime)
         {
             startTime = Time.time;
             image.color = new Color(1, 1, 1, 1);
