@@ -42,23 +42,34 @@ public class enemyStateShot : enemyState
 		// 当たる確率
 		if(hitProbability <= enemy.enemyTypeInfo.hitProbability)
 		{
-			// 1p or 2p
-			// ランダム
-			// 1pしかいない場合のも書いて
-			//int hitPlayer = (int)Random.Range(0.1f, 1.9f);
-			int hitPlayer = (int)Random.Range(0, 0.9f);
-			playerController[] p = enemy.players;
-			if(hitPlayer == 0)
-			{
-				// 1p
-				pos = p[0].getHitPos();
-			}
-			else
-			{
-				// 2p
-				pos = p[1].getHitPos();
-			}
-		}
+            Debug.Log("プレイヤー : " + enemy.numPlayer);
+
+            // 1p or 2p
+            if (enemy.numPlayer == 1)
+            {
+                playerController[] p = enemy.players;
+                // 1p
+                pos = p[0].getHitPos();
+            }
+            else
+            {
+                // 2pPlay
+                // ランダム
+                int hitPlayer = (int)Random.Range(0.1f, 1.9f);
+                Debug.Log("敵 : " + hitPlayer);
+                playerController[] p = enemy.players;
+                if (hitPlayer == 0)
+                {
+                    // 1p
+                    pos = p[0].getHitPos();
+                }
+                else
+                {
+                    // 2p
+                    pos = p[1].getHitPos();
+                }
+            }
+        }
 		else
 		{
 			// プレイヤーに当たらないけど撃つとき

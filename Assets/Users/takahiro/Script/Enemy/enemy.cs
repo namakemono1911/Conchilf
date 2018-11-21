@@ -41,6 +41,7 @@ public class enemy : MonoBehaviour {
 	private Transform startPos;                     	// 移動開始位置
 	private Vector3 goalPos;							// 移動終了位置
 	private bool created = false;						// 作られたかどうかのフラグ
+    private int playerNum;                              //プレイヤー数
 
 	private int damege;                                 // 総合ダメージ
 	private enemyTypeManager.EnemyTypeInfo typeInfo;    // タイプ情報
@@ -111,7 +112,11 @@ public class enemy : MonoBehaviour {
 	{
 		get { return enemyShotDanger; }
 	}
-
+    // プレイヤーの数
+    public int numPlayer
+    {
+        get { return playerNum; }
+    }
 	private void Awake()
 	{
 		playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
@@ -120,9 +125,12 @@ public class enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		// 現在位置を移動終了位置として保存
-		//goalPos = this.transform.position;
-		audioSource = GetComponent<AudioSource>();
+        //プレイヤー数取得
+        playerNum = GameObject.Find("UICanvasHight").GetComponent<havePlayerNum>().numPlayer;
+
+        // 現在位置を移動終了位置として保存
+        //goalPos = this.transform.position;
+        audioSource = GetComponent<AudioSource>();
 
 		// 創られてはいない時
 		if (!created)
