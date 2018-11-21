@@ -78,9 +78,6 @@ public class WiiInputFacade : InputFacade
                 return false;
         }
 
-        if (sound.guardSE != null)
-            sound.guardSE.Play();
-
         return true;
     }
 
@@ -88,12 +85,8 @@ public class WiiInputFacade : InputFacade
     public override bool whetherShot()
     {
         if (wiiInput[(int)ControllerArm.right].getTrigger(setting.shot))
-        {
-            if (sound.shotSE != null)
-                sound.shotSE.Play();
-
             return true;
-        }
+
         return false;
     }
 
@@ -104,12 +97,7 @@ public class WiiInputFacade : InputFacade
             return true;
 
         if (wiiInput[(int)ControllerArm.right].getTrigger(setting.reload))
-        {
-            if (sound.reloadSE != null)
-                sound.reloadSE.Play();
-
             return true;
-        }
 
         return false;
     }

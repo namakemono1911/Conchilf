@@ -61,6 +61,9 @@ public class playerController : MonoBehaviour {
     [SerializeField]
     private PlayerAnimation animation;  //プレイヤーのエフェクト集
 
+	[SerializeField]
+	private PlayerSE se;				//SE
+
     private playerState state = null;   //プレイヤーのステートパターン
 
     public playerScore result;          //リザルト
@@ -84,6 +87,11 @@ public class playerController : MonoBehaviour {
     {
         get { return animation; }
     }
+
+	public PlayerSE SE
+	{
+		get { return se; }
+	}
 
 	// Use this for initialization
 	void Start () {

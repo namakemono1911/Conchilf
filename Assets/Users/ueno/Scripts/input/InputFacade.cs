@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
+//SE
 [System.Serializable]
-public class InputSound
+public class PlayerSE
 {
-    public AudioSource shotSE;
-    public AudioSource reloadSE;
-    public AudioSource guardSE;
+	public AudioSource shotSE;          //射撃時
+	public AudioSource reloadSE;        //リロード時
+	public AudioSource guardSE;         //ガード時
+	public AudioSource guardHitSE;      //ガード中ヒット
+	public AudioSource downSE;          //ダウン
 }
 
 abstract public class InputFacade : MonoBehaviour
@@ -18,9 +21,6 @@ abstract public class InputFacade : MonoBehaviour
 
     [SerializeField]
     protected RectTransform reticle;        //レティクル
-
-    [SerializeField]
-    protected InputSound sound;
 
     public RectTransform Reticle
     {

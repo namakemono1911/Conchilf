@@ -7,8 +7,14 @@ using Common;
 
 public class enemy : MonoBehaviour {
 
-    // 敵の情報(csvに書き込んでほしい情報)
-    [System.Serializable]
+	public enum enumSE
+	{
+		SHOT = 0,
+		SE_MAX
+	}
+
+	// 敵の情報(csvに書き込んでほしい情報)
+	[System.Serializable]
     public struct EnemyInfo
     {
         public enemyTypeManager.ENEMY_TYPE MODEL_NUMBER;    // モデル(強さ)の識別番号
@@ -18,6 +24,8 @@ public class enemy : MonoBehaviour {
         public Vector3 ENEMY_MOVE_POS;						// 移動位置
     }
 
+	[SerializeField]
+	private AudioClip[] enemySE;
 	[SerializeField]
 	private enemyShotDanger enemyShotDanger;
 	[SerializeField]
@@ -44,6 +52,7 @@ public class enemy : MonoBehaviour {
 	private enemyBullet enemyBullet;                                    // 敵の弾処理
 	private playerController[] playerControllers;						// プレイヤーの情報
     private playerController player;
+	private AudioSource audioSource;
 
     //プレイヤー
     public playerController Player
@@ -102,6 +111,7 @@ public class enemy : MonoBehaviour {
 	{
 		get { return enemyShotDanger; }
 	}
+
 	private void Awake()
 	{
 		playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
@@ -112,6 +122,7 @@ public class enemy : MonoBehaviour {
 
 		// 現在位置を移動終了位置として保存
 		//goalPos = this.transform.position;
+		audioSource = GetComponent<AudioSource>();
 
 		// 創られてはいない時
 		if (!created)
@@ -337,6 +348,11 @@ public class enemy : MonoBehaviour {
     {
         player = p;
     }
+
+	public void playSE(enumSE se)
+	{
+		audioSource.PlayOneShot(enemySE[(int)se]);
+	}
 }
 
 

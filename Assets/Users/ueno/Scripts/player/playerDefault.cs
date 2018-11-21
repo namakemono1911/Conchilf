@@ -37,6 +37,9 @@ public class playerDefault : playerState {
     //射撃
     void shootGun()
     {
+		//SE再生
+		player.SE.shotSE.Play();
+
         //射撃処理
         player.Gun.shoot();
         player.UI.bulletUI.addBulletLife(-1);

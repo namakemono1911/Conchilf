@@ -10,7 +10,8 @@ public class playerDown : playerState {
 
     public override void initState()
     {
-
+		//SE再生
+		player.SE.downSE.Play();
     }
 
     public override void updateState()

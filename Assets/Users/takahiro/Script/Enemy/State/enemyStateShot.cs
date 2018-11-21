@@ -8,6 +8,9 @@ public class enemyStateShot : enemyState
 
 	public override void initState()
 	{
+		// se
+		enemy.playSE(enemy.enumSE.SHOT);
+
 		// 弾を撃つ
 		shot();
 

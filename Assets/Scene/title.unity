@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -919,14 +919,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   reticle: {fileID: 535483622}
-  sound:
-    shotSE: {fileID: 2073837252}
-    reloadSE: {fileID: 0}
-    guardSE: {fileID: 0}
   setting:
     shot: 323
     guard: 324
     reload: 0
+    wakeUp: 0
   sensitivity: 10
 --- !u!61 &535483625
 BoxCollider2D:
@@ -980,14 +977,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   reticle: {fileID: 842963560}
-  sound:
-    shotSE: {fileID: 2073837252}
-    reloadSE: {fileID: 0}
-    guardSE: {fileID: 0}
   setting:
     shot: 1
     reload: 0
   sensitivity: 3
+  shakeValue: 0
+  shakePower: 0
 --- !u!114 &535483628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,6 +996,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletMark: {fileID: 1056353257082750, guid: dd99e80ad8987cf408b6bf6d2659a53c, type: 2}
   input: {fileID: 535483624}
+  se:
+    shotSE: {fileID: 2073837252}
 --- !u!223 &535483629
 Canvas:
   m_ObjectHideFlags: 0
@@ -2217,7 +2214,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

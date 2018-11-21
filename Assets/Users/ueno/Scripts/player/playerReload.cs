@@ -11,6 +11,9 @@ public class playerReload : playerState {
     public override void initState()
     {
         startTime = Time.time;
+
+		//SE再生
+		player.SE.reloadSE.Play();
     }
 
     public override void updateState()

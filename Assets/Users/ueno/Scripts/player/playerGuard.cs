@@ -9,8 +9,12 @@ public class playerGuard : playerState {
     public override void initState()
     {
         Debug.Log("playerState : Guard");
-        //ガードアニメーション開始
+        
+		//ガードアニメーション開始
         player.Animation.guard.startAnimation();
+
+		//SE再生
+		player.SE.guardSE.Play();
     }
 
     public override void updateState()
@@ -32,6 +36,9 @@ public class playerGuard : playerState {
     //ヒット時処理
     public override void hitBullet()
     {
+		//SE再生
+		player.SE.guardHitSE.Play();
+
         guardHit();
     }
 }
