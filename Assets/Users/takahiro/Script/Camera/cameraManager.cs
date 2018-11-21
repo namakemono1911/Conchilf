@@ -201,7 +201,8 @@ public class cameraManager : MonoBehaviour {
 			if(enemySceneManager.EnemyWaveNext() == false)
 			{
 				// 次のシーンが無い時
-				if(EnemyManager.GetComponent<EnemyManager>().GetNextSceneEnable(numScene) == false)
+				//if (EnemyManager.GetComponent<EnemyManager>().GetNextSceneEnable(numScene) == false && cameraMove.isMaxCamera() == true)
+				if (EnemyManager.GetComponent<EnemyManager>().GetNextSceneEnable(numScene - 1) == false)
 				{
 					chackSceneManager();
 					return;
