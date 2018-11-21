@@ -90,7 +90,11 @@ public class cameraManager : MonoBehaviour {
 			timerScene += Time.deltaTime;
 			if(timerScene >= lastWaitTime)
 			{
-				sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS_1);
+                var players = GameObject.Find("UICanvasHight").GetComponent<havePlayerNum>().player;
+                foreach (var player in players)
+                    player.saveResult();
+
+                sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_RESULT);
 			}
 			return;
 		}

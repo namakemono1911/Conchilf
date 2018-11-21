@@ -18,9 +18,9 @@ public class rankingManager : MonoBehaviour
     private void Awake()
     {
         //ランキングデータ読み込み
-        for (int i = 0; ; i++)
+        for (int i = 1; ; i += 2)
         {
-            if (PlayerPrefs.HasKey(i.ToString()))
+            if (PlayerPrefs.HasKey(scoreType.SUM_SCORE.ToString() + i.ToString()))
             {
                 rankDatas[i].name = PlayerPrefs.GetString(i.ToString());
                 rankDatas[i].score = PlayerPrefs.GetInt(i.ToString() + rankDatas[i].name);
@@ -44,11 +44,11 @@ public class rankingManager : MonoBehaviour
     }
 
     //ランクインしてるかどうか
-    public bool whetherRankin(RankData data)
+    public bool whetherRankin(int score)
     {
         foreach (var rank in rankDatas)
         {
-            if (rank.score >= data.score)
+            if (rank.score >= score)
                 return true;
         }
 

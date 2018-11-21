@@ -108,9 +108,6 @@ public class playerController : MonoBehaviour {
 	void Update () {
         //ステート更新
         state.updateState();
-
-        if (Input.GetKeyDown(KeyCode.S))
-            result.save();
     }
 
     public void changeState(playerState newState)
@@ -150,4 +147,9 @@ public class playerController : MonoBehaviour {
 		var random = Random.Range(0, hitPos.Length);
 		return hitPos[random].position;
 	}
+
+    public void saveResult()
+    {
+        result.save();
+    }
 }

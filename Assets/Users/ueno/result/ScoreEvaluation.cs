@@ -21,14 +21,16 @@ public class ScoreEvaluation : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        scoreText.text = "";
         score = PlayerPrefs.GetInt(scoreType.SUM_SCORE.ToString() + playerNum.ToString());
 
         for (int i = 0; i < evalutionValue.Length; i++)
         {
             if (scoreEval(i))
             {
-                scoreText.text.Remove(0, scoreText.text.Length);
+                scoreText.text = "";
                 scoreText.text += evaluation[i];
+                break;
             }
         }
 	}

@@ -14,9 +14,9 @@ public class resultManager : MonoBehaviour
 
     private void Start()
     {
-        RankData data = new RankData();
+        var score = PlayerPrefs.GetInt(scoreType.SUM_SCORE.ToString() + "1");
 
-        if (ranking.whetherRankin(data))
+        if (ranking.whetherRankin(score))
             nextScene = sceneManager.SCENE.SCENE_INPUT_NAME;
         else
             nextScene = sceneManager.SCENE.SCENE_RANKING;
