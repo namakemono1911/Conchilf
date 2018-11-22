@@ -18,7 +18,13 @@ public class messageController : MonoBehaviour {
     private inputNameController inputName;
 
     [SerializeField]
+    private rankingManager ranking;
+
+    [SerializeField]
     private GameObject messageBox;
+
+    [SerializeField]
+    private Text nameText;
 
     private Button selectButton;
 
@@ -36,6 +42,10 @@ public class messageController : MonoBehaviour {
 
     public void selectYes()
     {
+        var data = new RankData(nameText.text, PlayerPrefs.GetInt("ranking"));
+        ranking.setRankData(data);
+        ranking.saveRanking();
+
         sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_RANKING);
     }
 

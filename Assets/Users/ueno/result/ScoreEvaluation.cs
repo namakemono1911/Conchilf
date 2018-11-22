@@ -27,7 +27,7 @@ public class ScoreEvaluation : MonoBehaviour
         {
             if (scoreEval(i))
             {
-                scoreText.text.Remove(0, scoreText.text.Length);
+                scoreText.text = "";
                 scoreText.text += evaluation[i];
             }
         }

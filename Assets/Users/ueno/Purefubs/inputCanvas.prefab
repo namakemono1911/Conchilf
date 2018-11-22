@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114374235580542086}
   - component: {fileID: 114341821993964660}
   - component: {fileID: 114352793331892408}
+  - component: {fileID: 114244408070259904}
   m_Layer: 5
   m_Name: DinputReticle
   m_TagString: player
@@ -2280,6 +2281,17 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &114244408070259904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031622008967974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c870dcd9ed0b30d4b91310f877b62394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114271340565007540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2500,7 +2512,9 @@ MonoBehaviour:
   no: {fileID: 114732675766045624}
   reticle: {fileID: 114374235580542086}
   inputName: {fileID: 114341821993964660}
+  ranking: {fileID: 114244408070259904}
   messageBox: {fileID: 1534506226703454}
+  nameText: {fileID: 114333312947810644}
 --- !u!114 &114364280289984312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2547,14 +2561,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   reticle: {fileID: 224104983003647120}
-  sound:
-    shotSE: {fileID: 0}
-    reloadSE: {fileID: 0}
-    guardSE: {fileID: 0}
   setting:
     shot: 323
     guard: 324
     reload: 0
+    wakeUp: 0
   sensitivity: 5
 --- !u!114 &114375483443986914
 MonoBehaviour:

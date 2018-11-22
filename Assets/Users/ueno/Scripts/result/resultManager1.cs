@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class resultManager : MonoBehaviour
+public class resultManager1 : MonoBehaviour
 {
     [SerializeField]
-    rankingManager ranking;             //ランキング
+    rankingManager ranking;                     //ランキング
 
     [SerializeField]
-    textAnimationController animation;  //アニメーション
+    textAnimationController animation;          //アニメーション
 
-    private sceneManager.SCENE nextScene;           //次のシーン名
+    private sceneManager.SCENE nextScene;       //次のシーン名
 
     private void Start()
     {
-        RankData data = new RankData();
+        var score = PlayerPrefs.GetInt(scoreType.SUM_SCORE.ToString() + "1");
 
-        if (ranking.whetherRankin(data))
+        if (ranking.whetherRankin(score, 3))
             nextScene = sceneManager.SCENE.SCENE_INPUT_NAME;
         else
             nextScene = sceneManager.SCENE.SCENE_RANKING;

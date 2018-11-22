@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class havePlayerNum : MonoBehaviour
 {
-    [SerializeField]
     public int numPlayer;
+
+    public playerController[] player;
 }
