@@ -20,7 +20,7 @@ public class rankingProgress : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (changeTime >= Time.time - startTime || input.whetherShot())
-            sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_TITLE);
+        //if (changeTime >= Time.time - startTime || input.whetherShot())
+            //sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_TITLE);
 	}
 }

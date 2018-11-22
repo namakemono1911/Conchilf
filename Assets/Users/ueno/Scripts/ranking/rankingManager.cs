@@ -22,8 +22,11 @@ public class rankingManager : MonoBehaviour
         {
             if (PlayerPrefs.HasKey(i.ToString()))
             {
-                rankDatas[i].name = PlayerPrefs.GetString(i.ToString());
-                rankDatas[i].score = PlayerPrefs.GetInt(i.ToString() + rankDatas[i].name);
+                var a = PlayerPrefs.GetString(i.ToString());
+                var b = PlayerPrefs.GetInt(i.ToString() + a);
+                var data = new RankData(a, b);
+
+                rankDatas.Add(data);
             }
             else
             {
@@ -44,12 +47,15 @@ public class rankingManager : MonoBehaviour
     }
 
     //ランクインしてるかどうか
-    public bool whetherRankin(RankData data)
+    public bool whetherRankin(int data, int range)
     {
-        foreach (var rank in rankDatas)
+        for (int i = 0; i < range; i++)
         {
-            if (rank.score >= data.score)
+            if (rankDatas.Count < 3 ||rankDatas[i].score <= data)
+            {
+                PlayerPrefs.SetInt("rankin", data);
                 return true;
+            }
         }
 
         return false;

@@ -96,7 +96,10 @@ public class playerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //リザルト初期化
-        result = new playerScore(control.PlayerNum);
+        if (control.PlayerNum == 0)
+            result = new playerScore(1);
+        else
+            result = new playerScore(2);
 
         changeState(new playerDefault(this));
 
@@ -108,9 +111,6 @@ public class playerController : MonoBehaviour {
 	void Update () {
         //ステート更新
         state.updateState();
-
-        if (Input.GetKeyDown(KeyCode.S))
-            result.save();
     }
 
     public void changeState(playerState newState)
@@ -150,4 +150,9 @@ public class playerController : MonoBehaviour {
 		var random = Random.Range(0, hitPos.Length);
 		return hitPos[random].position;
 	}
+
+    public void saveScore()
+    {
+        result.save();
+    }
 }
