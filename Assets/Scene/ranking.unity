@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -225,6 +225,11 @@ Prefab:
     - target: {fileID: 4587381636555020, guid: d3a80fbecde46964996b11686e767a33, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114676784021905372, guid: d3a80fbecde46964996b11686e767a33,
+        type: 2}
+      propertyPath: instance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3a80fbecde46964996b11686e767a33, type: 2}
@@ -1233,14 +1238,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 1
   reticle: {fileID: 0}
-  sound:
-    shotSE: {fileID: 0}
-    reloadSE: {fileID: 0}
-    guardSE: {fileID: 0}
   setting:
     shot: 0
     guard: 0
     reload: 0
+    wakeUp: 0
   sensitivity: 5
 --- !u!114 &838236936
 MonoBehaviour:
@@ -1254,7 +1256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 838236935}
-  changeTime: 3
+  changeTime: 5
 --- !u!114 &838236937
 MonoBehaviour:
   m_ObjectHideFlags: 0

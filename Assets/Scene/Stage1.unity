@@ -34048,6 +34048,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numPlayer: 1
+  player:
+  - {fileID: 2128213555}
+--- !u!114 &2128213555 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114424944597254020, guid: 87684e93367e43f49b1112ddf5a983b2,
+    type: 2}
+  m_PrefabInternal: {fileID: 2128213552}
+  m_Script: {fileID: 11500000, guid: 1303f6618344de049b8044d5db35d4c7, type: 3}
 --- !u!4 &2130881623 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4452949057778724, guid: 40e7e187a83e3f44b92b6cd26f07ccb9,
