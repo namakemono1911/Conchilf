@@ -42,7 +42,7 @@ public class messageController : MonoBehaviour {
 
     public void selectYes()
     {
-        var data = new RankData(nameText.text, PlayerPrefs.GetInt("ranking"));
+        var data = new RankData(nameText.text, PlayerPrefs.GetInt("rankin"));
         ranking.setRankData(data);
         ranking.saveRanking();
 

@@ -31,8 +31,8 @@ public class BossSceneManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -60,12 +60,29 @@ public class BossSceneManager : MonoBehaviour {
         }
         return true;
     }
-    
+
     // シーン遷移
     private void GotoNextScene()
     {
-        // シーンマネージャ
-        sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_RESULT);
+        //プレイヤースコア保存
+        var players = GameObject.Find("UICanvasHight").GetComponent<havePlayerNum>().player;
+        foreach (var player in players)
+            player.saveScore();
+
+        // プレイヤー数取得
+        int PlayerNum = GameObject.Find("UICanvasHight").GetComponent<havePlayerNum>().numPlayer;
+
+
+        if (PlayerNum == 1)
+        {
+            // シーンマネージャ 一人用
+            sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_RESULT_1);
+        }
+        else
+        {
+            // シーンマネージャ　二人用
+            sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_RESULT_2);
+        }
     }
 
 }

@@ -71,7 +71,7 @@ public class playerScore
 
     public void load()
     {
-        foreach (var element in scoreDict)
-            scoreDict[element.Key] = PlayerPrefs.GetInt(element.Key.ToString() + numPlayer);
+        for (int i = 0; i < (int)scoreType.TYPE_MAX; i++)
+            scoreDict[(scoreType)i] = PlayerPrefs.GetInt(((scoreType)i).ToString() + numPlayer.ToString());
     }
 }

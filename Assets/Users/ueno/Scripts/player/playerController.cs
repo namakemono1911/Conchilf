@@ -102,6 +102,7 @@ public class playerController : MonoBehaviour {
             result = new playerScore(2);
 
         changeState(new playerDefault(this));
+        loadScore();
 
 		if (ui.bulletUI != null)
 			ui.bulletUI.setBulletLifeFirst(gun.numBullet);
@@ -154,5 +155,10 @@ public class playerController : MonoBehaviour {
     public void saveScore()
     {
         result.save();
+    }
+
+    public void loadScore()
+    {
+        result.load();
     }
 }

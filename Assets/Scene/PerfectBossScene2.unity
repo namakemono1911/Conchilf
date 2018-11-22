@@ -18461,6 +18461,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numPlayer: 2
+  player:
+  - {fileID: 1541300685}
+  - {fileID: 1449230409}
 --- !u!114 &1623964807
 MonoBehaviour:
   m_ObjectHideFlags: 0

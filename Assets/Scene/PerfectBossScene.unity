@@ -703,6 +703,7 @@ GameObject:
   - component: {fileID: 747523309}
   - component: {fileID: 747523311}
   - component: {fileID: 747523310}
+  - component: {fileID: 747523313}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -772,6 +773,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &747523313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747523308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfb5119d63e2c04ea0ade6a7e242cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionInfo:
+    EnemyList:
+    - {fileID: 1706511743}
 --- !u!1001 &773097345
 Prefab:
   m_ObjectHideFlags: 0
@@ -1735,6 +1750,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7fd5992d820ac66428375a93e7786bca, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1706511743 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1295263534654982, guid: 7fd5992d820ac66428375a93e7786bca,
+    type: 2}
+  m_PrefabInternal: {fileID: 1706511742}
 --- !u!1001 &1730978580
 Prefab:
   m_ObjectHideFlags: 0
@@ -18370,41 +18390,9 @@ Prefab:
       propertyPath: ui.bulletUI
       value: 
       objectReference: {fileID: 1796818307}
-    - target: {fileID: 82149992144505648, guid: 87684e93367e43f49b1112ddf5a983b2,
-        type: 2}
-      propertyPath: panLevelCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82149992144505648, guid: 87684e93367e43f49b1112ddf5a983b2,
-        type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82149992144505648, guid: 87684e93367e43f49b1112ddf5a983b2,
-        type: 2}
-      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87684e93367e43f49b1112ddf5a983b2, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2131596105 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1844291253515298, guid: 87684e93367e43f49b1112ddf5a983b2,
-    type: 2}
-  m_PrefabInternal: {fileID: 2131596104}
---- !u!114 &2131596106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2131596105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 864a1662b716f294fa035bf69a97cd32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numPlayer: 1
 --- !u!114 &2131596107 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114424944597254020, guid: 87684e93367e43f49b1112ddf5a983b2,

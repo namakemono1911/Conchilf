@@ -15,12 +15,20 @@ public class rankingProgress : MonoBehaviour {
 	void Start ()
     {
         startTime = Time.time;
-	}
+
+        for (int j = 0; j < 2; j++)
+        {
+            for (int i = 0; i < (int)scoreType.TYPE_MAX; i++)
+            {
+                PlayerPrefs.SetInt(((scoreType)i).ToString() + j.ToString(), 0);
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        //if (changeTime >= Time.time - startTime || input.whetherShot())
-            //sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_TITLE);
-	}
+        if (changeTime <= Time.time - startTime || input.whetherShot())
+            sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_TITLE);
+    }
 }

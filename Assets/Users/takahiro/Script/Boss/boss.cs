@@ -50,6 +50,8 @@ public class boss : MonoBehaviour
 
     private bool                KusoFlug;           // 初回の例外処理用くそふらぐ
     private playerController     Hit_Playerinfo;         // プレイヤー情報
+    private int PlayerNum;          // プレイヤー数
+
 
     // 前回アニメーション情報
     private bossAnimation.BOSS_ANIMATION_TYPE beforeAnimation;
@@ -135,6 +137,8 @@ public class boss : MonoBehaviour
 
         // Uiの取得
         playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
+        // プレイヤー数取得
+        PlayerNum = GameObject.Find("UICanvasHight").GetComponent<havePlayerNum>().numPlayer;
 
     }
 
@@ -302,8 +306,11 @@ public class boss : MonoBehaviour
     public void timerStart(){   CountEnable = true; }
     // タイマーストップ
     public void timerStop() {   CountEnable = false; }
-
+    // ループカウントアップ
     public void RoopCountUp() { RoopNum += 1; }
+    // プレイヤー人数ゲッタ
+    public int GetPlayerNum() { return PlayerNum; }
+
 
     // 前回のモーションを再度再生
     public void changeStateBefor()

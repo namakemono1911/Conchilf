@@ -95,9 +95,9 @@ public class cameraManager : MonoBehaviour {
                     p.saveScore();
 
                 if (players.Length == 1)
-                    sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_RESULT_1);
+                    sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS_1);
                 else
-                    sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_RESULT_2);
+                    sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_BOSS_2);
 
             }
 			return;

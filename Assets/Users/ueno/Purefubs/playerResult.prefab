@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 114388879897008002}
   - component: {fileID: 114612031134314388}
   - component: {fileID: 114439439402400804}
+  - component: {fileID: 114088500763656314}
   - component: {fileID: 114200989226738252}
   - component: {fileID: 114072726192937558}
   - component: {fileID: 114293373344271714}
@@ -747,6 +748,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u6483\u7834\u6570"
+--- !u!114 &114088500763656314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273391073265742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec789e0e900e2ee4dbcecdb555e3d41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 5
 --- !u!114 &114118891662196286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1143,6 +1156,8 @@ MonoBehaviour:
   - table: {fileID: 114200989226738252}
     texts:
     - {fileID: 114362040049688698}
+  - table: {fileID: 114088500763656314}
+    texts: []
 --- !u!114 &114394410886006592
 MonoBehaviour:
   m_ObjectHideFlags: 1

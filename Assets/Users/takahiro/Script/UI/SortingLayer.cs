@@ -109,6 +109,6 @@ public class SortingLayerDrawerAttribute : PropertyDrawer
 		}
 	}
 
+}
 #endif
 
-}
