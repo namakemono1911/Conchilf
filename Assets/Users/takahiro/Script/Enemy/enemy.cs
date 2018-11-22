@@ -38,6 +38,8 @@ public class enemy : MonoBehaviour {
 	private Enemy_gun gun;                              // 敵の弾
 	[SerializeField]
 	private GameObject handUI;
+	[SerializeField]
+	private enemyShotDanger shotUI;
 
 	[SerializeField]
 	private Transform startPos;                     	// 移動開始位置
@@ -196,8 +198,11 @@ public class enemy : MonoBehaviour {
         // 情報の読み込み
         typeInfo = enemyTypeManager.getEnemyTypeInfo(enemycsvInfo.MODEL_NUMBER);
 
-        // エネミーアニメーションマネージャを取得
-        enemyAnimation = GetComponent<enemyAnimation>();
+		// uiにセット
+		shotUI.setTime(typeInfo.shotInterval);
+
+		// エネミーアニメーションマネージャを取得
+		enemyAnimation = GetComponent<enemyAnimation>();
         enemyAnimation.setEnemyAnimManager(GameObject.Find("EnemyCreater").GetComponent<EnemyCreater>().GetEnemyAnimationManager());
 
 		enemyBullet = GetComponent<enemyBullet>();
@@ -237,12 +242,11 @@ public class enemy : MonoBehaviour {
 	{
 		enemycsvInfo = ei;
 
-        // 情報による操作
-        int i = 0;
+		// 情報による操作
 	}
 
-    // タイプマネージャをセット(マネージャーから)
-    public void setEnemyTypeManager(enemyTypeManager manager)
+	// タイプマネージャをセット(マネージャーから)
+	public void setEnemyTypeManager(enemyTypeManager manager)
     {
         enemyTypeManager = manager;
     }
