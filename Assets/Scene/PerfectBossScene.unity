@@ -1727,6 +1727,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 114358609981695696, guid: 7fd5992d820ac66428375a93e7786bca,
+        type: 2}
+      propertyPath: OptionInfo.Playerinfo.Array.data[0]
+      value: 
+      objectReference: {fileID: 2131596107}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7fd5992d820ac66428375a93e7786bca, type: 2}
   m_IsPrefabParent: 0
@@ -18400,6 +18405,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numPlayer: 1
+--- !u!114 &2131596107 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114424944597254020, guid: 87684e93367e43f49b1112ddf5a983b2,
+    type: 2}
+  m_PrefabInternal: {fileID: 2131596104}
+  m_Script: {fileID: 11500000, guid: 1303f6618344de049b8044d5db35d4c7, type: 3}
 --- !u!1001 &2139904140
 Prefab:
   m_ObjectHideFlags: 0
