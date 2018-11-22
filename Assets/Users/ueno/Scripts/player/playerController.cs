@@ -38,6 +38,13 @@ public class PlayerUI
     public GameObject bulletMark = null;      //弾のエフェクト
 }
 
+public enum Player
+{
+    PLAYER_1 = 0,
+    PLAYER_2
+}
+
+
 public class playerController : MonoBehaviour {
 
 	[SerializeField]
@@ -66,7 +73,7 @@ public class playerController : MonoBehaviour {
 
     private playerState state = null;   //プレイヤーのステートパターン
 
-    public playerScore result;          //リザルト
+    public ScoreManager score;
 
     public InputFacade Control          //コントロール取得
     {
@@ -96,7 +103,10 @@ public class playerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //リザルト初期化
-        result = new playerScore(control.PlayerNum);
+        if (control.PlayerNum == 0)
+            score = new ScoreManager(1);
+        else
+            score = new ScoreManager(2);
 
         changeState(new playerDefault(this));
 
@@ -147,9 +157,4 @@ public class playerController : MonoBehaviour {
 		var random = Random.Range(0, hitPos.Length);
 		return hitPos[random].position;
 	}
-
-    public void saveResult()
-    {
-        result.save();
-    }
 }

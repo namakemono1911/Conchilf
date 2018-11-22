@@ -12,6 +12,9 @@ public class playerDown : playerState {
     {
 		//SE再生
 		player.SE.downSE.Play();
+
+        //スコア加算
+        player.score.Score.addCount(ScoreCount.DOWN_CNT);
     }
 
     public override void updateState()

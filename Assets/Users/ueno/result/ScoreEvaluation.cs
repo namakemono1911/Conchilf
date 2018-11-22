@@ -16,13 +16,16 @@ public class ScoreEvaluation : MonoBehaviour
 
     private string evaluation = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+    private ScoreManager scoreManager;
+
     private int score;
 
 	// Use this for initialization
 	void Start ()
     {
         scoreText.text = "";
-        score = PlayerPrefs.GetInt(scoreType.SUM_SCORE.ToString() + playerNum.ToString());
+        scoreManager = new ScoreManager(playerNum);
+        score = scoreManager.Score.Scores[(int)scoreType.SUM_SCORE];
 
         for (int i = 0; i < evalutionValue.Length; i++)
         {

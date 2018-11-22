@@ -12,15 +12,18 @@ public class RankData
 
 public class rankingManager : MonoBehaviour
 {
+    [SerializeField]
+    private static int numRanking = 3;          //表示ランキング数
+
     List<RankData> rankDatas = new List<RankData>();
 
     // Use this for initialization
     private void Awake()
     {
         //ランキングデータ読み込み
-        for (int i = 1; ; i += 2)
+        for (int i = 1; i < numRanking + 1 ; i++)
         {
-            if (PlayerPrefs.HasKey(scoreType.SUM_SCORE.ToString() + i.ToString()))
+            if (PlayerPrefs.HasKey(i.ToString()))
             {
                 rankDatas[i].name = PlayerPrefs.GetString(i.ToString());
                 rankDatas[i].score = PlayerPrefs.GetInt(i.ToString() + rankDatas[i].name);
@@ -32,6 +35,7 @@ public class rankingManager : MonoBehaviour
         }
     }
 
+    //保存
     public void saveRanking()
     {
         int num = 0;
@@ -46,9 +50,12 @@ public class rankingManager : MonoBehaviour
     //ランクインしてるかどうか
     public bool whetherRankin(int score)
     {
-        foreach (var rank in rankDatas)
+        for (int i = 0; i < numRanking; i++)
         {
-            if (rank.score >= score)
+            if (rankDatas[i] == null)
+                return true;
+
+            if (rankDatas[i].score >= score)
                 return true;
         }
 

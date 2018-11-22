@@ -68,9 +68,12 @@ public class DebugInputFacade : InputFacade {
             return;
 
         //レティクル移動
-        Vector2 reticlePos = Vector2.zero;
-        reticlePos.x = Input.GetAxis("Mouse X") * sensitivity;
-        reticlePos.y = Input.GetAxis("Mouse Y") * sensitivity;
-        reticle.anchoredPosition += reticlePos;
+        if (reticle != null)
+        {
+            Vector2 reticlePos = Vector2.zero;
+            reticlePos.x = Input.GetAxis("Mouse X") * sensitivity;
+            reticlePos.y = Input.GetAxis("Mouse Y") * sensitivity;
+            reticle.anchoredPosition += reticlePos;
+        }
     }
 }
