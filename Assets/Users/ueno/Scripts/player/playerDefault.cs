@@ -74,8 +74,8 @@ public class playerDefault : playerState {
             if (hit.collider.tag == "Boss")
             {
                 
-                hit.transform.gameObject.transform.parent.parent.GetComponent<boss>().setPlayer(player);
-                hit.transform.gameObject.transform.parent.parent.GetComponent<boss>().BulletHit();
+                hit.transform.gameObject.transform.root.GetComponent<boss>().setPlayer(player);
+                hit.transform.gameObject.transform.root.GetComponent<boss>().BulletHit();
                 isHit = true;
             }
         }
