@@ -22,6 +22,7 @@ public class EnemyManager : MonoBehaviour {
     class Option
     {
         public GameObject          Enemy00;            // エネミーオブジェクト
+        public GameObject          Boss00;             // ボスオブジェクト
         public CsvManager          Csvmanager;         // csvマネージャ
         public GameObject          enemyCreater;       // エネミークリエイター
     }
@@ -45,8 +46,19 @@ public class EnemyManager : MonoBehaviour {
             }
         }
 
+        if (OptionInfo.Boss00 == null)
+        {
+            OptionInfo.Boss00 = (GameObject)Resources.Load(Edit.BOSS_00);
+            if (OptionInfo.Boss00 == null)
+            {
+                Debug.LogError("Error [PrefubLoad] : EnemyManager.cs");
+                return;
+            }
+        }
+
+
         // リスト作成
-        CsvDate  = new List<string[]>();
+        CsvDate = new List<string[]>();
         WaveDate = new List<GameObject>();
         SceneDate = new List<GameObject>();
 		
@@ -124,7 +136,16 @@ public class EnemyManager : MonoBehaviour {
                 buf.WAVE_NUMBER = int.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Wave]);
 
                 // エネミー生成
-                obj = Instantiate(OptionInfo.Enemy00, pos, Quaternion.identity);
+                if (buf.MODEL_NUMBER == enemyTypeManager.ENEMY_TYPE.TYPE_EASY)
+                {
+                    // 雑魚的生成
+                    obj = Instantiate(OptionInfo.Enemy00, pos, Quaternion.identity);
+                }
+                else if(buf.MODEL_NUMBER == enemyTypeManager.ENEMY_TYPE.TYPE_HARD)
+                {
+                    // ボス生成
+                    obj = Instantiate(OptionInfo.Boss00, pos, Quaternion.identity);
+                }
 
                 // 生成フラグをたてる
                 obj.GetComponent<enemy>().createMeFrag();

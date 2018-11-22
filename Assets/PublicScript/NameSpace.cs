@@ -48,10 +48,11 @@ namespace Common
     public static class Edit
     {
         // プレハブパス
-        public const string ENEMY_00 = ("Prefub/Enemy_Soldier");
+        public const string ENEMY_00    = ("Prefub/Enemy_Mother");
+        public const string BOSS_00     = ("Prefub/BossObject(Perfect)");
     }
 
-	
+
     // 敵の情報の識別数値
     public enum EnemyAnalyze
     {
