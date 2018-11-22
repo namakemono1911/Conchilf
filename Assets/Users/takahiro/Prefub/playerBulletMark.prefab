@@ -42,8 +42,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBulletMarkImage: {fileID: 114993346990652840}
-  effectPos: []
   fadeTime: 0
+  scale: 0.1
 --- !u!114 &114993346990652840
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,11 +7,13 @@ public class playerBulletMarkUI : MonoBehaviour {
 
 	[SerializeField]
 	private Image playerBulletMarkImage; // 弾痕イメージ
-	[SerializeField]
-	private Transform[] effectPos;  // 弾痕エフェクトの位置
+
 	[SerializeField]
 	private int fadeTime;           // 弾痕が消える時間
+	[SerializeField]
+	private float scale;            // 拡縮誤差誤差
 
+	private Transform[] effectPos;  // 弾痕エフェクトの位置
 	private int timeCounter;        // フェードカウンター
 	private int effectPosNum;       // 弾痕位置のインデックス
 	private Transform effectTransform; // 最終的なエフェクトのTransform
@@ -23,6 +25,15 @@ public class playerBulletMarkUI : MonoBehaviour {
 		timeCounter = 0;
 		fadeSpeed = 1.0f / (float)fadeTime;
 		fadeColor = playerBulletMarkImage.color;
+
+		// 回転
+		int lotate = Random.Range(0, 360);
+		this.transform.Rotate(new Vector3(0, 0, (float)lotate));
+
+		// 拡縮
+		float locallocate = Random.Range(-scale, scale);
+		Vector3 thisScale = this.transform.localScale;
+		this.transform.localScale = new Vector3(thisScale.x + locallocate, thisScale.y + locallocate, thisScale.z + locallocate);
 	}
 
 	private void Update()
