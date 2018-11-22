@@ -2194,7 +2194,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2317,6 +2317,7 @@ MonoBehaviour:
   enemyTypeManager: {fileID: 0}
   playersPos: []
   gun: {fileID: 114083265737635160}
+  handUI: {fileID: 1860987272383302}
   startPos: {fileID: 4200336480474316}
 --- !u!114 &114269611262169436
 MonoBehaviour:

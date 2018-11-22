@@ -35,7 +35,9 @@ public class enemy : MonoBehaviour {
 	[SerializeField]
 	private Transform[] playersPos;                     // プレイヤーの位置
 	[SerializeField]
-	private Enemy_gun gun;								// 敵の弾
+	private Enemy_gun gun;                              // 敵の弾
+	[SerializeField]
+	private GameObject handUI;
 
 	[SerializeField]
 	private Transform startPos;                     	// 移動開始位置
@@ -117,6 +119,12 @@ public class enemy : MonoBehaviour {
     {
         get { return playerNum; }
     }
+	// 右手ui
+	public GameObject hand
+	{
+		get { return handUI; }
+	}
+
 	private void Awake()
 	{
 		playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
