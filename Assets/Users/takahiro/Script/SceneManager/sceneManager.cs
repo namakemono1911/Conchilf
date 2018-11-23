@@ -63,7 +63,7 @@ public class sceneManager : singletonMonobihavior<sceneManager> {
 
     private void Update()
 	{
-        Debug.Log(fade);
+        //Debug.Log(fade);
 
         // fade
         if (fade != true)

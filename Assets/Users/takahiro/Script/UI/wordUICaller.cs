@@ -6,6 +6,7 @@ public class wordUICaller : MonoBehaviour {
 
 	[SerializeField]
 	private wordUIManager wordUIManager;
+
 	[SerializeField]
 	private int callNumber;
 
@@ -13,8 +14,8 @@ public class wordUICaller : MonoBehaviour {
 	{
 		if (collision.transform.tag == "event")
 		{
+			Debug.Log("call -> word");
 			wordUIManager.startPlayWordUI(callNumber);
-			Debug.Log("Trigger");
 		}
 	}
 }

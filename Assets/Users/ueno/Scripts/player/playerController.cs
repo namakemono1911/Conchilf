@@ -116,7 +116,7 @@ public class playerController : MonoBehaviour {
 
     public void changeState(playerState newState)
     {
-        Debug.Log(newState);
+        Debug.Log("newState : " + newState);
         if (state != null)
             Destroy(state);
 

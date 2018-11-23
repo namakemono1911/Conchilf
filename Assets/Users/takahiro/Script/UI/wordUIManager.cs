@@ -162,6 +162,9 @@ public class wordUIManager : MonoBehaviour {
 
 	public void startPlayWordUI(int playIndex)
 	{
+		if (wordUIs [playIndex].start)
+			return;
+		
 		// スタート
 		fade = true;
 		fadeIn = true;
@@ -170,6 +173,8 @@ public class wordUIManager : MonoBehaviour {
 		// 画像&言葉設定
 		image.sprite = wordUIs[playIndex].sprite;
 		wordSpace.text = wordUIs[playIndex].word;
+
+		wordUIs[playIndex].start = true;
 	}
 
 }
