@@ -61,33 +61,43 @@ public class BossStateTimelagAtk : bossState
     // 発砲0
     private void shot00()
     {
+        // 変数
         Vector3 Pos = new Vector3(0, 0, 0);
 
-        // プレイヤー取得
-        playerController[] p = boss.players;
+        // 弾数を減算
+        boss.bullet.shotBullet();
 
         // プレイヤー1&2の座標取得
-        Pos = p[0].getHitPos();
+        Pos = boss.GetPlayerPos(0);
 
-        boss.bulletInstance_Right.SetBullet(Pos, 1.0f);
-        boss.bulletInstance_Left.SetBullet(Pos, 1.0f);
+        // 弾をセット
+        boss.bulletInstance_Right.SetBullet(Pos, 4.0f);
+        boss.bulletInstance_Left.SetBullet(Pos, 4.0f);
 
     }
 
     // 発砲1
     private void shot01()
     {
+        // 変数
         Vector3 Pos = new Vector3(0, 0, 0);
 
-        // プレイヤー取得
-        playerController[] p = boss.players;
-
         // プレイヤー1&2の座標取得
-        Pos = p[0].getHitPos();
+        if (boss.GetPlayerNum() >= 2)
+        {
+            Pos = boss.GetPlayerPos(1);
+        }
+        else
+        {
+            // プレイヤー1&2の座標取得
+            Pos = boss.GetPlayerPos(0);
+        }
 
-        boss.bulletInstance_Right.SetBullet(Pos, 1.0f);
-        boss.bulletInstance_Left.SetBullet(Pos, 1.0f);
+        // 弾をセット
+        boss.bulletInstance_Right.SetBullet(Pos, 4.0f);
+        boss.bulletInstance_Left.SetBullet(Pos, 4.0f);
 
     }
+
 
 }
