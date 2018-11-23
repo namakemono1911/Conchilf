@@ -14,6 +14,9 @@ public class enemyStateDown : enemyState
 		// 右手表示を消す
 		Destroy(enemy.hand);
 
+		// ui系を消す
+		Destroy(enemy.enemyUIs);
+
 		// 後ろの敵に当たらないので、当たり判定を消す
 		enemy.gameObject.GetComponent<CapsuleCollider>().enabled = false;
 

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class enemyStateShot : enemyState
 {
-	public enemyStateShot(enemy p) : base(p) { }
+	public enemyStateShot(enemy p , bool hit) : base(p) { bhit = hit; }
+
+	private bool bhit;
 
 	public override void initState()
 	{
@@ -34,18 +36,17 @@ public class enemyStateShot : enemyState
 
 	private void shot()
 	{
-		int hitProbability = (int)Random.Range(1, 100);
-
 		Vector3 pos = new Vector3(0,0,0);
 		enemy.bullet.shotBullet();	// 弾減らす
 
 		// 当たる確率
-		if(hitProbability <= enemy.enemyTypeInfo.hitProbability)
+		if(bhit == true)
 		{
             Debug.Log("プレイヤー : " + enemy.numPlayer);
+			Debug.Log("bb");
 
-            // 1p or 2p
-            if (enemy.numPlayer == 1)
+			// 1p or 2p
+			if (enemy.numPlayer == 1)
             {
                 playerController[] p = enemy.players;
                 // 1p

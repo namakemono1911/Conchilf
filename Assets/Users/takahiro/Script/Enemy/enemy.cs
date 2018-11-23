@@ -38,6 +38,10 @@ public class enemy : MonoBehaviour {
 	private Enemy_gun gun;                              // 敵の弾
 	[SerializeField]
 	private GameObject handUI;
+	[SerializeField]
+	private GameObject enemyUI;
+	[SerializeField]
+	private enemyShotDanger shotUI;
 
 	[SerializeField]
 	private Transform startPos;                     	// 移動開始位置
@@ -124,6 +128,11 @@ public class enemy : MonoBehaviour {
 	{
 		get { return handUI; }
 	}
+	// 右手ui
+	public GameObject enemyUIs
+	{
+		get { return enemyUI; }
+	}
 
 	private void Awake()
 	{
@@ -196,8 +205,11 @@ public class enemy : MonoBehaviour {
         // 情報の読み込み
         typeInfo = enemyTypeManager.getEnemyTypeInfo(enemycsvInfo.MODEL_NUMBER);
 
-        // エネミーアニメーションマネージャを取得
-        enemyAnimation = GetComponent<enemyAnimation>();
+		// uiにセット
+		shotUI.setTime(typeInfo.shotInterval);
+
+		// エネミーアニメーションマネージャを取得
+		enemyAnimation = GetComponent<enemyAnimation>();
         enemyAnimation.setEnemyAnimManager(GameObject.Find("EnemyCreater").GetComponent<EnemyCreater>().GetEnemyAnimationManager());
 
 		enemyBullet = GetComponent<enemyBullet>();
@@ -237,12 +249,11 @@ public class enemy : MonoBehaviour {
 	{
 		enemycsvInfo = ei;
 
-        // 情報による操作
-        int i = 0;
+		// 情報による操作
 	}
 
-    // タイプマネージャをセット(マネージャーから)
-    public void setEnemyTypeManager(enemyTypeManager manager)
+	// タイプマネージャをセット(マネージャーから)
+	public void setEnemyTypeManager(enemyTypeManager manager)
     {
         enemyTypeManager = manager;
     }
@@ -262,7 +273,9 @@ public class enemy : MonoBehaviour {
 	public void lookAt(Vector3 vec)
 	{
 		Vector3 p = vec;
-		p.y = transform.position.y;
+		//p.y = transform.position.y;
+		//		p.y = transform.position.y;
+		p.y -= 1.0f;
 		transform.LookAt(p);
 
 	}

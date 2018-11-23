@@ -22,7 +22,9 @@ public class EnemyManager : MonoBehaviour {
     class Option
     {
         public GameObject          Enemy00;            // エネミーオブジェクト
-        public CsvManager          Csvmanager;         // csvマネージャ
+        public GameObject          Enemy01;            // エネミーオブジェクト
+        public GameObject          Enemy02;            // エネミーオブジェクト
+		public CsvManager          Csvmanager;         // csvマネージャ
         public GameObject          enemyCreater;       // エネミークリエイター
     }
 
@@ -45,8 +47,27 @@ public class EnemyManager : MonoBehaviour {
             }
         }
 
-        // リスト作成
-        CsvDate  = new List<string[]>();
+		if (OptionInfo.Enemy01 == null)
+		{
+			OptionInfo.Enemy01 = (GameObject)Resources.Load(Edit.ENEMY_00);
+			if (OptionInfo.Enemy01 == null)
+			{
+				Debug.LogError("Error [PrefubLoad] : EnemyManager.cs");
+				return;
+			}
+		}
+
+		if (OptionInfo.Enemy02 == null)
+		{
+			OptionInfo.Enemy02 = (GameObject)Resources.Load(Edit.ENEMY_00);
+			if (OptionInfo.Enemy02 == null)
+			{
+				Debug.LogError("Error [PrefubLoad] : EnemyManager.cs");
+				return;
+			}
+		}
+		// リスト作成
+		CsvDate = new List<string[]>();
         WaveDate = new List<GameObject>();
         SceneDate = new List<GameObject>();
 		
@@ -123,11 +144,22 @@ public class EnemyManager : MonoBehaviour {
                 // ウェーブ数を取得
                 buf.WAVE_NUMBER = int.Parse(CsvDate[index][(int)EnemyAnalyze.Enemy_Wave]);
 
-                // エネミー生成
-                obj = Instantiate(OptionInfo.Enemy00, pos, Quaternion.identity);
+				// エネミー生成
+				if (buf.MODEL_NUMBER == enemyTypeManager.ENEMY_TYPE.TYPE_EASY)
+				{
+					obj = Instantiate(OptionInfo.Enemy00, pos, Quaternion.identity);
+				}
+				else if(buf.MODEL_NUMBER == enemyTypeManager.ENEMY_TYPE.TYPE_NORMAL)
+				{
+					obj = Instantiate(OptionInfo.Enemy01, pos, Quaternion.identity);
+				}
+				else if (buf.MODEL_NUMBER == enemyTypeManager.ENEMY_TYPE.TYPE_HARD)
+				{
+					obj = Instantiate(OptionInfo.Enemy02, pos, Quaternion.identity);
+				}
 
-                // 生成フラグをたてる
-                obj.GetComponent<enemy>().createMeFrag();
+				// 生成フラグをたてる
+				obj.GetComponent<enemy>().createMeFrag();
 
                 // エネミー情報セット
                 obj.GetComponent<enemy>().setEnemyInfo(buf);

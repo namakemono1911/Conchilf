@@ -8,9 +8,10 @@ public class enemyShotDanger : MonoBehaviour
 	[SerializeField]
 	private Transform textureScale;
 	[SerializeField]
+	private Transform texturebg;
+
 	private float flashTime;    // 点滅間隔
 
-	private bool isFlash;
 	private bool isStart;
 	private float time;
 
@@ -18,7 +19,6 @@ public class enemyShotDanger : MonoBehaviour
 	void Start()
 	{
 		time = 0.0f;
-		isFlash = true;
 	}
 
 	// Update is called once per frame
@@ -28,24 +28,21 @@ public class enemyShotDanger : MonoBehaviour
 		{
 			time = 0.0f;
 			textureScale.localScale = new Vector3(0, 0, 0);
+			texturebg.localScale = new Vector3(0, 0, 0);
 		}
 		else
 		{
+			texturebg.localScale = new Vector3(0.025f, 0.025f, 0.025f);
+
 			time += Time.deltaTime;
 
-			if (isFlash)
-			{
-				textureScale.localScale = new Vector3(1, 1, 1);
-			}
-			else
-			{
-				textureScale.localScale = new Vector3(0, 0, 0);
-			}
+			float a = time / flashTime;
+
+			textureScale.localScale = new Vector3(a, a, a);
 
 			if (time >= flashTime)
 			{
-				isFlash = !isFlash;
-				time = 0.0f;
+				isStart = false;
 			}
 		}
 	}
@@ -53,14 +50,17 @@ public class enemyShotDanger : MonoBehaviour
 	public void flashStart()
 	{
 		isStart = true;
-		isFlash = true;
 		time = 0.0f;
 	}
 
 	public void flashEnd()
 	{
 		isStart = false;
-		isFlash = true;
 		time = 0.0f;
+	}
+
+	public  void setTime(float fTime)
+	{
+		flashTime = fTime;
 	}
 }
