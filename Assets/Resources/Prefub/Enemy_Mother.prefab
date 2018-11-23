@@ -1278,7 +1278,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1722501893345614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.28, z: 0}
+  m_LocalPosition: {x: 1.78, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4957916343101468}
@@ -1483,8 +1483,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1987121572862466}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -1725.15, y: -1030, z: -66.37}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -1715.18, y: -1029.981, z: -49.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4164126546291598}
@@ -1492,7 +1492,7 @@ Transform:
   - {fileID: 4200336480474316}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!4 &4454213926081660
 Transform:
   m_ObjectHideFlags: 1
@@ -2118,7 +2118,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1273511256148982}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2348,7 +2348,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 71fca8c61e968af4fa2fa9f59c5e8fe2, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -2382,7 +2382,7 @@ MonoBehaviour:
   enemyShotDanger: {fileID: 114858173583874186}
   enemycsvInfo:
     MODEL_NUMBER: 0
-    WAVE_NUMBER: 1
+    WAVE_NUMBER: 0
     MOVE_SECOND: 0.3
     ENEMY_POS: {x: 0, y: 0, z: 0}
     ENEMY_MOVE_POS: {x: 0, y: 0, z: 0}
@@ -2390,6 +2390,7 @@ MonoBehaviour:
   playersPos: []
   gun: {fileID: 114083265737635160}
   handUI: {fileID: 1860987272383302}
+  enemyUI: {fileID: 1745061684394588}
   shotUI: {fileID: 114858173583874186}
   startPos: {fileID: 4200336480474316}
 --- !u!114 &114269611262169436

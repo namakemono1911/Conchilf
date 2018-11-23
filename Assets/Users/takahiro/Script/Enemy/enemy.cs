@@ -39,6 +39,8 @@ public class enemy : MonoBehaviour {
 	[SerializeField]
 	private GameObject handUI;
 	[SerializeField]
+	private GameObject enemyUI;
+	[SerializeField]
 	private enemyShotDanger shotUI;
 
 	[SerializeField]
@@ -125,6 +127,11 @@ public class enemy : MonoBehaviour {
 	public GameObject hand
 	{
 		get { return handUI; }
+	}
+	// 右手ui
+	public GameObject enemyUIs
+	{
+		get { return enemyUI; }
 	}
 
 	private void Awake()
@@ -266,7 +273,9 @@ public class enemy : MonoBehaviour {
 	public void lookAt(Vector3 vec)
 	{
 		Vector3 p = vec;
-		p.y = transform.position.y;
+		//p.y = transform.position.y;
+		//		p.y = transform.position.y;
+		p.y -= 1.0f;
 		transform.LookAt(p);
 
 	}
