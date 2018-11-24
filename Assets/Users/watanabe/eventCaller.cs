@@ -63,6 +63,7 @@ public class eventCaller : MonoBehaviour {
 					}
 					case eventAction.timeScaleChange:
 					{
+                            Debug.Log("timeScaleSlow");
 						Time.timeScale = timeScaleSlow;
 						break;
 					}

@@ -106,6 +106,7 @@ public class virtualCameraSet : MonoBehaviour
 
 		// 注視点の更新
 		nowLookAt += getLookAtSpeed();
+        Debug.Log(nowLookAt);
 		lookPos = getcameraPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
 
 

@@ -114,7 +114,8 @@ public class cameraMove : MonoBehaviour {
 		}
 		// カメラ角度
 		transform.LookAt(cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance));
-		if (debugLookAtObj != null)
+
+        if (debugLookAtObj != null)
 		{
 			debugLookAtObj.transform.position = cameraSet[setNum].getlookAtPath().EvaluatePositionAtUnit(nowLookAt, Cinemachine.CinemachinePathBase.PositionUnits.Distance);
 		}
