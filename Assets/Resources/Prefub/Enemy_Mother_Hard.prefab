@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4739666545474354}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: hpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 33792462737813106}
   - component: {fileID: 23771060935522700}
   - component: {fileID: 114473705352393120}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: handUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1576550352114940
 GameObject:
   m_ObjectHideFlags: 1
@@ -852,7 +852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4020003556779500}
   - component: {fileID: 114475970998888308}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: enemyHandUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 33315193233944888}
   - component: {fileID: 23357250968824506}
   - component: {fileID: 114757571419298736}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,7 +1005,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4452173448715564}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: enemyUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
