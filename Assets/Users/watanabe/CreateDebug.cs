@@ -28,10 +28,8 @@ public class CreateDebug : MonoBehaviour {
     private int SceneNum;
     private int WaveNum;
 
-	public bool clearEnemy = false;
-	public GameObject policeCar = null;
-	public GameObject Explotion = null;
-	public GameObject Black = null;
+	[SerializeField]
+	private bool clearEnemy = false;
 
     // Use this for initialization
     void Start () {
@@ -112,38 +110,5 @@ public class CreateDebug : MonoBehaviour {
                 Debug.Log("シーン内のエネミーを全削除しました -> ");
             }
         }
-
-		// イベントトリガー
-		EventTrigger ();
     }
-
-	void EventTrigger()
-	{
-		if (Input.GetKey (KeyCode.E))
-		{
-			if (Input.GetKeyDown ("1"))
-			{
-				Time.timeScale = 0.2f;
-				Explotion.SetActive (false);
-				Explotion.SetActive (true);
-				Debug.Log("Event : 爆発");
-			}
-			if (Input.GetKeyDown ("2"))
-			{
-				Time.timeScale = 1.0f;
-				Black.SetActive (false);
-				Black.SetActive (true);
-				Debug.Log("Event : フェードアウト");
-			}
-			if (Input.GetKey ("3"))
-			{
-				if (Input.GetKeyDown (KeyCode.RightArrow))
-				{
-					Black.SetActive (false);
-					policeCar.SetActive (false);
-					Debug.Log("Event : フェードイン");
-				}
-			}
-		}
-	}
 }

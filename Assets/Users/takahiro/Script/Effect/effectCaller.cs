@@ -12,10 +12,8 @@ public class effectCaller : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		Debug.Log("hit" + collision.transform.tag);
 		if(collision.transform.tag == "event")
 		{
-			Debug.Log("call");
 			effectManager.playEffect(effectNumber);
 		}
 	}

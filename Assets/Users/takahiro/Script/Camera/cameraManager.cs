@@ -126,6 +126,9 @@ public class cameraManager : MonoBehaviour {
 
 		// ウェーブ処理
 		nextWave();
+
+		// シーン遷移チェック
+		chackSceneManager();
 	}
 
 	// カメラ変更
@@ -185,10 +188,13 @@ public class cameraManager : MonoBehaviour {
 				// 敵再生
 				nextScene();
 			}
-			else if(cameraMove.getCameraMoveNum() == cameraWait[waitNum].cameraWait)
+			else if(waitNum < cameraWait.Length)
 			{
-				isWait = true;
-				timerScene = 0.0f;
+				if(cameraMove.getCameraMoveNum() == cameraWait[waitNum].cameraWait)
+				{
+					isWait = true;
+					timerScene = 0.0f;
+				}
 			}
 			else
 			{
@@ -208,14 +214,7 @@ public class cameraManager : MonoBehaviour {
 			// 次のウェーブを呼ぶ
 			if(enemySceneManager.EnemyWaveNext() == false)
 			{
-				// 次のシーンが無い時
-				//if (EnemyManager.GetComponent<EnemyManager>().GetNextSceneEnable(numScene) == false && cameraMove.isMaxCamera() == true)
-				if (EnemyManager.GetComponent<EnemyManager>().GetNextSceneEnable(numScene - 1) == false)
-				{
-					chackSceneManager();
-					return;
-				}
-				// 次のウェーブが無い時
+				//次のウェーブが無い時
 				// カメラを動かす
 				nextCamera();
 			}
@@ -244,8 +243,18 @@ public class cameraManager : MonoBehaviour {
 	// このゲームシーンの終了を検知
 	private void chackSceneManager()
 	{
-		timerScene = 0.0f;
-		isSceneChange = true;
+		// カメラが止まる && 待ち時間が発生しない && 最終地点 && 敵がいない
+		if(cameraMove.isEndMove() == true)
+		{
+			if(cameraWait.Length <= waitNum)
+			{
+				if(EnemyManager.GetComponent<EnemyManager>().GetNextSceneEnable(numScene - 1) == false)
+				{
+					timerScene = 0.0f;
+					isSceneChange = true;
+				}
+			}
+		}
 	}
 
     // ウェーブの全滅確認
