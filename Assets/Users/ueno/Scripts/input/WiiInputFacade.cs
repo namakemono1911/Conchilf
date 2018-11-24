@@ -93,9 +93,6 @@ public class WiiInputFacade : InputFacade
     //リロード
     public override bool whetherReload()
     {
-        if (whetherGuard())
-            return true;
-
         if (wiiInput[(int)ControllerArm.right].getTrigger(setting.reload))
             return true;
 

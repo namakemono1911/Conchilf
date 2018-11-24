@@ -15,6 +15,10 @@ public class playerGuard : playerState {
 
 		//SE再生
 		player.SE.guardSE.Play();
+
+        player.UI.bulletUI.bulletReload();
+        player.Gun.reload();
+        //player.changeState(new playerDefault(player));
     }
 
     public override void updateState()
