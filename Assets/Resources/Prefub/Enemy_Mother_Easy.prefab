@@ -40,6 +40,8 @@ GameObject:
   - component: {fileID: 114242968923168632}
   - component: {fileID: 114307780132583056}
   - component: {fileID: 82967351255267896}
+  - component: {fileID: 114260604034632314}
+  - component: {fileID: 114053750492452596}
   m_Layer: 0
   m_Name: Enemy_Mother_Easy
   m_TagString: enemy
@@ -1382,7 +1384,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1030739326680920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1715.18, y: -1029.981, z: -49.59}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4543515848457166}
@@ -2353,6 +2355,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114053750492452596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1030739326680920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cfdfc5a75627546b3b25d1b9af4be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114098628483800220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2392,6 +2405,18 @@ MonoBehaviour:
   enemyUI: {fileID: 1996430631326742}
   shotUI: {fileID: 114594613633291522}
   startPos: {fileID: 4003995672077866}
+--- !u!114 &114260604034632314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1030739326680920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294b86e3c8ca76748bfc552e70758330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neckTrasform: {fileID: 0}
 --- !u!114 &114307780132583056
 MonoBehaviour:
   m_ObjectHideFlags: 1

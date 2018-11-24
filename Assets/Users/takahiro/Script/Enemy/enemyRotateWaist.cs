@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class enemyRotateWaist : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-		Vector3 camera = Camera.main.transform.position;
-
-
-		this.transform.LookAt(camera);
+	private void LateUpdate()
+	{
+		Transform camera = Camera.main.transform;
+		Vector3 cameraPos = camera.position;
+		cameraPos = new Vector3(camera.position.x , this.transform.position.y , camera.position.z);
+		this.transform.LookAt(cameraPos);
 	}
 }

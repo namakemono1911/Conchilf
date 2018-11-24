@@ -61,6 +61,7 @@ public class enemy : MonoBehaviour {
     private playerController player;
 	private AudioSource audioSource;
 
+
     //プレイヤー
     public playerController Player
     {
@@ -272,11 +273,11 @@ public class enemy : MonoBehaviour {
 	// 目標がいる向きを向く　今はカメラ
 	public void lookAt(Vector3 vec)
 	{
-		Vector3 p = vec;
-		//p.y = transform.position.y;
-		//		p.y = transform.position.y;
-		p.y -= 1.0f;
-		transform.LookAt(p);
+		//Vector3 p = vec;
+		////p.y = transform.position.y;
+		////		p.y = transform.position.y;
+		//p.y -= 1.0f;
+		//transform.LookAt(p);
 
 	}
 
