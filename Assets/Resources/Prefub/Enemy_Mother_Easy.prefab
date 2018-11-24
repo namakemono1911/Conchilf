@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 114307780132583056}
   - component: {fileID: 82967351255267896}
   - component: {fileID: 114260604034632314}
-  - component: {fileID: 114053750492452596}
   m_Layer: 0
   m_Name: Enemy_Mother_Easy
   m_TagString: enemy
@@ -2355,17 +2354,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114053750492452596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030739326680920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02cfdfc5a75627546b3b25d1b9af4be0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114098628483800220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2416,7 +2404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294b86e3c8ca76748bfc552e70758330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neckTrasform: {fileID: 0}
+  waistTrasform: {fileID: 0}
 --- !u!114 &114307780132583056
 MonoBehaviour:
   m_ObjectHideFlags: 1

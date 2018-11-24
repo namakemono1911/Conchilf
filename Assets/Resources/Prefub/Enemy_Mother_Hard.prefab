@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: 114113578003955648}
   - component: {fileID: 114187352481482736}
   - component: {fileID: 82743473374113724}
+  - component: {fileID: 114259520141748892}
   m_Layer: 0
   m_Name: Enemy_Mother_Hard
   m_TagString: enemy
@@ -2312,6 +2313,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace373a373771f643a2d26f032ee1e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114259520141748892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511244766736346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294b86e3c8ca76748bfc552e70758330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waistTrasform: {fileID: 0}
 --- !u!114 &114339057852840476
 MonoBehaviour:
   m_ObjectHideFlags: 1

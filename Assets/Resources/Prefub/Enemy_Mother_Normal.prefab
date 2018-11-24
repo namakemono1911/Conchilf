@@ -834,6 +834,7 @@ GameObject:
   - component: {fileID: 114786545138132242}
   - component: {fileID: 114452951554297344}
   - component: {fileID: 82519230068605346}
+  - component: {fileID: 114205528757113794}
   m_Layer: 0
   m_Name: Enemy_Mother_Normal
   m_TagString: enemy
@@ -2276,6 +2277,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textureScale: {fileID: 4891656213532414}
   texturebg: {fileID: 4868710034833602}
+--- !u!114 &114205528757113794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743402570489824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294b86e3c8ca76748bfc552e70758330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waistTrasform: {fileID: 0}
 --- !u!114 &114288978241059192
 MonoBehaviour:
   m_ObjectHideFlags: 1
