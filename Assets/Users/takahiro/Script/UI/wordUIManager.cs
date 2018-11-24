@@ -9,13 +9,17 @@ public class wordUIManager : MonoBehaviour {
 	public struct WORD_SPACE
 	{
 		public bool start;	// 開始判定
-		public string word;	// 表示文字
 		public AudioClip se;   // 効果音
-		public Sprite sprite;    // 表示画像
+		//public Sprite sprite;    // 表示画像
+		//public string word;	// 表示文字
 	}
 
 	[SerializeField]
 	private Image image;
+	[SerializeField]
+	private Sprite Kokujin;
+	[SerializeField]
+	private Sprite Hakujin;
 	[SerializeField]
 	private Image wordBG;
 	[SerializeField]
@@ -160,7 +164,7 @@ public class wordUIManager : MonoBehaviour {
 		isSound = true;
 	}
 
-	public void startPlayWordUI(int playIndex)
+	public void startPlayWordUI(int playIndex, bool hakujinFlag, string textData)
 	{
 		if (wordUIs [playIndex].start)
 			return;
@@ -171,8 +175,15 @@ public class wordUIManager : MonoBehaviour {
 		playSound = playIndex;
 
 		// 画像&言葉設定
-		image.sprite = wordUIs[playIndex].sprite;
-		wordSpace.text = wordUIs[playIndex].word;
+		//image.sprite = wordUIs[playIndex].sprite;
+		//wordSpace.text = wordUIs[playIndex].word;
+		if (!hakujinFlag)
+		{
+			image.sprite = Kokujin;
+		} else {
+			image.sprite = Hakujin;
+		}
+		wordSpace.text = textData;
 
 		wordUIs[playIndex].start = true;
 	}

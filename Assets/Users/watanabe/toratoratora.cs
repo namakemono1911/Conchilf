@@ -8,6 +8,7 @@ public class toratoratora : MonoBehaviour {
 	private float moveSpeed;
 
 	private Rigidbody rb;
+	private int life;
 
 	// Use this for initialization
 	void Start () {

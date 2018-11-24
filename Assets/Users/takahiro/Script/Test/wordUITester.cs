@@ -17,7 +17,7 @@ public class wordUITester : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.P))
 		{
-			wordUIManager.startPlayWordUI(debugIdx);
+			//wordUIManager.startPlayWordUI(debugIdx);
 		}
 	}
 }

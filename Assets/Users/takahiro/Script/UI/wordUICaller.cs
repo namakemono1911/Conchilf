@@ -10,12 +10,18 @@ public class wordUICaller : MonoBehaviour {
 	[SerializeField]
 	private int callNumber;
 
+	[SerializeField]
+	private bool Hakujin;
+
+	[SerializeField][MultilineAttribute(2)]
+	private string textData;
+
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.transform.tag == "event")
 		{
 			Debug.Log("call -> word");
-			wordUIManager.startPlayWordUI(callNumber);
+			wordUIManager.startPlayWordUI(callNumber,Hakujin,textData);
 		}
 	}
 }
