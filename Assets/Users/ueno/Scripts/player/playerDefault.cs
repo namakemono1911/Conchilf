@@ -54,21 +54,21 @@ public class playerDefault : playerState {
 
         //当たり判定
         RaycastHit hit;
-        bool isHit = false;
+        player.result.addScore(scoreType.SHOT_NUM);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
         {
             if (hit.collider.tag == "enemy")
             {
                 hit.transform.gameObject.GetComponent<enemy>().setPlayer(player);
                 hit.transform.gameObject.GetComponent<enemy>().State.hitBullet(1, false);
-                isHit = true;
+                player.result.addScore(scoreType.HIT_NUM);
             }
 
             if (hit.collider.tag == "enemyCritical")
             {
                 hit.transform.gameObject.GetComponent<rightGun>().Enemy.setPlayer(player);
                 hit.transform.gameObject.GetComponent<rightGun>().Enemy.State.hitBullet(1, true);
-                isHit = true;
+                player.result.addScore(scoreType.HIT_NUM);
             }
 
             if (hit.collider.tag == "Boss")
@@ -76,10 +76,9 @@ public class playerDefault : playerState {
                 
                 hit.transform.gameObject.transform.root.GetComponent<boss>().setPlayer(player);
                 hit.transform.gameObject.transform.root.GetComponent<boss>().BulletHit();
-                isHit = true;
+                player.result.addScore(scoreType.HIT_NUM);
             }
         }
-        player.result.shot(isHit);
 	}
 
     //ヒット時処理

@@ -29,6 +29,7 @@ public class ScoreEvaluation : MonoBehaviour
             {
                 scoreText.text = "";
                 scoreText.text += evaluation[i];
+                break;
             }
         }
 	}

@@ -11,10 +11,10 @@ public class resultDebug : MonoBehaviour
     {
         for (int i = 0; i < 100; i++)
         {
+            score.addScore(scoreType.SHOT_NUM);
+
             if (i % 2 == 0)
-                score.shot(true);
-            else
-                score.shot(false);
+                score.addScore(scoreType.HIT_NUM);
         }
 
         for (int i = 0; i < (int)scoreType.SUM_SCORE; i++)

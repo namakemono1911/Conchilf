@@ -7,6 +7,8 @@ public enum scoreType
 {
     DEFEAT_NUM = 0,
     ARREST_NUM,
+    SHOT_NUM,
+    HIT_NUM,
     ACCURACY,
     DOWN_NUM,
     SUM_SCORE,
@@ -22,15 +24,15 @@ public class playerScore
             scoreDict[(scoreType)i] = 0;
     }
     private Dictionary<scoreType, int> scoreDict = new Dictionary<scoreType, int>();
-    private int totalShot;
-    private int hitShot;
     private int numPlayer;
     public static int[] baseScore = new int[]
         {
             100,
             100,
+            0,
+            0,
             100,
-            100
+            -100
         };
 
     public void setScore(scoreType type, int score)
@@ -43,16 +45,9 @@ public class playerScore
         scoreDict[type]++;
     }
 
-    public void shot(bool isHit)
-    {
-        totalShot++;
-        if (isHit)
-            hitShot++;
-    }
-
     public void calcResult()
     {
-        float parcent = (float)hitShot / totalShot;
+        float parcent = (float)scoreDict[scoreType.HIT_NUM] / scoreDict[scoreType.SHOT_NUM];
         scoreDict[scoreType.ACCURACY] = (int)(parcent * 100.0f);
 
         int sum = 0;

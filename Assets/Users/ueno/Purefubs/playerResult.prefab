@@ -678,9 +678,9 @@ MonoBehaviour:
     scoreText: {fileID: 114032456998864048}
   - type: 1
     scoreText: {fileID: 114332349445875918}
-  - type: 2
+  - type: 4
     scoreText: {fileID: 114122886610859764}
-  - type: 3
+  - type: 5
     scoreText: {fileID: 114394410886006592}
 --- !u!114 &114072949194167706
 MonoBehaviour:
@@ -953,17 +953,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 1
-  basicValue: 6400000064000000640000006400000001000000
+  basicValue: 6400000064000000640000009cffffff01000000
   resultDatas:
   - type: 0
     scoreText: {fileID: 114799493876035116}
   - type: 1
     scoreText: {fileID: 114741705934953828}
-  - type: 2
-    scoreText: {fileID: 114268615809470572}
-  - type: 3
-    scoreText: {fileID: 114425206693971976}
   - type: 4
+    scoreText: {fileID: 114268615809470572}
+  - type: 5
+    scoreText: {fileID: 114425206693971976}
+  - type: 6
     scoreText: {fileID: 114132225523909854}
 --- !u!114 &114297759139748500
 MonoBehaviour:

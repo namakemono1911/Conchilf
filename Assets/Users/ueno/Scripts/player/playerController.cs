@@ -112,6 +112,10 @@ public class playerController : MonoBehaviour {
 	void Update () {
         //ステート更新
         state.updateState();
+
+        //デバッグ用セーブ機能
+        if (Input.GetKey(KeyCode.S))
+            result.save();
     }
 
     public void changeState(playerState newState)
