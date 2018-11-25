@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using WiimoteApi;
 
 //SE
@@ -36,4 +37,10 @@ abstract public class InputFacade : MonoBehaviour
     abstract public bool whetherGuard();        //ガードしたかどうか
     abstract public bool whetherReload();       //リロードしたかどうか
     abstract public bool whetherWakeUp();       //起き上がったかどうか
+
+    //レティクル非表示
+    public void reticleVisible(bool isVisible)
+    {
+        reticle.gameObject.SetActive(isVisible);
+    }
 }

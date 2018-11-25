@@ -165,4 +165,16 @@ public class playerController : MonoBehaviour {
     {
         result.load();
     }
+
+    public void toNeutral(bool isNeutral)
+    {
+        if (isNeutral)
+            changeState(new playerNeutral(this));
+        else
+        {
+            control.reticleVisible(true);
+            ui.bulletUI.gameObject.SetActive(true);
+            changeState(new playerDefault(this));
+        }
+    }
 }
