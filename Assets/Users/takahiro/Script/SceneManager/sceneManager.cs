@@ -117,4 +117,9 @@ public class sceneManager : singletonMonobihavior<sceneManager> {
 	{
 		return fade;
 	}
+
+    public bool isFadeIn()
+    {
+        return fadeIn;
+    }
 }
