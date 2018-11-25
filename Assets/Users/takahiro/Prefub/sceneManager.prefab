@@ -90,6 +90,7 @@ MonoBehaviour:
   fadeSecond: 3
   fadeImage: {fileID: 114779193918243156}
   sceneNames:
+  - logo
   - title
   - Stage1
   - PerfectBossScene
@@ -99,6 +100,7 @@ MonoBehaviour:
   - result2
   - inputName
   - ranking
+  - thankyouforplaying
 --- !u!114 &114669645004471524
 MonoBehaviour:
   m_ObjectHideFlags: 1
