@@ -8,7 +8,10 @@ public class playerNoAmmo : playerState {
 
     public override void initState()
     {
+        //アニメーション再生
         player.Animation.reloadHint.startAnimation();
+        //SE再生
+        player.SE.noAmmoSE.Play();
     }
 
     public override void updateState()

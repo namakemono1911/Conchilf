@@ -15,6 +15,16 @@ public class titleManager : MonoBehaviour
     [SerializeField]
     private InputFacade reticle;
 
+    [System.Serializable]
+    class TitleSE
+    {
+        public AudioSource play1;
+        public AudioSource play2;
+    }
+
+    [SerializeField]
+    private TitleSE se;
+
     private Button selectButton = null;
 
     // Update is called once per frame
@@ -26,12 +36,18 @@ public class titleManager : MonoBehaviour
 
     public void select1()
     {
+        //SE再生
+        se.play1.Play();
+
         //遷移処理
         sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_NORMAL_1);
     }
 
     public void select2()
     {
+        //SE再生
+        se.play2.Play();
+
         //遷移処理
         sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_NORMAL_2);
     }

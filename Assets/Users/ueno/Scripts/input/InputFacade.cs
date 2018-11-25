@@ -13,6 +13,8 @@ public class PlayerSE
 	public AudioSource guardSE;         //ガード時
 	public AudioSource guardHitSE;      //ガード中ヒット
 	public AudioSource downSE;          //ダウン
+    public AudioSource noAmmoSE;        //弾無
+    public AudioSource revivalSE;       //復活
 }
 
 abstract public class InputFacade : MonoBehaviour

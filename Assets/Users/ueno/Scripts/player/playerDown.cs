@@ -18,6 +18,9 @@ public class playerDown : playerState {
     {
         if (player.Control.whetherWakeUp())
         {
+            //SE再生
+            player.SE.revivalSE.Play();
+
             if (player.Gun.remBullet >= 0)
                 player.changeState(new playerDefault(player));
             else
