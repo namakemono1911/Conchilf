@@ -234,19 +234,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1169365571}
+  Kokujin: {fileID: 0}
+  Hakujin: {fileID: 0}
   wordBG: {fileID: 679008184}
   wordSpace: {fileID: 1443218543}
   audio: {fileID: 0}
   fadeSpeedSecond: 0
   wordUIs:
   - start: 0
-    word: "D\u306F\u767A\u97F3\u3057\u306A\u3044"
     se: {fileID: 0}
-    sprite: {fileID: 21300000, guid: 7ad8bf27599ce264a823f6893f072d46, type: 3}
   - start: 0
-    word: Punk is not Dead
     se: {fileID: 0}
-    sprite: {fileID: 21300000, guid: c1107e37f4d6b3643ac4244cddc52400, type: 3}
 --- !u!1001 &263762410
 Prefab:
   m_ObjectHideFlags: 0
@@ -18174,7 +18172,7 @@ Prefab:
     - target: {fileID: 114676784021905372, guid: d3a80fbecde46964996b11686e767a33,
         type: 2}
       propertyPath: instance
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3a80fbecde46964996b11686e767a33, type: 2}

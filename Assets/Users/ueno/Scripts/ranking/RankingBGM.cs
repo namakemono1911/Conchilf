@@ -15,6 +15,10 @@ public class RankingBGM : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+		// エラー処理追加 石井
+		if (bgm == null)
+			return;
+
         if (!sceneManager.Instance.isFadeIn() && sceneManager.Instance.isFade())
             bgm.volume -= 0.01f;
 

@@ -17240,11 +17240,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ce370951578f94439437bb175edd2dc, type: 2}
   m_IsPrefabParent: 0
---- !u!82 &833446699 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82857906927191098, guid: 8ce370951578f94439437bb175edd2dc,
-    type: 2}
-  m_PrefabInternal: {fileID: 833446698}
 --- !u!224 &833446700 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224704376845573468, guid: 8ce370951578f94439437bb175edd2dc,
@@ -17406,7 +17401,7 @@ Prefab:
         type: 2}
       propertyPath: se.downSE
       value: 
-      objectReference: {fileID: 833446699}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6bd006f5e692b954399d296278c4e930, type: 2}
   m_IsPrefabParent: 0
@@ -18442,7 +18437,7 @@ Prefab:
         type: 2}
       propertyPath: se.downSE
       value: 
-      objectReference: {fileID: 833446699}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f0eeebc2f336ef4b8a2e79ba99ae417, type: 2}
   m_IsPrefabParent: 0
@@ -19183,7 +19178,7 @@ Prefab:
     - target: {fileID: 114676784021905372, guid: d3a80fbecde46964996b11686e767a33,
         type: 2}
       propertyPath: instance
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3a80fbecde46964996b11686e767a33, type: 2}
@@ -19507,19 +19502,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1255981412}
+  Kokujin: {fileID: 0}
+  Hakujin: {fileID: 0}
   wordBG: {fileID: 1238608972}
   wordSpace: {fileID: 1937945029}
   audio: {fileID: 0}
   fadeSpeedSecond: 0
   wordUIs:
   - start: 0
-    word: "D\u306F\u767A\u97F3\u3057\u306A\u3044"
     se: {fileID: 0}
-    sprite: {fileID: 21300000, guid: 7ad8bf27599ce264a823f6893f072d46, type: 3}
   - start: 0
-    word: Punk is not Dead
     se: {fileID: 0}
-    sprite: {fileID: 21300000, guid: c1107e37f4d6b3643ac4244cddc52400, type: 3}
 --- !u!1001 &2009317637
 Prefab:
   m_ObjectHideFlags: 0

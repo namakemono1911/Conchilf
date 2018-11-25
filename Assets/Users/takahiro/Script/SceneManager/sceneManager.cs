@@ -8,7 +8,8 @@ public class sceneManager : singletonMonobihavior<sceneManager> {
 
 	public enum SCENE
 	{
-		SCENE_LOGO = 0,
+		SCENE_DONT = 0,
+		SCENE_LOGO,
 		SCENE_TITLE,
 		SCENE_GAME_NORMAL_1,
 		SCENE_GAME_BOSS_1,
@@ -42,17 +43,18 @@ public class sceneManager : singletonMonobihavior<sceneManager> {
 
 		// シーンと列挙型の関連付け
 		sceneNamesIdx = new Dictionary<int, string> {
-			{(int)SCENE.SCENE_LOGO , sceneNames[0] },
-			{(int)SCENE.SCENE_TITLE , sceneNames[1] },
-			{(int)SCENE.SCENE_GAME_NORMAL_1 , sceneNames[2] },
-            {(int)SCENE.SCENE_GAME_BOSS_1 , sceneNames[3] },
-			{(int)SCENE.SCENE_GAME_NORMAL_2 , sceneNames[4] },
-			{(int)SCENE.SCENE_GAME_BOSS_2 , sceneNames[5] },
-			{(int)SCENE.SCENE_RESULT_1 , sceneNames[6] },
-            {(int)SCENE.SCENE_RESULT_2 , sceneNames[7] },
-            {(int)SCENE.SCENE_INPUT_NAME , sceneNames[8] },
-            {(int)SCENE.SCENE_RANKING , sceneNames[9] },
-            {(int)SCENE.SCENE_THANKYOU , sceneNames[10] },
+			{(int)SCENE.SCENE_DONT , sceneNames[0] },
+			{(int)SCENE.SCENE_LOGO , sceneNames[1] },
+			{(int)SCENE.SCENE_TITLE , sceneNames[2] },
+			{(int)SCENE.SCENE_GAME_NORMAL_1 , sceneNames[3] },
+            {(int)SCENE.SCENE_GAME_BOSS_1 , sceneNames[4] },
+			{(int)SCENE.SCENE_GAME_NORMAL_2 , sceneNames[5] },
+			{(int)SCENE.SCENE_GAME_BOSS_2 , sceneNames[6] },
+			{(int)SCENE.SCENE_RESULT_1 , sceneNames[7] },
+            {(int)SCENE.SCENE_RESULT_2 , sceneNames[8] },
+            {(int)SCENE.SCENE_INPUT_NAME , sceneNames[9] },
+            {(int)SCENE.SCENE_RANKING , sceneNames[10] },
+            {(int)SCENE.SCENE_THANKYOU , sceneNames[11] },
         };
 
         beforScene = SCENE.SCENE_TITLE;

@@ -11,14 +11,26 @@ public class thankyouManager : MonoBehaviour {
 	private int index;
 	// Use this for initialization
 	void Start () {
-		index = 0;
-		audio = GetComponent<AudioSource>();
-		audio.PlayOneShot(voise[(Random.Range(0, 100)) % 2]);
+		index = -1;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if(index == 0)
+
+		if(sceneManager.Instance.isFade() == true)
+		{
+			return;
+		}
+
+		if(sceneManager.Instance.isFadeIn() == false && sceneManager.Instance.isFade() == false && index == -1)
+		{
+			index = 0;
+			audio = GetComponent<AudioSource>();
+			audio.PlayOneShot(voise[(Random.Range(0, 100)) % 2]);
+			return;
+		}
+
+		if (index == 0)
 		{
 			if(!audio.isPlaying)
 			{

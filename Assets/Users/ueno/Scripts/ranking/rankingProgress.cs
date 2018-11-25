@@ -29,6 +29,6 @@ public class rankingProgress : MonoBehaviour {
 	void Update ()
     {
         if (changeTime <= Time.time - startTime || input.whetherShot())
-            sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_TITLE);
+            sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_THANKYOU);
     }
 }
