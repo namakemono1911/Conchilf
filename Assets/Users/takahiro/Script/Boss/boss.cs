@@ -36,38 +36,42 @@ public class boss : MonoBehaviour
     [System.Serializable]
     class Option
     {
-        public int          BulletSpeed;            // 弾丸ヒットまでの時間
-        public BossInfo     bossInfo;               // ボス情報
-        public Enemy_gun    gun_Right;              // 銃口(右)
-        public Enemy_gun    gun_Left;               // 銃口(左)
+        public int BulletSpeed;                 // 弾丸ヒットまでの時間
+        public BossInfo bossInfo;               // ボス情報
+        public Enemy_gun gun_Right;             // 銃口(右)
+        public Enemy_gun gun_Left;              // 銃口(左)
 
-        public GameObject ExplosionEfect;           // 爆発エフェクト
+        public Lifebar LifeBar;                 // ２パー毎に減らす
+        public GameObject ExplosionEfect;       // 爆発エフェクト
+        public GameObject ExplosionEfect2;      // 爆発エフェクト
+        public GameObject[] SmokeEffect;        // スモークエフェクト
 
-        public playerController[] Playerinfo;       // プレイヤー情報
+        public playerController[] Playerinfo;   // プレイヤー情報
     }
 
     [SerializeField]
-    private Option  OptionInfo;                     // オプション情報
+    private Option OptionInfo;                  // オプション情報
     [SerializeField]
-    private BossSe  SoundInfo;                      // サウンド情報
+    private BossSe SoundInfo;                   // サウンド情報
 
     // 通常メンバ
-    private int                 SumDamage;          // 総合ダメージ
-    private float               bossTimer;          // ボス用タイマー
-    private bool                CountEnable;        // カウントフラグ
+    private int SumDamage;                      // 総合ダメージ
+    private float bossTimer;                    // ボス用タイマー
+    private bool CountEnable;                   // カウントフラグ
 
-    private bossState           bossState;          // ボスステート
-    private bossAnimation       bossAnimation;      // アニメーション情報
-    private playerController[]  playerControllers;  // プレイヤー情報
-    private enemyBullet         Bullet;             // バレット情報
-    private havePlayerNum       havePlayer;         // ハブプレイヤー
+    private bossState bossState;                    // ボスステート
+    private bossAnimation bossAnimation;            // アニメーション情報
+    private playerController[] playerControllers;   // プレイヤー情報
+    private enemyBullet Bullet;                     // バレット情報
+    private havePlayerNum havePlayer;               // ハブプレイヤー
 
-    private int                 RoopNum;            // ループ数
+    private int RoopNum;                            // ループ数
 
-    private bool                KusoFlug;           // 初回の例外処理用フラグ
-    private playerController    Hit_Playerinfo;     // プレイヤー情報
+    private bool KusoFlug;                          // 初回の例外処理用フラグ
+    private playerController Hit_Playerinfo;        // プレイヤー情報
     private int PlayerNum;                          // プレイヤー数
 
+    private int Damage; // 受けたダメージ
 
     // 前回アニメーション情報
     private bossAnimation.BOSS_ANIMATION_TYPE beforeAnimation;
@@ -80,20 +84,20 @@ public class boss : MonoBehaviour
         get { return OptionInfo.bossInfo.standardInfo; }
     }
     // ボスステート
-	public bossState state
-	{
-		get { return bossState; }
-	}
+    public bossState state
+    {
+        get { return bossState; }
+    }
     // ボス個体情報
-	public BossInfo info
-	{
-		get { return OptionInfo.bossInfo; }
-	}
+    public BossInfo info
+    {
+        get { return OptionInfo.bossInfo; }
+    }
     // アニメーション管理
-	public bossAnimation myAnimation
-	{
-		get { return bossAnimation; }
-	}
+    public bossAnimation myAnimation
+    {
+        get { return bossAnimation; }
+    }
     // 前回のアニメーション
     public bossAnimation.BOSS_ANIMATION_TYPE befor
     {
@@ -107,7 +111,7 @@ public class boss : MonoBehaviour
     // 弾丸速度
     public int bulletspeed
     {
-        get { return  OptionInfo.BulletSpeed; }
+        get { return OptionInfo.BulletSpeed; }
     }
 
     // 敵の弾
@@ -116,10 +120,10 @@ public class boss : MonoBehaviour
         get { return Bullet; }
     }
     // プレイヤー情報
-	public playerController[] players
-	{
-		get { return playerControllers; }
-	}
+    public playerController[] players
+    {
+        get { return playerControllers; }
+    }
     // 銃(右)
     public Enemy_gun bulletInstance_Right
     {
@@ -135,7 +139,7 @@ public class boss : MonoBehaviour
     // 効果音
     public BossSe SE
     {
-        get { return SoundInfo;}
+        get { return SoundInfo; }
     }
 
     /////////////////////////////////////////
@@ -143,17 +147,17 @@ public class boss : MonoBehaviour
     ///////////////////////////////////////// 
 
     // 初回処理
-    private void Awake(){}
+    private void Awake() { }
 
-	// スタート処理
-	void Start () {
+    // スタート処理
+    void Start() {
 
         // ボス管理用ステータス初期化
-        SumDamage   = Common.Initialize.INIT_INT;
+        SumDamage = Common.Initialize.INIT_INT;
         CountEnable = false;
-        KusoFlug    = false;
-        RoopNum     = Common.Initialize.INIT_INT;
-        bossTimer   = Common.Initialize.INIT_INT;
+        KusoFlug = false;
+        RoopNum = Common.Initialize.INIT_INT;
+        bossTimer = Common.Initialize.INIT_INT;
 
         Hit_Playerinfo = null;
 
@@ -174,7 +178,7 @@ public class boss : MonoBehaviour
     private void FixedUpdate()
     {
         // 初回処理のみ例外
-        if(KusoFlug == true)
+        if (KusoFlug == true)
         {
             KusoFlug = false;
             return;
@@ -182,18 +186,21 @@ public class boss : MonoBehaviour
 
         // タイプ更新
         ParamaterUpdate();
-     
+
+        // ライフバー更新
+        LifeBarUpdate();
+
         // Y軸のみ常にカメラを向く
         LookAt(Camera.main.transform.position);
-                
+
         // 3ループで天井打ち
-        if(RoopNum  == 3)
+        if (RoopNum == 3)
         {
             // 天井打ちかショックウェーブかをHPで切り替え
 
             RoopNum = 0;
 
-            if ((OptionInfo.bossInfo.standardInfo.hp * 0.7)  <= SumDamage)
+            if ((OptionInfo.bossInfo.standardInfo.hp * 0.7) <= SumDamage)
             {
                 ChangeState(new BossStateWaitToShockWave(this), bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
             }
@@ -229,8 +236,8 @@ public class boss : MonoBehaviour
         Bullet.reloadBullet();
 
         // 初期ステート（同時打ち）
-       ChangeState(new BossStateWaitToDubleAtk(this), bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
-        
+        ChangeState(new BossStateWaitToDubleAtk(this), bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
+
     }
 
     // パラメータ更新処理
@@ -240,8 +247,30 @@ public class boss : MonoBehaviour
         bossState.updateState();
     }
 
+    // ライフバー更新処理
+    private void LifeBarUpdate()
+    {
+        // 変数
+        int max = OptionInfo.bossInfo.standardInfo.hp;
+        float bar = ( (float)max / 100.0f) * 2.0f;
 
+        // 今回のダメージ
+        int nowDamage = SumDamage / (int)bar;
 
+        // 2パー削れたら
+        if (nowDamage > Damage)
+        {
+            // メモリ減らす
+            for (int i = 0; i < (nowDamage - Damage); i++)
+            {
+                OptionInfo.LifeBar.MemoryBreak();
+            }
+        }
+
+        // 前回ライフ
+        Damage = nowDamage;
+    }
+    
     /////////////////////////////////////////
     /// 外部メソッド
     ///////////////////////////////////////// 
@@ -363,5 +392,23 @@ public class boss : MonoBehaviour
         OptionInfo.ExplosionEfect.SetActive(true);
         // 音もなる
         SE.downSE.Play();
+    }
+
+    // 爆発処理
+    public void EfectMegumin2()
+    {
+        // めぐみん的なエフェクトが出る
+        OptionInfo.ExplosionEfect2.SetActive(true);
+        // 音もなる
+        SE.downSE.Play();
+    }
+
+    // 煙
+    public void EffectSmokeMegumin()
+    {
+        // スモーク的なやつ
+        OptionInfo.SmokeEffect[0].SetActive(true);
+        OptionInfo.SmokeEffect[1].SetActive(true);
+        OptionInfo.SmokeEffect[2].SetActive(true);
     }
 }
