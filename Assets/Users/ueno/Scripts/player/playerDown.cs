@@ -13,6 +13,9 @@ public class playerDown : playerState {
 		//SE再生
 		player.SE.downSE.Play();
 
+		//ヒントUI再生
+		player.Animation.downHint.startAnimation();
+
 		//スコア加算
 		player.result.addScore(scoreType.DOWN_NUM);
     }
@@ -23,6 +26,9 @@ public class playerDown : playerState {
         {
             //SE再生
             player.SE.revivalSE.Play();
+
+			//UI非表示
+			player.Animation.downHint.endAnimation();
 
 			if (player.Gun.remBullet >= 0)
 				player.changeState(new playerReload(player));

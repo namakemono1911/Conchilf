@@ -28,6 +28,7 @@ public class PlayerAnimation
 {
     public UiAnimationInterface guard;      //ガードエフェクト
     public UiAnimationInterface reloadHint; //リロードヒント
+	public UiAnimationInterface downHint;   //ダウンヒント
 }
 
 //UI
