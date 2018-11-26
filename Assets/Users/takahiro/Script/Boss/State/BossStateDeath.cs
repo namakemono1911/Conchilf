@@ -22,6 +22,12 @@ public class BossStateDeath : bossState
     {
         // モーション再生
         boss.myAnimation.playAnimation(bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_DETH);
+
+        // ハブプレイヤー取得
+        havePlayerNum HavePlayer = boss.Get_HavePlayer();
+        foreach (var p in HavePlayer.player)
+            p.result.addScore(scoreType.ARREST_NUM);
+
     }
 
     // 更新

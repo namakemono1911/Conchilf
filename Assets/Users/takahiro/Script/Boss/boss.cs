@@ -19,23 +19,37 @@ public struct BossInfo
 	public enemyTypeManager.EnemyTypeInfo standardInfo;	// 情報
 }
 
+[System.Serializable]
+public class BossSe
+{
+    // ボス用効果音
+    public AudioSource shotSE0;     // ショット音1
+    public AudioSource shotSE1;     // ショット音2
+    public AudioSource shotSE2;     // ショット音3
+    public AudioSource downSE;      // ダウン時
+}
+
 // ボス処理
 public class boss : MonoBehaviour
 {
-
     // シリアライズ
     [System.Serializable]
     class Option
     {
-        public BossInfo bossInfo;                      // ボス情報
-        public Enemy_gun gun_Right;                    // 銃口(右)
-        public Enemy_gun gun_Left;                     // 銃口(左)
+        public int          BulletSpeed;            // 弾丸ヒットまでの時間
+        public BossInfo     bossInfo;               // ボス情報
+        public Enemy_gun    gun_Right;              // 銃口(右)
+        public Enemy_gun    gun_Left;               // 銃口(左)
 
-        public playerController[] Playerinfo;         // プレイヤー情報
+        public GameObject ExplosionEfect;           // 爆発エフェクト
+
+        public playerController[] Playerinfo;       // プレイヤー情報
     }
 
     [SerializeField]
-    private Option OptionInfo;         // オプション情報
+    private Option  OptionInfo;                     // オプション情報
+    [SerializeField]
+    private BossSe  SoundInfo;                      // サウンド情報
 
     // 通常メンバ
     private int                 SumDamage;          // 総合ダメージ
@@ -46,17 +60,20 @@ public class boss : MonoBehaviour
     private bossAnimation       bossAnimation;      // アニメーション情報
     private playerController[]  playerControllers;  // プレイヤー情報
     private enemyBullet         Bullet;             // バレット情報
+    private havePlayerNum       havePlayer;         // ハブプレイヤー
+
     private int                 RoopNum;            // ループ数
 
-    private bool                KusoFlug;           // 初回の例外処理用くそふらぐ
-    private playerController     Hit_Playerinfo;         // プレイヤー情報
-    private int PlayerNum;          // プレイヤー数
+    private bool                KusoFlug;           // 初回の例外処理用フラグ
+    private playerController    Hit_Playerinfo;     // プレイヤー情報
+    private int PlayerNum;                          // プレイヤー数
 
 
     // 前回アニメーション情報
     private bossAnimation.BOSS_ANIMATION_TYPE beforeAnimation;
 
-    // getter
+    // オペランド追加
+
     // ボスステータス情報
     public enemyTypeManager.EnemyTypeInfo BossStatus
     {
@@ -87,12 +104,17 @@ public class boss : MonoBehaviour
     {
         get { return bossTimer; }
     }
+    // 弾丸速度
+    public int bulletspeed
+    {
+        get { return  OptionInfo.BulletSpeed; }
+    }
+
     // 敵の弾
     public enemyBullet bullet
     {
         get { return Bullet; }
     }
-   
     // プレイヤー情報
 	public playerController[] players
 	{
@@ -110,15 +132,18 @@ public class boss : MonoBehaviour
         get { return OptionInfo.gun_Left; }
 
     }
+    // 効果音
+    public BossSe SE
+    {
+        get { return SoundInfo;}
+    }
 
     /////////////////////////////////////////
     /// 基本メソッド 
     ///////////////////////////////////////// 
 
     // 初回処理
-    private void Awake()
-	{
-	}
+    private void Awake(){}
 
 	// スタート処理
 	void Start () {
@@ -137,8 +162,11 @@ public class boss : MonoBehaviour
 
         // Uiの取得
         playerControllers = GameObject.Find("UICanvasHight").transform.GetComponentsInChildren<playerController>();
+        // ハブプレイヤー取得
+        havePlayer = GameObject.Find("UICanvasHight").GetComponent<havePlayerNum>();
+
         // プレイヤー数取得
-        PlayerNum = GameObject.Find("UICanvasHight").GetComponent<havePlayerNum>().numPlayer;
+        PlayerNum = havePlayer.numPlayer;
 
     }
 
@@ -173,9 +201,7 @@ public class boss : MonoBehaviour
             {
                 ChangeState(new BossStateWaitToShotUp(this), bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
             }
-
         }
-
 
         // タイマー処理
         if (!CountEnable)
@@ -188,8 +214,7 @@ public class boss : MonoBehaviour
 
     /////////////////////////////////////////
     /// 内部メソッド
-    ///////////////////////////////////////// 
-    
+    /////////////////////////////////////////  
     // パラメータ初期化処理
     private void ParamaterInit()
     {
@@ -220,8 +245,23 @@ public class boss : MonoBehaviour
     /////////////////////////////////////////
     /// 外部メソッド
     ///////////////////////////////////////// 
+    
+    // ダメージ加算
+    public void Add_Damage(int num)         { SumDamage += 1; }
+    // タイマーリセット
+    public void timerReset()                { bossTimer = 0.0f; }
+    // タイマースタート
+    public void timerStart()                { CountEnable = true; }
+    // タイマーストップ
+    public void timerStop()                 { CountEnable = false; }
+    // ループカウントアップ
+    public void RoopCountUp()               { RoopNum += 1; }
+    // プレイヤー人数ゲッタ
+    public int GetPlayerNum()               { return PlayerNum; }
+    // プレイヤーハブゲッタ
+    public havePlayerNum Get_HavePlayer()   { return havePlayer; }
 
-    // プレイヤーの弾と当たったか
+    // ボスコリジョン判定
     public void OnCollisionBoss(Collision collision)
     {
         if (collision.transform.tag == "playerBullet")
@@ -230,9 +270,7 @@ public class boss : MonoBehaviour
             Debug.Log("※ボスへ攻撃がヒット [残体力]: " + (OptionInfo.bossInfo.standardInfo.hp - SumDamage));
         }
     }
-
-
-    // 被ヒット時
+    // 子要素の呼び出し用
     public void BulletHit()
     {
         bossState.hitBullet(-1, false);
@@ -285,8 +323,7 @@ public class boss : MonoBehaviour
         Vector3 pos = OptionInfo.Playerinfo[PlayerNum].getHitPos();
         return pos;
     }
-
-
+    
     // 方向転換(Y軸のみ)
     public void LookAt(Vector3 at)
     {
@@ -296,21 +333,6 @@ public class boss : MonoBehaviour
         position.y = this.transform.position.y;
         transform.LookAt(position);
     }
-
-    // ダメージ加算
-    public void Add_Damage(int num){    SumDamage += 1;  }
-
-    // タイマーリセット
-    public void timerReset(){   bossTimer = 0.0f; }
-    // タイマースタート
-    public void timerStart(){   CountEnable = true; }
-    // タイマーストップ
-    public void timerStop() {   CountEnable = false; }
-    // ループカウントアップ
-    public void RoopCountUp() { RoopNum += 1; }
-    // プレイヤー人数ゲッタ
-    public int GetPlayerNum() { return PlayerNum; }
-
 
     // 前回のモーションを再度再生
     public void changeStateBefor()
@@ -332,5 +354,14 @@ public class boss : MonoBehaviour
     public void setPlayer(playerController p)
     {
         Hit_Playerinfo = p;
+    }
+
+    // 爆発処理
+    public void EfectMegumin()
+    {
+        // めぐみん的なエフェクトが出る
+        OptionInfo.ExplosionEfect.SetActive(true);
+        // 音もなる
+        SE.downSE.Play();
     }
 }
