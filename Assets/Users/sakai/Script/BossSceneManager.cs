@@ -11,7 +11,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 // ボスシーンマネージャ
 public class BossSceneManager : MonoBehaviour {
 
@@ -19,33 +18,90 @@ public class BossSceneManager : MonoBehaviour {
     [System.Serializable]
     class Option
     {
-        public List< GameObject> EnemyList; 
+        public List< GameObject>                    EnemyList;      // エネミーリスト
+        public List<BossSceneDramaPart.DramaInfo>   EndingList;     // EDドラマリスト
+        public AudioSource                          SceneMusic;     // シーンBGM
+        public BossSceneDramaPart                   DramaManager;   // ドラママネージャ
     }
 
     // シリアリズメンバ
     [SerializeField]
     private Option OptionInfo;  // オプション情報
-
+    
     // 通常メンバ
-
-
-	// Use this for initialization
-	void Start ()
+    private bool DramaEnable        = false;    // ボス撃破フラグ
+    private bool BossUpdate_Enable  = true;
+    
+    private void Awake()
     {
+        // フラグ初期化
+        DramaEnable         = false;
+        BossUpdate_Enable   = true;
 
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        // ボス全滅確認
-        if (EnemyAllDeth())
-        {
-            GotoNextScene();
-        }
+    // Use this for initialization
+    void Start ()
+    {
+
         
+    }
+	
+	// 更新処理
+	void Update ()
+    {
+        // 更新フラグ
+        if (BossUpdate_Enable == true)
+        {
+            // ドラマ再生中に終了フラグ確認
+            if (DramaEnable == true)
+            {
+                if (OptionInfo.DramaManager.Get_DramaPlayEnable() == false)
+                {
+                    // シーン遷移
+                    GotoNextScene();
+                    BossUpdate_Enable = false;
+                }
+            }
+            
+            // ボス全滅確認
+            if (EnemyAllDeth() && DramaEnable == false)
+            {
+                if (OptionInfo.SceneMusic.volume >= 0.2f)
+                {
+                    OptionInfo.SceneMusic.volume -= 0.02f;
+                }
+                else
+                {
+                    // エンディングドラマ再生
+                    EndScenePlay_Enable();
+
+                    // ドラマ再生フラグをtrueに
+                    DramaEnable = true;
+                }
+            }
+        }
+
+        else if (BossUpdate_Enable == false)
+        {
+            // ボリュームを下げるんだよぉ！
+            if (!sceneManager.Instance.isFadeIn())
+            {
+                if (sceneManager.Instance.isFade())
+                {
+                    OptionInfo.SceneMusic.volume -= 0.01f;
+                }
+            }
+        }        
 	}
 
+    // スタートシーン処理
+    private void EndScenePlay_Enable()
+    {
+        // エンディングリスト再生開始
+        OptionInfo.DramaManager.SetDramaDate_And_Play( OptionInfo.EndingList);
+        
+    }
 
 
     // ボスが全滅したか確認

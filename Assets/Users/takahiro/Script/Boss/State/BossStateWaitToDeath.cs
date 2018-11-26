@@ -26,6 +26,10 @@ public class BossStateWaitoToDeath : bossState
 
         // モーション再生
         boss.myAnimation.playAnimation(bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
+
+        // エクスプロージョン！
+        boss.EfectMegumin();
+        
     }
 
     // 更新
@@ -38,7 +42,7 @@ public class BossStateWaitoToDeath : bossState
             boss.timerStop();
             // タイマーリセット
             boss.timerReset();
-            // 待機後に時間差攻撃開始
+            // 待機後に死亡モーション
             boss.ChangeState(new BossStateDeath(boss), bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_WAIT_0);
         }
     }

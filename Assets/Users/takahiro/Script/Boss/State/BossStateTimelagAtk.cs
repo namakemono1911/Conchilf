@@ -1,103 +1,132 @@
 ﻿///////////////////////////////////////////////
 //
-//  Title   : ボス    時間差攻撃
+//  Title   : ボス 時間差攻撃
 //  Auther  : Shun Sakai 
 //  Date    : 2018/10/25
-//  Update  : 
-//  Memo    : 
+//  Update  : 2018/11/26
+//  Memo    : 効果音処理を追加
 //
 ///////////////////////////////////////////////
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 両プレイヤーに撃つ
+// 時間差攻撃
 public class BossStateTimelagAtk : bossState
 {
     public BossStateTimelagAtk(boss b) : base(b) { }
 
-    bool shotEnable;
+    // 変数
+    bool ShotEnable = false;
+    bool HitEnable  = false;
 
+    // 初期化処理
     public override void initState()
     {
         // 初期化
-        shotEnable = true;
+        ShotEnable = true;
+
+        // 確率計算
+        int HitProbability = (int)Random.Range(1, 100);
+        if(HitProbability <= boss.BossStatus.hitProbability)
+        {
+            HitEnable = true;
+        }
 
         // 発砲
         shot00();
-
-        // 両プレイヤーに時間差発砲
+        // モーション再生
         boss.myAnimation.playAnimation(bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_SHOT_ROTATE);
     }
+
+    // 更新
     public override void updateState()
     {
-        // モーションの途中で発砲
-        if(boss.myAnimation.GetNormalizedTime() >= 0.5f && shotEnable == true)
+        // 時間差で更に発砲
+        if(boss.myAnimation.GetNormalizedTime() >= 0.5f && ShotEnable == true)
         {
-            shotEnable = false;
-        
-            // ショット１呼び出し
+            // フラグ切り替え
+            ShotEnable = false;
+            // 発砲
             shot01();
         }
-
         
         // モーションが終了したらインターバルに遷移
         if (boss.myAnimation.isPlayingAnimation())
         {
             // ループカウントアップ
             boss.RoopCountUp();
-
+            // ステート切り替え
             boss.ChangeState(new BossStateWaitToDubleAtk(boss), bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_SHOT_ROTATE);
         }
-
     }
 
-    // ヒット時の処理
+    // 被弾時
     public override void hitBullet(int damege, bool critical)
     {
         hitBoss(damege, critical, bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_SHOT_ROTATE);
     }
 
-    // 発砲0
+    // 発砲処理1
     private void shot00()
     {
         // 変数
-        Vector3 Pos = new Vector3(0, 0, 0);
+        Vector3 Pos = Vector3.zero;
 
-        // 弾数を減算
-        boss.bullet.shotBullet();
-
-        // プレイヤー1&2の座標取得
-        Pos = boss.GetPlayerPos(0);
-
-        // 弾をセット
-        boss.bulletInstance_Right.SetBullet(Pos, 4.0f);
-        boss.bulletInstance_Left.SetBullet(Pos, 4.0f);
-
-    }
-
-    // 発砲1
-    private void shot01()
-    {
-        // 変数
-        Vector3 Pos = new Vector3(0, 0, 0);
-
-        // プレイヤー1&2の座標取得
-        if (boss.GetPlayerNum() >= 2)
+        if (HitEnable == true)
         {
-            Pos = boss.GetPlayerPos(1);
+            // プレイヤー1の座標取得
+            Pos = boss.GetPlayerPos(0);
         }
         else
         {
-            // プレイヤー1&2の座標取得
-            Pos = boss.GetPlayerPos(0);
+            // 非ヒット時の演出用
+            Vector3 camera = Camera.main.transform.position;
+            Pos = new Vector3(camera.x + 50.0f, camera.y + 50.0f, camera.z);
         }
 
         // 弾をセット
-        boss.bulletInstance_Right.SetBullet(Pos, 4.0f);
-        boss.bulletInstance_Left.SetBullet(Pos, 4.0f);
-
+        boss.bulletInstance_Right.SetBullet(Pos, boss.bulletspeed);
+        boss.bulletInstance_Left.SetBullet (Pos, boss.bulletspeed);
+        // 弾数を減算
+        boss.bullet.shotBullet();
+        // SE再生
+        boss.SE.shotSE0.Play();
     }
 
+    // 発砲処理2
+    private void shot01()
+    {
+        // 変数
+        Vector3 Pos = Vector3.zero;
 
+        if (HitEnable == true)
+        {
+
+            // プレイヤー1の座標取得
+            Pos = boss.GetPlayerPos(0);
+
+            // プレイヤー人数が二人以上
+            if (boss.GetPlayerNum() >= 2)
+            {
+                Pos = boss.GetPlayerPos(1);
+            }
+
+        }
+        else
+        {
+            // 非ヒット時の演出用
+            Vector3 camera = Camera.main.transform.position;
+            Pos = new Vector3(camera.x - 50.0f, camera.y + 50.0f, camera.z);
+        }
+
+        // 弾をセット
+        boss.bulletInstance_Right.SetBullet(Pos, boss.bulletspeed);
+        boss.bulletInstance_Left.SetBullet (Pos, boss.bulletspeed);
+        // 弾数を減算
+        boss.bullet.shotBullet();
+        // SE再生
+        boss.SE.shotSE0.Play();
+
+    }
 }
