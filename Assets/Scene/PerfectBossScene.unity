@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44020447, g: 0.48874146, b: 0.56892264, a: 1}
+  m_IndirectSpecularColor: {r: 0.44020474, g: 0.48874187, b: 0.56892383, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2199,6 +2199,26 @@ Prefab:
       propertyPath: HP
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114058953365022554, guid: 62acb5d4309223e44bd94cdca134b6b8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556155001206184, guid: 62acb5d4309223e44bd94cdca134b6b8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114058953365022554, guid: 62acb5d4309223e44bd94cdca134b6b8,
+        type: 2}
+      propertyPath: sensitivity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759578794996568, guid: 62acb5d4309223e44bd94cdca134b6b8,
+        type: 2}
+      propertyPath: control
+      value: 
+      objectReference: {fileID: 1035243972}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62acb5d4309223e44bd94cdca134b6b8, type: 2}
   m_IsPrefabParent: 0
@@ -2213,6 +2233,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224640896431684896, guid: 62acb5d4309223e44bd94cdca134b6b8,
     type: 2}
   m_PrefabInternal: {fileID: 1035243969}
+--- !u!114 &1035243972 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114058953365022554, guid: 62acb5d4309223e44bd94cdca134b6b8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1035243969}
+  m_Script: {fileID: 11500000, guid: aa0efceb803e26e4eabf18d24cb077b6, type: 3}
 --- !u!1 &1169365569
 GameObject:
   m_ObjectHideFlags: 0
@@ -19902,7 +19928,7 @@ Prefab:
     - target: {fileID: 114676784021905372, guid: d3a80fbecde46964996b11686e767a33,
         type: 2}
       propertyPath: instance
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3a80fbecde46964996b11686e767a33, type: 2}
