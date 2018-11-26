@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44020474, g: 0.48874187, b: 0.56892383, a: 1}
+  m_IndirectSpecularColor: {r: 0.44020447, g: 0.48874146, b: 0.56892264, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -18758,11 +18758,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ce370951578f94439437bb175edd2dc, type: 2}
   m_IsPrefabParent: 0
---- !u!82 &833446699 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82857906927191098, guid: 8ce370951578f94439437bb175edd2dc,
-    type: 2}
-  m_PrefabInternal: {fileID: 833446698}
 --- !u!224 &833446700 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224704376845573468, guid: 8ce370951578f94439437bb175edd2dc,
@@ -19043,7 +19038,7 @@ Prefab:
         type: 2}
       propertyPath: se.downSE
       value: 
-      objectReference: {fileID: 833446699}
+      objectReference: {fileID: 0}
     - target: {fileID: 114728427797957246, guid: 6bd006f5e692b954399d296278c4e930,
         type: 2}
       propertyPath: m_Sprite
@@ -20236,7 +20231,7 @@ Prefab:
         type: 2}
       propertyPath: se.downSE
       value: 
-      objectReference: {fileID: 833446699}
+      objectReference: {fileID: 0}
     - target: {fileID: 114770702606539470, guid: 0f0eeebc2f336ef4b8a2e79ba99ae417,
         type: 2}
       propertyPath: m_Sprite
@@ -21694,7 +21689,7 @@ Prefab:
     - target: {fileID: 114676784021905372, guid: d3a80fbecde46964996b11686e767a33,
         type: 2}
       propertyPath: instance
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3a80fbecde46964996b11686e767a33, type: 2}

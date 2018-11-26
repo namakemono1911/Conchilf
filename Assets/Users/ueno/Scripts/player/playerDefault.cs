@@ -57,6 +57,8 @@ public class playerDefault : playerState {
         player.result.addScore(scoreType.SHOT_NUM);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 8)))
         {
+			Debug.Log(hit.collider.gameObject.name);
+
             if (hit.collider.tag == "enemy")
             {
                 hit.transform.gameObject.GetComponent<enemy>().setPlayer(player);
