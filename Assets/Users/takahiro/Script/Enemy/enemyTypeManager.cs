@@ -10,7 +10,7 @@ public class enemyTypeManager : MonoBehaviour {
 	{
 		public int score;					// 倒したときのスコア
 		public float criticalMagnification; // クリティカルのスコア倍率
-		public int shotInterval;            // 射撃感覚
+		public float shotInterval;            // 射撃感覚
 		public int bulletNum;               // 弾数
 		public int hitProbability;			// プレイヤーに当たる確率
 		public int reloadFrame;             // リロードの速さ

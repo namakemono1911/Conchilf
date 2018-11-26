@@ -101,8 +101,9 @@ public class playerController : MonoBehaviour {
         else
             result = new playerScore(2);
 
-        changeState(new playerNeutral(this));
-        loadScore();
+		//changeState(new playerNeutral(this));
+		changeState(new playerDefault(this));
+		loadScore();
 
 		if (ui.bulletUI != null)
 			ui.bulletUI.setBulletLifeFirst(gun.numBullet);
@@ -130,24 +131,8 @@ public class playerController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-    	// デバッグ状態ではない時
-		if(Debug_HP == false)
-		{	
-			// HPが0以下
-			if(HP <= 0)
-			{
-				Destroy(collision.gameObject);
-	
-		        if (collision.gameObject.tag == "enemyBullet")
-		        {
-		            state.hitBullet();
-		        }
-		        Debug.Log("Player -> HP 0");
-			} else {
-				HP --;
-				Debug.Log("Player -> HP " + HP);
-			}
-		}
+		if (collision.gameObject.tag == "enemyBullet")
+			state.hitBullet();
     }
 
 	public Vector3 getHitPos()
