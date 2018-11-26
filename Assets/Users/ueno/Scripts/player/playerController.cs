@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using WiimoteApi;
 
 //銃の設定
@@ -102,7 +103,11 @@ public class playerController : MonoBehaviour {
         else
             result = new playerScore(2);
 
-		changeState(new playerNeutral(this));
+		if (SceneManager.GetActiveScene().name == "PerfectBossScene" || SceneManager.GetActiveScene().name == "PerfectBossScene2")
+			changeState(new playerDefault(this));
+		else
+			changeState(new playerNeutral(this));
+
 		loadScore();
 
 		if (ui.bulletUI != null)

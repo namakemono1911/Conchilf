@@ -150,7 +150,8 @@ public class boss : MonoBehaviour
     private void Awake() { }
 
     // スタート処理
-    void Start() {
+    void Start()
+	{
 
         // ボス管理用ステータス初期化
         SumDamage = Common.Initialize.INIT_INT;
