@@ -935,7 +935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yes: {fileID: 673301060}
   no: {fileID: 124916661}
-  reticle: {fileID: 136910381}
+  reticle: {fileID: 136910380}
   inputName: {fileID: 136910379}
   ranking: {fileID: 136910378}
   messageBox: {fileID: 1466119050}
@@ -966,7 +966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxNum: 5
   playerName: {fileID: 2015619260}
-  reticle: {fileID: 136910381}
+  reticle: {fileID: 136910380}
   messageBox: {fileID: 1466119050}
   messageController: {fileID: 136910377}
 --- !u!114 &136910380
@@ -975,7 +975,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 136910376}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa0efceb803e26e4eabf18d24cb077b6, type: 3}
   m_Name: 
@@ -995,7 +995,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 136910376}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 495a1045a4143cb448381f39040bf5b8, type: 3}
   m_Name: 
@@ -3776,7 +3776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1466119051
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4298,7 +4298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1699819095
 RectTransform:
   m_ObjectHideFlags: 0
