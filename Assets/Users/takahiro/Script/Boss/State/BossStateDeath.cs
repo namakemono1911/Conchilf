@@ -22,6 +22,9 @@ public class BossStateDeath : bossState
     {
         // モーション再生
         boss.myAnimation.playAnimation(bossAnimation.BOSS_ANIMATION_TYPE.ANIMATION_DETH);
+        
+        // めぐみん
+        boss.EfectMegumin2();
 
         // ハブプレイヤー取得
         havePlayerNum HavePlayer = boss.Get_HavePlayer();
@@ -36,7 +39,9 @@ public class BossStateDeath : bossState
         // モーションが終了したらインターバルに遷移
         if (boss.myAnimation.isPlayingAnimation() == true)
         {
-            
+            // モクモク
+            boss.EffectSmokeMegumin();
+
             // 消す
             Destroy(boss.gameObject);
 
