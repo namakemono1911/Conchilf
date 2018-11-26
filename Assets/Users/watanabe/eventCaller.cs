@@ -26,6 +26,14 @@ public class eventCaller : MonoBehaviour {
 	}
 	public watanabeEvent[] events;
 
+	// Use this for initialization
+	void Start () {
+		for (int i = 0; i < events.Length; ++i)
+		{
+			events[i].end = false;
+		}
+	}
+
 	private void OnCollisionEnter(Collision collision)
 	{
 		if(collision.transform.tag == "event")
