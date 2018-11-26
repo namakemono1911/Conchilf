@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 109991884}
   - component: {fileID: 109991887}
   - component: {fileID: 109991886}
+  - component: {fileID: 109991888}
   m_Layer: 0
   m_Name: play1player
   m_TagString: button
@@ -419,6 +420,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 600.8247, y: 196.69037}
   m_EdgeRadius: 0
+--- !u!114 &109991888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 109991882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc02da2646ac7b74785b142300060b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 109991883}
+  scalMagnification: 1.4
 --- !u!1001 &121220659
 Prefab:
   m_ObjectHideFlags: 0
@@ -900,6 +914,7 @@ GameObject:
   - component: {fileID: 299914033}
   - component: {fileID: 299914036}
   - component: {fileID: 299914035}
+  - component: {fileID: 299914037}
   m_Layer: 0
   m_Name: play2player
   m_TagString: button
@@ -1036,6 +1051,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 600.8247, y: 196.69037}
   m_EdgeRadius: 0
+--- !u!114 &299914037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 299914031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc02da2646ac7b74785b142300060b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 299914032}
+  scalMagnification: 1.4
 --- !u!1 &376280085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,7 +1243,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 535483621}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 495a1045a4143cb448381f39040bf5b8, type: 3}
   m_Name: 
@@ -1266,7 +1294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode1: {fileID: 109991886}
   mode2: {fileID: 299914035}
-  reticle: {fileID: 535483627}
+  reticle: {fileID: 535483624}
   se:
     play1: {fileID: 376280087}
     play2: {fileID: 1477014403}
@@ -1276,7 +1304,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 535483621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa0efceb803e26e4eabf18d24cb077b6, type: 3}
   m_Name: 
@@ -1301,7 +1329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletMark: {fileID: 1056353257082750, guid: dd99e80ad8987cf408b6bf6d2659a53c, type: 2}
-  input: {fileID: 535483627}
+  input: {fileID: 535483624}
   se:
     shotSE: {fileID: 2073837252}
 --- !u!223 &535483629

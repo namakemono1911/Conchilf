@@ -59,12 +59,18 @@ public class messageController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "button")
+        {
             selectButton = collision.gameObject.GetComponent<Button>();
+            collision.gameObject.GetComponent<ChangeScaling>().startAnimation();
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "button")
+        {
             selectButton = null;
+            collision.gameObject.GetComponent<ChangeScaling>().endAnimation();
+        }
     }
 }

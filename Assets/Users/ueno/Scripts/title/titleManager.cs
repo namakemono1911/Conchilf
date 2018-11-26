@@ -25,9 +25,9 @@ public class titleManager : MonoBehaviour
     [SerializeField]
     private TitleSE se;
 
-    private Button selectButton = null;
+    private Button selectButton = null;     //選択されているボタン
 
-	private bool once = false;
+	private bool once = false;              //一度だけ通る
 
 	private void Start()
 	{
@@ -74,12 +74,18 @@ public class titleManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "button")
+        {
             selectButton = collision.gameObject.GetComponent<Button>();
+            collision.gameObject.GetComponent<ChangeScaling>().startAnimation();
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "button")
+        {
+            collision.gameObject.GetComponent<ChangeScaling>().endAnimation();
             selectButton = null;
+        }
     }
 }
