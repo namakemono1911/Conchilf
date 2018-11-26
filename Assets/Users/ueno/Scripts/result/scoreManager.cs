@@ -27,12 +27,12 @@ public class playerScore
     private int numPlayer;
     public static int[] baseScore = new int[]
         {
-            100,
+            50,
             100,
             0,
             0,
-            100,
-            -100
+            30,
+            -1000
         };
 
     public void setScore(scoreType type, int score)

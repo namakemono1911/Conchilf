@@ -14,7 +14,7 @@ public class ScoreEvaluation : MonoBehaviour
     [SerializeField]
     private int[] evalutionValue;
 
-    private string evaluation = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private string evaluation = "SABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private int score;
 
