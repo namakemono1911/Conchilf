@@ -101,7 +101,7 @@ public class playerController : MonoBehaviour {
         else
             result = new playerScore(2);
 
-        changeState(new playerDefault(this));
+        //changeState(new playerNeutral(this));
         loadScore();
 
 		if (ui.bulletUI != null)
