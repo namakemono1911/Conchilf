@@ -12,6 +12,9 @@ public class playerDown : playerState {
     {
 		//SE再生
 		player.SE.downSE.Play();
+
+		//スコア加算
+		player.result.addScore(scoreType.DOWN_NUM);
     }
 
     public override void updateState()
@@ -21,10 +24,8 @@ public class playerDown : playerState {
             //SE再生
             player.SE.revivalSE.Play();
 
-            if (player.Gun.remBullet >= 0)
-                player.changeState(new playerDefault(player));
-            else
-                player.changeState(new playerNoAmmo(player));
+			if (player.Gun.remBullet >= 0)
+				player.changeState(new playerReload(player));
         }
     }
 

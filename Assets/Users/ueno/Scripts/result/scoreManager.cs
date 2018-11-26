@@ -53,6 +53,10 @@ public class playerScore
         int sum = 0;
         for (int i = 0; i < (int)scoreType.SUM_SCORE; i++)
             sum += scoreDict[(scoreType)i] * baseScore[i];
+
+		if (sum <= 0)
+			sum = 0;
+
         scoreDict[scoreType.SUM_SCORE] = sum;
     }
 

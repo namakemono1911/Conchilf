@@ -34,5 +34,8 @@ public class playerNoAmmo : playerState {
     public override void hitBullet()
     {
         normalHit();
+
+		//アニメーション終了
+		player.Animation.reloadHint.endAnimation();
     }
 }
