@@ -78,6 +78,13 @@ public class WiiInputFacade : InputFacade
                 return false;
         }
 
+        //加速度の場合
+        var accel = wiiInput[(int)ControllerArm.left].getAccelVector().normalized;
+        if (!(0.3f <= accel.x && accel.x <= 0.8f))
+            if (!(-0.8f <= accel.y && accel.y <= -0.2f))
+                if (!(0.3f <= accel.z && accel.z <= 0.8f))
+                    return false;
+        
         return true;
     }
 

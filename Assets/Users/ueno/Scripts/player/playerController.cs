@@ -40,14 +40,8 @@ public class PlayerUI
     public GameObject bulletMark = null;      //弾のエフェクト
 }
 
-public class playerController : MonoBehaviour {
-
-	[SerializeField]
-	public int HP = 3;					//HP
-	
-	[SerializeField]
-	public bool Debug_HP = false;		//HPデバッグモード
-
+public class playerController : MonoBehaviour
+{
     [SerializeField]
     private InputFacade control;        //プレイヤーのコントロール
 
