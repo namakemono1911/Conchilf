@@ -27,9 +27,26 @@ public class titleManager : MonoBehaviour
 
     private Button selectButton = null;
 
-    // Update is called once per frame
-    void Update()
+	private bool once = false;
+
+	private void Start()
+	{
+		//スコア初期化
+		for (int j = 0; j < 2; j++)
+		{
+			for (int i = 0; i < (int)scoreType.TYPE_MAX; i++)
+			{
+				PlayerPrefs.SetInt(((scoreType)i).ToString() + j.ToString(), 0);
+			}
+		}
+	}
+
+	// Update is called once per frame
+	void Update()
     {
+		if (sceneManager.Instance.isFade() || once)
+			return;
+
         if (reticle.whetherShot() && selectButton != null)
             ExecuteEvents.Execute(selectButton.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
     }
@@ -38,6 +55,7 @@ public class titleManager : MonoBehaviour
     {
         //SE再生
         se.play1.Play();
+		once = true;
 
         //遷移処理
         sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_NORMAL_1);
@@ -47,9 +65,10 @@ public class titleManager : MonoBehaviour
     {
         //SE再生
         se.play2.Play();
+		once = true;
 
-        //遷移処理
-        sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_NORMAL_2);
+		//遷移処理
+		sceneManager.Instance.SceneChange(sceneManager.SCENE.SCENE_GAME_NORMAL_2);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

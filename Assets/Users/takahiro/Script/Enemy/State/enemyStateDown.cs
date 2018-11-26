@@ -25,12 +25,12 @@ public class enemyStateDown : enemyState
 		if(bCritical)
 		{
 			enemy.myAnimation.playAnimation(enemyAnimationManager.ENEMY_ANIMATION_TYPE.ANIMATION_DETH_CRITICAL);
-            enemy.Player.result.addScore(scoreType.DEFEAT_NUM);
+            enemy.Player.result.addScore(scoreType.ARREST_NUM);
 		}
 		else
 		{
 			enemy.myAnimation.playAnimation(enemyAnimationManager.ENEMY_ANIMATION_TYPE.ANIMATION_DETH_NORMAL);
-            enemy.Player.result.addScore(scoreType.ARREST_NUM);
+            enemy.Player.result.addScore(scoreType.DEFEAT_NUM);
         }
 	}
 	public override void updateState()
