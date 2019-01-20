@@ -32,7 +32,7 @@ public class playerScore
             0,
             0,
             30,
-            -1000
+            -10
         };
 
     public void setScore(scoreType type, int score)
