@@ -67,24 +67,25 @@ public class WiiInputFacade : InputFacade
     //ガード
     public override bool whetherGuard()
     {
-        float[,] ir = wiiInput[(int)ControllerArm.left].Ir.GetProbableSensorBarIR();
-        var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
+        //線サーバーの場合
+        //float[,] ir = wiiInput[(int)ControllerArm.left].Ir.GetProbableSensorBarIR();
+        //var originPos = new Vector2(-Screen.width * 0.5f, -Screen.height * 0.5f);
 
-        for (int i = 0; i < 2; i++)
-        {
-            Vector2 pos = new Vector2(ir[i, 0] / 1023f, ir[i, 1] / 767f);
+        //for (int i = 0; i < 2; i++)
+        //{
+        //    Vector2 pos = new Vector2(ir[i, 0] / 1023f, ir[i, 1] / 767f);
 
-            if (pos.x <= 0.0f || pos.y <= 0.0f)
-                return false;
-        }
+        //    if (pos.x <= 0.0f || pos.y <= 0.0f)
+        //        return false;
+        //}
 
         //加速度の場合
-        //var accel = wiiInput[(int)ControllerArm.left].getAccelVector().normalized;
-        //if (!(0.3f <= accel.x && accel.x <= 0.8f))
-        //    if (!(-0.8f <= accel.y && accel.y <= -0.2f))
-        //        if (!(0.3f <= accel.z && accel.z <= 0.8f))
-        //            return false;
-        
+        var accel = wiiInput[(int)ControllerArm.left].getAccelVector().normalized;
+        if (!(0.3f <= accel.x && accel.x <= 0.8f))
+            if (!(-0.8f <= accel.y && accel.y <= -0.2f))
+                if (!(0.3f <= accel.z && accel.z <= 0.8f))
+                    return false;
+
         return true;
     }
 
